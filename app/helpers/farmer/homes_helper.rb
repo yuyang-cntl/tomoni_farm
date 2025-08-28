@@ -1,0 +1,2 @@
+module Farmer::HomesHelper
+end
