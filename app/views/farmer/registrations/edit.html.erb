@@ -1,7 +1,11 @@
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "farmers/shared/error_messages", resource: resource %>
+  <%= form_with model:resource, url:registration_path(resource_name), scope: :farmer, local: true do |f| %>
+
+  <div class="field mt-5 mb-3">
+   <%= f.label :name, "名前", class: "me-4" %>
+   <%= f.text_field :name, autofocus: true, autocomplete: "name", style: "width: 450px;" %>
+  </div>
 
   <div class="field">
     <%= f.label :email %><br />

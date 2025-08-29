@@ -1,1 +1,18 @@
 @use '~bootstrap/scss/bootstrap';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Noto Sans JP", "Yu Gothic UI", "Hiragino Sans", sans-serif;
+}
+
+.btn {
+  border-radius: 8px;
+  font-weight: 500;
+  background-color: #f8f9fa;
+  color: #333;
+}
