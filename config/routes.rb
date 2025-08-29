@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
+
   namespace :public do
     root to: 'homes#top'
-    get 'homes/about', to: 'homes#about'
+    get 'homes/about', to: 'homes#about', as: 'about'
     resources :customers, only: [:index, :show, :edit, :update] do
      member do
       get 'unsubscribe'
@@ -20,19 +21,21 @@ Rails.application.routes.draw do
   end
   namespace :farmer do
     root to: 'homes#top'
+    resource :home, only: [:show, :edit]
     resources :orders, only: [:show, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items
     resources :order_details, only: [:update]
     resources :posts
+    resources :diaries
   end
-  devise_for :farmers, controllers: {
+  devise_for :farmer, controllers: {
    registrations: "farmer/registrations",
    sessions: "farmer/sessions"
   }
-  devise_for :customers, controllers: {
-    registrations: "customer/registrations",
-    sessions: "customer/sessions"
+  devise_for :customer, path:'public', controllers: {
+    registrations: "public/registrations",
+    sessions: "public/sessions"
   }
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

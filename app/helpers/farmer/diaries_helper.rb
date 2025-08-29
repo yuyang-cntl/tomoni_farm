@@ -1,0 +1,2 @@
+module Farmer::DiariesHelper
+end

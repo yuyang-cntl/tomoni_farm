@@ -1,0 +1,22 @@
+<header class="d-flex">
+<nav class="container pt-3">
+ <div class="row align-items-center">
+  <div class="col-md-2 text-start">
+   <div class="navbar-brand mt-5 mb-3">
+    <%= link_to "LOGO",public_root_path %>
+   </div>
+  </div>
+  <ul class="d-flex flex-row offset-4 col-md-6 gap-5 justify-content-end">
+    <li class="d-flex">
+     <%= link_to "About", public_about_path, class:"btn btn-outline-secondary text-black", style: "width: 90px;"%>
+    </li>
+    <li class="d-flex">
+     <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
+    </li>
+    <li class="d-flex">
+     <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
+    </li>
+  </ul>
+ </div>
+</nav>
+</header>
