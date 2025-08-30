@@ -6,24 +6,25 @@
     <%= link_to "LOGO",public_root_path %>
    </div>
   </div>
-  <ul class="d-flex offset-4">
-    <li class="d-flex flex-row col-md-6 gap-1 justify-content-end">
+  <ul class="d-flex flex-row offset-4 col-md-6 justify-content-end">
+    <li class="d-flex">
      <%= link_to "商品一覧", farmer_items_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
     </li>
-    <li class="d-flex flex-row col-md-6 gap-1 justify-content-end">
+    <li class="d-flex">
      <%= link_to "会員一覧", farmer_customers_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
     </li>
-    <li class="d-flex flex-row col-md-6 gap-1 justify-content-end">
+    <li class="d-flex">
      <%= link_to "日記", farmer_diaries_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
     </li>
-    <li class="d-flex flex-row col-md-6 gap-1 justify-content-end">
-     <%= link_to "マイページ", root_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
+    <li class="d-flex">
+     <%= link_to "マイページ", farmer_root_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
     </li>
-    <li class="d-flex flex-row col-md-6 gap-1 justify-content-end">
+    <li class="d-flex">
      <%= link_to "ログアウト", destroy_farmer_session_path, method: :delete, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
     </li>
+  </ul>
     <div class="offset-9 col-md-3 d-flex justify-content-end">
-    <%= form_with url: about_path, method: :get, local: true do |f| %>
+    <%= form_with url: farmer_root_path, method: :get, local: true do |f| %>
      <div class="input-group">
      <%= f.search_field :query, placeholder: "Search", class:"form-control" %>
       <button class="btn btn-outline-secondary" type="submit">

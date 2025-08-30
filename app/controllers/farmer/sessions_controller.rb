@@ -15,7 +15,7 @@ class Farmer::SessionsController < Devise::SessionsController
 
   def after_sign_in_path_for(resource)
     flash[:notice] = "ログインせいこう"
-    farmer_path(resource)
+    farmer_root_path
   end
 
   # DELETE /resource/sign_out

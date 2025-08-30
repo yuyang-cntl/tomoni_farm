@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
     resources :posts
     resources :diaries
+    resources :post_images, only: [:new, :index, :show]
   end
   devise_for :farmer, controllers: {
    registrations: "farmer/registrations",
