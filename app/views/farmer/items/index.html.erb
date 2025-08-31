@@ -1,2 +1,9 @@
 <h1>Farmer::Items#index</h1>
-<p>Find me in app/views/farmer/items/index.html.erb</p>
+<%= link_to '商品登録', new_farmer_item_path, style:"font-size: 32px; font-weight: bold;" %>
+
+<% @items.each do |item| %>
+  <div class="item-card">
+  <h3><%= item.name %></h3>
+   <%= link_to '商品詳細', farmer_item_path(item), style:"font-size: 24px; font-weight: bold;" %>
+  </div>
+<% end %>

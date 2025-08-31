@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
-  before_action :configure_account_update_params, if: :devise_controller?
+  
   helper_method :current_user_type
 
   def current_user_type
