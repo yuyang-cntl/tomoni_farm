@@ -7,7 +7,6 @@ class CreateItems < ActiveRecord::Migration[6.1]
       t.string :harvest_time, null: false
       t.integer :price, null: false
       t.boolean :is_active, null: false,default: true
-      t.file :image, null: false
       t.timestamps
     end
   end

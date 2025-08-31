@@ -3,17 +3,15 @@
  <div class= "row">
  <%= form_with model:@item, url: farmer_items_path, html: { multipart: true } do |f| %>
   <div>
-  <%=f.label :text, "商品" %>
+  <%=f.label :name, "商品" %>
    <%= f.text_field :name, class: "form-control" %>
-  <%=f.label :file, "画像" %>
-   <%= f.file_field :image, class: "form-control" %>
-  <%= f.label :text, "生産者" %>
-    <%= f.text_field :name, class: "form-control" %>
-  <%= f.label :text, "説明" %>
+  <%=f.label :images, "画像" %>
+   <%= f.file_field :images, multiple:true, class: "form-control" %>
+  <%= f.label :introduction, "説明" %>
    <%= f.text_area :introduction, class: "form-control" %>
-  <%= f.label :number, "価格" %>   
+  <%= f.label :price, "価格" %>   
    <%= f.number_field :price, min: 0, step: 1, class: "form-control" %>
-  <%= f.label :text, "収穫時期" %>
+  <%= f.label :harvest_time, "収穫時期" %>
    <%= f.text_area :harvest_time, class: "form-control" %>
 
    <div class="actions d-flex justify-content-center col-md-8">

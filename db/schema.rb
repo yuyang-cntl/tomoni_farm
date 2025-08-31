@@ -107,6 +107,18 @@ ActiveRecord::Schema.define(version: 2025_08_29_102846) do
     t.index ["reset_password_token"], name: "index_farmers_on_reset_password_token", unique: true
   end
 
+  create_table "items", force: :cascade do |t|
+    t.integer "farmer_id", null: false
+    t.string "name", null: false
+    t.text "introduction", null: false
+    t.string "harvest_time", null: false
+    t.integer "price", null: false
+    t.boolean "is_active", default: true, null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["farmer_id"], name: "index_items_on_farmer_id"
+  end
+
   create_table "mypages", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -162,6 +174,7 @@ ActiveRecord::Schema.define(version: 2025_08_29_102846) do
   add_foreign_key "comments", "posts"
   add_foreign_key "diaries", "farmers"
   add_foreign_key "diaries", "posts"
+  add_foreign_key "items", "farmers"
   add_foreign_key "order_details", "customers"
   add_foreign_key "order_details", "items"
   add_foreign_key "order_details", "orders"

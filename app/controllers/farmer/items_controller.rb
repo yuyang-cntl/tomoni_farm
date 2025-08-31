@@ -6,14 +6,16 @@ class Farmer::ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params)
-    @item.farmer = current_farmer
-    @item.save
-    redirect_to farmer_items_path
+    @item = current_farmer.items.build(item_params)
+    if @item.save
+    redirect_to farmer_items_path, notice: "商品を登録しました"
+    else
+      render :new
+    end
   end
 
   def index
-    @items = current_farmer.items
+    @items = current_farmer.items.includes(images_attachments: :blob)
   end
 
 
@@ -34,8 +36,8 @@ class Farmer::ItemsController < ApplicationController
 
   def item_params
     params.require(:item).permit(
-      :name, :introduction, :image, :harvest_time,
-      :price, :is_active )
+      :name, :introduction, :harvest_time,
+      :price, :is_active, images:[] )
   end
 
 end
