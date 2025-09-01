@@ -1,3 +1,5 @@
 <h1>Farmer::Homes#top</h1>
 <p>Find me in app/views/farmer/homes/top.html.erb</p>
 
+<% image = @farmer.image.attached? ? @farmer.image : 'default-image.jpg' %>
+<%= image_tag(image, alt: "Farmer image", class: "profile-image") %>

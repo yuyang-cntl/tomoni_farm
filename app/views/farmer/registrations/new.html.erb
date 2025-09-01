@@ -20,8 +20,13 @@
  <div class="container">
  <div class="row"> 
  <div class="col-md-9 d-flex flex-column justify-content-center">
-  <%= form_with model:@farmer, url:farmer_registration_path, scope: :farmer, local: true do |f| %>
-   <div class="field mt-5 mb-3">
+  <%= form_with model:@farmer, url:farmer_registration_path, scope: :farmer, local: true, html: { multipart: true } do |f| %>
+    <div class="field mt-5 mb-3">
+     <%= f.label :image, "プロフィール画像", class: "me-4" %>
+     <%= f.file_field :image %>
+    </div>
+
+    <div class="field mt-5 mb-3">
     <%= f.label :name, "名前", class: "me-4" %>
     <%= f.text_field :name, autofocus: true, autocomplete: "name", style: "width: 450px;" %>
    </div>
