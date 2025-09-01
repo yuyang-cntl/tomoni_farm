@@ -27,7 +27,7 @@ class Farmer::DiariesController < ApplicationController
 
   def update
     @diary = current_farmer.diaries.find(params[:id])
-    if @diary.update(diary.params)
+    if @diary.update(diary_params)
       redirect_to farmer_diary_path(@diary),notice:"日記を更新しました"
     else
       render :edit

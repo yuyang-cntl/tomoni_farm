@@ -22,9 +22,9 @@
   <%=f.label :images, "表紙" %>
    <%= f.file_field :images, multiple:true, class: "form-control" %>
   <%=f.label :titile, "タイトル" %>
-   <%= f.text_field :name, class: "form-control" %>
+   <%= f.text_field :title, class: "form-control" %>
   <%= f.label :body, "本文" %>
-   <%= f.text_area :body, class: "form-control" %>
+   <%= f.text_area :body, maxlength: 500, class: "form-control" %>
 
    <div class="actions d-flex justify-content-center col-md-8">
     <%= f.submit "投稿", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>

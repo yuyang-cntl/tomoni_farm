@@ -17,9 +17,9 @@
 <h3>日記一覧</h3>
 <%= link_to '日記登録', new_farmer_diary_path, style:"font-size: 32px; font-weight: bold;" %>
 <div class="vh-100">
- <% @diaries.each do |item| %>
+ <% @diaries.each do |diary| %>
   <div class="diary-card">
-  <h3><%= diary.name %>の商品一覧</h3>
+  <h3><%= diary.title %>の日記一覧</h3>
    <% if diary.images.attached? %>
     <% diary.images.each do |image| %>
      <%= image_tag image.variant(resize_to_limit: [300,300]), class: "diary-image" %>

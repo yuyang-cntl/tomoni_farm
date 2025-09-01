@@ -82,13 +82,11 @@ ActiveRecord::Schema.define(version: 2025_08_29_102846) do
 
   create_table "diaries", force: :cascade do |t|
     t.integer "farmer_id", null: false
-    t.integer "post_id", null: false
     t.string "title", null: false
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["farmer_id"], name: "index_diaries_on_farmer_id"
-    t.index ["post_id"], name: "index_diaries_on_post_id"
   end
 
   create_table "farmers", force: :cascade do |t|
@@ -173,7 +171,6 @@ ActiveRecord::Schema.define(version: 2025_08_29_102846) do
   add_foreign_key "comments", "customers"
   add_foreign_key "comments", "posts"
   add_foreign_key "diaries", "farmers"
-  add_foreign_key "diaries", "posts"
   add_foreign_key "items", "farmers"
   add_foreign_key "order_details", "customers"
   add_foreign_key "order_details", "items"
