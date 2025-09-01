@@ -6,7 +6,7 @@ class Farmer::DiariesController < ApplicationController
   def create
     @diary = current_farmer.diaries.build(diary_params)
     if @diary.save
-    redirect_to farmer_diaries_path, notice: "日記を投稿しました"
+    redirect_to farmer_diaries_path, notice: "日記を作成しました"
     else
       render :new
     end

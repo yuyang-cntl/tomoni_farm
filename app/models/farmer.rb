@@ -7,4 +7,5 @@ class Farmer < ApplicationRecord
   has_many :items, dependent: :destroy
   has_many :diaries, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :customers
 end

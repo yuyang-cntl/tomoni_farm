@@ -1,2 +1,35 @@
-<h1>Farmer::Posts#new</h1>
-<p>Find me in app/views/farmer/posts/new.html.erb</p>
+<% if @post.errors.any? %>
+  <div class="alert alert-danger">
+  <h4>error</h4>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
+<h1>新規投稿</h1>
+<div class="container">
+ <div class= "row">
+ <%= form_with model:@post, url: farmer_diary_posts_path, html: { multipart: true } do |f| %>
+  <div>
+  <%=f.label :images, "表紙" %>
+   <%= f.file_field :images, multiple:true, class: "form-control" %>
+  <%=f.label :titile, "タイトル" %>
+   <%= f.text_field :title, class: "form-control" %>
+  <%= f.label :body, "本文" %>
+   <%= f.text_area :body, maxlength: 500, class: "form-control" %>
+
+   <div class="actions d-flex justify-content-center col-md-8">
+    <%= f.submit "投稿", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
+   </div>
+  </div>
+ <% end %>
+ </div>
+</div>

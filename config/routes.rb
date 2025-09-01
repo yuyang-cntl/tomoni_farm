@@ -26,8 +26,9 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items
     resources :order_details, only: [:update]
-    resources :posts
-    resources :diaries
+    resources :diaries do
+     resources :posts
+    end
   end
   devise_for :farmer, controllers: {
    registrations: "farmer/registrations",

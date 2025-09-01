@@ -1,2 +1,37 @@
-<h1>Farmer::Posts#index</h1>
-<p>Find me in app/views/farmer/posts/index.html.erb</p>
+<% if @post.errors.any? %>
+  <div class="alert alert-danger">
+  <h4>error</h4>
+    <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
+<%= link_to '新規投稿', new_farmer_diary_post_path, style:"font-size: 32px; font-weight: bold;" %>
+<% if @posts.empty? %>
+ <p style="font-size: 18px; color: gray;">まだ投稿がありません</p>
+<% else %>
+<div class="vh-100">
+ <% @posts.each do |post| %>
+  <div class="post-card">
+  <h3><%= post.title %>の日記一覧</h3>
+   <% if post.images.attached? %>
+    <% post.images.each do |image| %>
+     <%= image_tag image.variant(resize_to_limit: [300,300]), class: "post-image" %>
+    <% end %>
+    <% else %>
+     <p>画像は未登録です</p>
+    <% end %>
+   <%= link_to '投稿詳細', farmer_diary_post_path(@diary,post), style:"font-size: 24px; font-weight: bold;" %>
+  </div>
+ <% end %>
+</div>
+<% end %>

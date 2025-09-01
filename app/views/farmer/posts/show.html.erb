@@ -1,2 +1,18 @@
-<h1>Farmer::Posts#show</h1>
-<p>Find me in app/views/farmer/posts/show.html.erb</p>
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
+<h3><strong><%= @post.title %></strong>の日記</h3>
+<% if @post.images.attached? %>
+<% @post.images.each do |image| %>
+ <%= image_tag image.variant(resize_to_limit: [300,300]), class: "post-image" %>
+<% end %>
+<% else %>
+ <p>画像は未登録です</p>
+<% end %>
+<h3>タイトル：<%= @post.title %></h3>
+<h3>本文：<%= @post.body %></h3>
+<%= link_to "編集", edit_farmer_diary_post_path(@diary,@post), class: "btn btn-primary" %>
+<%= link_to "削除", farmer_diary_post_path(@diary,@post), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-primary" %>

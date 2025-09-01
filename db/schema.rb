@@ -154,7 +154,7 @@ ActiveRecord::Schema.define(version: 2025_08_29_102846) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "farmer_id", null: false
-    t.integer "comment_id", null: false
+    t.integer "comment_id"
     t.integer "diary_id", null: false
     t.string "title", null: false
     t.text "body", null: false
