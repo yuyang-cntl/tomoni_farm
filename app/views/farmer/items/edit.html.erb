@@ -1,2 +1,44 @@
-<h1>Farmer::Items#edit</h1>
-<p>Find me in app/views/farmer/items/edit.html.erb</p>
+<% if @item.errors.any? %>
+  <div class="alert alert-danger">
+  <h4>error</h4>
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<h3>商品情報を編集</h3>
+<div class="container text-start py-3">
+ <div class="row">
+  <div class="col-md-5 mx-auto">
+  <%= form_with model:@item, url: farmer_item_path(@item), html: { multipart: true } do |f| %>
+    <div>
+    <%=f.label :name, "商品" %>
+     <%= f.text_field :name, class: "form-control" %>
+    <%=f.label :images, "画像" %>
+     <%= f.file_field :images, multiple:true, class: "form-control" %>
+    <%= f.label :introduction, "説明" %>
+     <%= f.text_area :introduction, class: "form-control" %>
+    <%= f.label :price, "価格" %>   
+     <%= f.number_field :price, min: 0, step: 1, class: "form-control" %>
+    <%= f.label :harvest_time, "収穫時期" %>
+     <%= f.text_area :harvest_time, class: "form-control" %>
+  
+     <div class="actions d-flex justify-content-center col-md-8">
+      <%= f.submit "更新", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
+     </div>
+    </div>
+  <% end %>
+  <div class="d-flex">
+   <%= link_to farmer_items_path do %>
+    <p class="mr-1"><%= '商品一覧' %></p>
+   <% end %>
+    <%= '|' %>
+   <%= link_to farmer_item_path(@item) do %>
+    <p class="ml-1"><%= '戻る' %></p>
+   <% end %>
+   </div>
+ </div>
+</div>

@@ -1,4 +1,20 @@
-<h1>Farmer::Items#new</h1>
+<% if @item.errors.any? %>
+  <div class="alert alert-danger">
+  <h4>error</h4>
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
+<h1>商品の新規登録</h1>
 <div class="container">
  <div class= "row">
  <%= form_with model:@item, url: farmer_items_path, html: { multipart: true } do |f| %>

@@ -1,9 +1,25 @@
-<h1>Farmer::Items#index</h1>
+<% if @item.errors.any? %>
+  <div class="alert alert-danger">
+  <h4>error</h4>
+    <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
 <%= link_to '商品登録', new_farmer_item_path, style:"font-size: 32px; font-weight: bold;" %>
 
-<% @items.each do |item| %>
+<div class="vh-100">
+ <% @items.each do |item| %>
   <div class="item-card">
-  <h3><%= item.name %></h3>
+  <h3><%= item.name %>の商品一覧</h3>
    <% if item.images.attached? %>
     <% item.images.each do |image| %>
      <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
@@ -13,4 +29,5 @@
     <% end %>
    <%= link_to '商品詳細', farmer_item_path(item), style:"font-size: 24px; font-weight: bold;" %>
   </div>
-<% end %>
+ <% end %>
+</div>
