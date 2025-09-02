@@ -1,0 +1,9 @@
+ja:
+  devise:
+    failure:
+      unauthenticated: "ログインしてください。"
+      invalid: "メールアドレスまたはパスワードが正しくありません。"
+      timeout: "セッションがタイムアウトしました。再度ログインしてください。"
+      inactive: "アカウントが有効化されていません。"
+      locked: "アカウントがロックされています。"
+      already_authenticated: "すでにログインしています。"

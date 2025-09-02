@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 2025_08_29_102846) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "farmer_id"
     t.string "last_name", null: false
     t.string "first_name", null: false
     t.string "last_name_kana", null: false
@@ -77,6 +78,7 @@ ActiveRecord::Schema.define(version: 2025_08_29_102846) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
+    t.index ["farmer_id"], name: "index_customers_on_farmer_id"
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
@@ -170,6 +172,7 @@ ActiveRecord::Schema.define(version: 2025_08_29_102846) do
   add_foreign_key "addresses", "customers"
   add_foreign_key "comments", "customers"
   add_foreign_key "comments", "posts"
+  add_foreign_key "customers", "farmers"
   add_foreign_key "diaries", "farmers"
   add_foreign_key "items", "farmers"
   add_foreign_key "order_details", "customers"

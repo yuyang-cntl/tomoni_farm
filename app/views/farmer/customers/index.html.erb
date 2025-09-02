@@ -15,3 +15,18 @@
 <% end %>
 
 <h3>会員一覧</h3>
+<div class="vh-100">
+ <% @customers.each do |customer| %>
+  <div class="customer-card">
+  <h3><%= customer.title %>の日記一覧</h3>
+   <% if customer.images.attached? %>
+    <% customer.images.each do |image| %>
+     <%= image_tag image.variant(resize_to_limit: [300,300]), class: "customer-image" %>
+    <% end %>
+    <% else %>
+     <p>画像は未登録です</p>
+    <% end %>
+   <%= link_to '会員詳細', farmer_customer_path(customer), style:"font-size: 24px; font-weight: bold;" %>
+  </div>
+ <% end %>
+</div>
