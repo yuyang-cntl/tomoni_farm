@@ -5,5 +5,5 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
          has_many :comments, dependent: :destroy
          has_many_attached :images
-         belongs_to :farmer
+         belongs_to :farmer, optional: true
 end

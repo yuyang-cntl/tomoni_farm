@@ -1,2 +1,0 @@
-class Mypage < ApplicationRecord
-end

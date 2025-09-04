@@ -1,4 +1,10 @@
-<h1>strong<%= @farmer.name %>さんのページ</h1>
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
+<h1><%= @farmer.name %>さんのページ</h1>
 
 <% image = @farmer.image.attached? ? @farmer.image : 'default-image.jpg' %>
 <%= image_tag(image, alt: "Farmer image", class: "profile-image") %>
