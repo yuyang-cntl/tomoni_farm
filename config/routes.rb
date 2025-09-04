@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
     root to: 'homes#top'
-  namespace :public do
-    get '/', to: 'customers#index', as: :root
+  scope module: :public, as: 'public' do
+    root to: 'customers#index', as: :root
     resources :customers, only: [:index, :show, :edit, :update] do
      member do
       get 'unsubscribe'
