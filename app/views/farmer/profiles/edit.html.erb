@@ -1,0 +1,56 @@
+<% if @farmer.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @farmer.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+
+<h1>プロフィール更新</h1>
+
+<p class="col-md-3 d-flex justify-content-end">
+
+ <div class="container">
+ <div class="row"> 
+ <div class="col-md-9 d-flex flex-column justify-content-center">
+  <%= form_with model:@farmer, url:farmer_profile_path, scope: :farmer, method: :patch, local: true, html: { multipart: true } do |f| %>
+    <div class="field mt-5 mb-3">
+     <%= f.label :image, "プロフィール画像", class: "me-4" %>
+     <%= f.file_field :image %>
+    </div>
+
+    <div class="field mt-5 mb-3">
+    <%= f.label :name, "名前", class: "me-4" %>
+    <%= f.text_field :name, autofocus: true, autocomplete: "name", style: "width: 450px;" %>
+   </div>
+
+   <div class="field mb-5">
+    <%= f.label :email, "メールアドレス", class: "me-4" %>
+    <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email", style: "width: 450px;" %>
+   </div>
+
+   <div class="field mb-5">
+    <%= f.label :password, "パスワード(6文字以上)", class: "me-5" %>
+    <%= f.password_field :password, autocomplete: "current-password", style: "width: 450px;" %>
+   </div>
+
+   <div class="field mb-5">
+    <%= f.label :password_confirmation, "パスワード（確認）", class: "me-5" %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 450px;" %>
+   </div>
+
+   <div class="actions d-flex justify-content-center col-md-8">
+    <%= f.submit "更新", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
+   </div>
+  <% end %>
+ </div>
+ </div>
+</div>

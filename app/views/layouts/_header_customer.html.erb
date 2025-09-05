@@ -3,7 +3,7 @@
  <div class="row align-items-center">
   <div class="col-md-2 text-start">
    <div class="navbar-brand mt-5 mb-3">
-    <%= link_to "LOGO",public_root_path %>
+    <%= link_to "LOGO",root_path %>
    </div>
   </div>
   <ul class="d-flex flex-row offset-4 col-md-6 gap-5 justify-content-end">
@@ -14,7 +14,7 @@
      <%= link_to "農家一覧", public_farmers_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
     </li>
     <li class="d-flex">
-    <%= link_to "マイページ", root_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
+    <%= link_to "マイページ", public_customers_root_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
    </li>
     <li class="d-flex">
      <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>

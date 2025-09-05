@@ -19,7 +19,6 @@ class Farmer::ItemsController < ApplicationController
     @item = Item.new
   end
 
-
   def show
     @item = current_farmer.items.find(params[:id])
   end

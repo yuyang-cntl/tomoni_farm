@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
+  namespace :farmer do
+    get 'profiles/edit'
+    get 'profiles/update'
+    get 'profiles/destroy'
+  end
     root to: 'homes#top'
   scope module: :public, as: 'public' do
-    root to: 'customers#index', as: :root
+    get 'mypage', to: 'customers#show', as: :customers_root
     resources :customers, only: [:index, :show, :edit, :update] do
      member do
       get 'unsubscribe'
@@ -27,6 +32,9 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
     resources :diaries do
      resources :posts
+    end
+    resource :profile, only: [:edit, :update, :destroy] do
+      get 'confirm_destroy', on: :collection
     end
   end
   devise_for :farmer, controllers: {

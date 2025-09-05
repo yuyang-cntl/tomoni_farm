@@ -3,7 +3,12 @@ class Customer < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
          has_many :comments, dependent: :destroy
          has_many_attached :images
          belongs_to :farmer, optional: true
+         
+  def farmer_items
+    farmer&.items
+  end
 end

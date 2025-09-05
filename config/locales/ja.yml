@@ -10,4 +10,5 @@ ja:
       customer:
         not_found_in_database: "顧客情報が見つかりませんでした。"
       farmer:
-        not_found_in_database: "農家アカウントが見つかりませんでした。"
+        not_found_in_database: "アカウントが見つかりませんでした。"
+        signed_up: "農家ユーザー登録が完了しました。"
