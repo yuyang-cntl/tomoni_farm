@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
-  namespace :farmer do
-    get 'profiles/edit'
-    get 'profiles/update'
-    get 'profiles/destroy'
-  end
+
     root to: 'homes#top'
+    
   scope module: :public, as: 'public' do
     get 'mypage', to: 'customers#show', as: :customers_root
     resources :customers, only: [:index, :show, :edit, :update] do
@@ -23,6 +20,7 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :farmers, only: [:index, :show]
   end
+
   namespace :farmer do
     root to: 'homes#top'
     resource :home, only: [:show, :edit]
@@ -30,13 +28,15 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update]
     resources :items
     resources :order_details, only: [:update]
+    resource :password_change, only: [:edit, :update]
     resources :diaries do
      resources :posts
     end
     resource :profile, only: [:edit, :update, :destroy] do
-      get 'confirm_destroy', on: :collection
+     get 'confirm_destroy', on: :collection
     end
   end
+
   devise_for :farmer, controllers: {
    registrations: "farmer/registrations",
    sessions: "farmer/sessions"

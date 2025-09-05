@@ -1,25 +1,23 @@
-# frozen_string_literal: true
-
 class Farmer::PasswordsController < Devise::PasswordsController
-  # GET /resource/password/new
-  # def new
-  #   super
-  # end
+  before_action :authenticate_farmer!
 
-  # POST /resource/password
-  # def create
-  #   super
-  # end
+  def set_devise_mapping
+   request.env["devise.mapping"] = Devise.mappings[:farmer]
+  end
 
-  # GET /resource/password/edit?reset_password_token=abcdef
-  # def edit
-  #   super
-  # end
-
-  # PUT /resource/password
-  # def update
-  #   super
-  # end
+  def edit
+   @farmer = current_farmer
+  end
+ 
+  def update
+   @farmer = current_farmer
+   if @farmer.update(farmer_params)
+    bypass_sign_in(@farmer)
+    redirect_to edit_farmer_profile_path, notice: '更新しました'
+   else
+    render :edit
+   end
+  end
 
   # protected
 
@@ -31,4 +29,11 @@ class Farmer::PasswordsController < Devise::PasswordsController
   # def after_sending_reset_password_instructions_path_for(resource_name)
   #   super(resource_name)
   # end
+  
+  private
+
+  def farmer_params
+   params.require(:farmer).permit(:name, :email, :password, :password_confirmation, :image)
+  end
+
 end
