@@ -1,5 +1,6 @@
 class Public::CommentsController < ApplicationController
   def new
+<<<<<<< HEAD
     @comment = comment.new
   end
 
@@ -9,6 +10,20 @@ class Public::CommentsController < ApplicationController
     @comment.post_id = post.id
     if @comment.save
     redirect_to farmer_post_comment_path(current_customer.farmer,post,@comment), notice: "コメントを投稿しました"
+=======
+    @comment = Comment.new
+  end
+
+  def create
+    post = Post.find(params[:post_id])
+    @comment = current_customer.comment.build(comment_params)
+    @comment.post = post
+    if @comment.save
+      redirect_to diary_post_path(post.diary, post), notice: "コメントを投稿しました"
+    else
+      redirect_to diary_post_path(post.diary, post), alert: "コメントの投稿に失敗しました"
+    end
+>>>>>>> 5f72503 (likes_controller)
   end
 
   def index
@@ -20,7 +35,11 @@ class Public::CommentsController < ApplicationController
 
   def show
     @post = current_customer.farmer_post.find(params[:post_id])
+<<<<<<< HEAD
     @comment = @post.comment.find(params[:id])
+=======
+    @comment = @post.comments.find(params[:id])
+>>>>>>> 5f72503 (likes_controller)
   end
 
   def destroy

@@ -10,7 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2025_08_29_102846) do
+=======
+ActiveRecord::Schema.define(version: 2025_09_06_091105) do
+>>>>>>> 5f72503 (likes_controller)
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -119,6 +123,18 @@ ActiveRecord::Schema.define(version: 2025_08_29_102846) do
     t.index ["farmer_id"], name: "index_items_on_farmer_id"
   end
 
+<<<<<<< HEAD
+=======
+  create_table "likes", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_likes_on_customer_id"
+    t.index ["post_id"], name: "index_likes_on_post_id"
+  end
+
+>>>>>>> 5f72503 (likes_controller)
   create_table "mypages", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -175,6 +191,11 @@ ActiveRecord::Schema.define(version: 2025_08_29_102846) do
   add_foreign_key "customers", "farmers"
   add_foreign_key "diaries", "farmers"
   add_foreign_key "items", "farmers"
+<<<<<<< HEAD
+=======
+  add_foreign_key "likes", "customers"
+  add_foreign_key "likes", "posts"
+>>>>>>> 5f72503 (likes_controller)
   add_foreign_key "order_details", "customers"
   add_foreign_key "order_details", "items"
   add_foreign_key "order_details", "orders"
