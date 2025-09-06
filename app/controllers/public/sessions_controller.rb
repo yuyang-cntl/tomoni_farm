@@ -15,7 +15,7 @@ class Public::SessionsController < Devise::SessionsController
 
   def after_sign_in_path_for(resource)
     flash[:notice] = "ログインせいこう"
-    public_customer_path(resource)
+    public_customers_root_path(resource)
   end
 
   # DELETE /resource/sign_out

@@ -9,7 +9,7 @@ class Farmer::ProfilesController < ApplicationController
    @farmer = current_farmer
    if @farmer.update(farmer_params)
     sign_in(@farmer, bypass: true)
-    redirect_to edit_farmer_profile_path, notice: '更新しました'
+    redirect_to farmer_profile_path, notice: '更新しました'
    else
     render :edit
    end

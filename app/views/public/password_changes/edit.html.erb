@@ -1,0 +1,24 @@
+<h2>パスワード変更</h2>
+<p class="col-md-3 d-flex justify-content-end">
+
+<div class="container">
+ <div class="row">
+  <div class="col-md-9 d-flex flex-column justify-content-center">
+   <%= form_with model:@customer, url:public_profile_path, scope: :customer, method: :patch, local: true, html: { multipart: true } do |f| %>
+
+  <div class="field mb-5">
+   <%= f.label :password, "パスワード(6文字以上)", class: "me-5" %>
+   <%= f.password_field :password, autocomplete: "current-password", style: "width: 450px;" %>
+  </div>
+
+  <div class="field mb-5">
+   <%= f.label :password_confirmation, "パスワード（確認）", class: "me-5" %>
+   <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 450px;" %>
+  </div>
+  <div class="actions d-flex justify-content-center col-md-8">
+   <%= f.submit "更新", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
+  </div>
+   <% end %>
+  </div>
+ </div>
+</div>

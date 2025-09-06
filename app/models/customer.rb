@@ -5,10 +5,16 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :comments, dependent: :destroy
-         has_many_attached :images
+         has_one_attached :image
+         has_many :comments, dependent: :destroy
          belongs_to :farmer, optional: true
          
   def farmer_items
     farmer&.items
   end
+
+  def name
+    "#{last_name} #{first_name}"
+  end  
+  
 end

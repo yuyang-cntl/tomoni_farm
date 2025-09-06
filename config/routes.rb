@@ -1,24 +1,50 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'likes/create'
+    get 'likes/destroy'
+  end
+  namespace :public do
+    get 'posts/show'
+  end
+  namespace :public do
+    get 'diaries/index'
+    get 'diaries/show'
+  end
     root to: 'homes#top'
     
   scope module: :public, as: 'public' do
-    get 'mypage', to: 'customers#show', as: :customers_root
+    get 'mypage', to: 'profiles#show', as: :customers_root
     resources :customers, only: [:index, :show, :edit, :update] do
      member do
       get 'unsubscribe'
       patch 'withdraw'
-     end  
+     end
     end
+
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show] do
      collection do
       post 'confirm'
       get 'complete'
-     end  
+     end
     end
+
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
     resources :farmers, only: [:index, :show]
+    resource :password_change, only: [:edit, :update]
+    resources :comments, only: [:new, :index, :create, :show, :destroy]
+
+    resources :diaries, only: [:index, :show] do
+     resources :posts, only: [:show] do
+      resources :comments, only: [:create]
+      resource :like, only: [:create, :destroy]
+     end
+    end
+
+    resource :profile, only: [:edit, :update, :show, :destroy] do
+     get 'confirm_destroy', on: :collection
+    end
   end
 
   namespace :farmer do
@@ -29,6 +55,7 @@ Rails.application.routes.draw do
     resources :items
     resources :order_details, only: [:update]
     resource :password_change, only: [:edit, :update]
+
     resources :diaries do
      resources :posts
     end
