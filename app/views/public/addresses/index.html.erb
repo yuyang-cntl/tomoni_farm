@@ -1,4 +1,30 @@
+<% if @address.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @address.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+
 <h1>配送先一覧</h1>
  <li class="d-flex  flex-row col-md-6 gap-1 justify-content-end">
   <%= link_to "新規登録", new_public_address_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
  </li>
+
+ <div>
+  <% @addresses.each do |address| %>
+   <h4>宛名：<%= address.name %></h4>
+   <h4>〒：<%= address.postal_code %></h4>
+   <h4>住所：<%= address.address %></h4>
+   <%= link_to "編集", edit_public_address_path(address), class: "btn btn-primary" %>
+   <%= link_to "削除", public_address_path(address), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-primary" %>
+  <% end %>
+ </div>

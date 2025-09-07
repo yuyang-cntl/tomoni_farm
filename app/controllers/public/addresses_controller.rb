@@ -16,6 +16,7 @@ class Public::AddressesController < ApplicationController
 
   def index
     @addresses = current_customer.addresses.all
+    @address = Address.new
   end
 
   def edit
@@ -29,7 +30,7 @@ class Public::AddressesController < ApplicationController
   def update
     @address = current_customer.addresses.find(params[:id])
     if @address.update(address_params)
-      redirect_to customer_address_path(@address),notice:"情報を更新しました"
+      redirect_to public_addresses_path(@address),notice:"情報を更新しました"
     else
       render :edit
     end
@@ -38,7 +39,7 @@ class Public::AddressesController < ApplicationController
   def destroy
     address = current_customer.addresses.find(params[:id])
     address.destroy
-    redirect_to customer_address_path,notice:"配送先を削除しました"
+    redirect_to public_addresses_path,notice:"配送先を削除しました"
   end
 
 private
