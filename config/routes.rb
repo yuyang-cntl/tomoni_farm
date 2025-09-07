@@ -1,16 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'likes/create'
-    get 'likes/destroy'
-  end
-  namespace :public do
-    get 'posts/show'
-  end
-  namespace :public do
-    get 'diaries/index'
-    get 'diaries/show'
-  end
     root to: 'homes#top'
     
   scope module: :public, as: 'public' do
@@ -30,7 +19,7 @@ Rails.application.routes.draw do
      end
     end
 
-    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :addresses
     resources :farmers, only: [:index, :show]
     resource :password_change, only: [:edit, :update]
     resources :comments, only: [:new, :index, :create, :show, :destroy]

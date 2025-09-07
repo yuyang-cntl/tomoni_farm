@@ -25,6 +25,8 @@ class Farmer::PostsController < ApplicationController
   def show
     @diary = Diary.find(params[:diary_id])
     @post = @diary.posts.find(params[:id])
+    customer = current_farmer.customer
+    @post.comment = customer.post_comment(params[:id])
   end
 
   def edit

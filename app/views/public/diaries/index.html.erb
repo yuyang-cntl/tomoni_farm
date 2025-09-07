@@ -1,2 +1,15 @@
-<h1>Public::Diaries#index</h1>
-<p>Find me in app/views/public/diaries/index.html.erb</p>
+<div class="vh-100">
+<h1>登録農家の日記一覧</h1>
+ <% @diaries.each do |diary| %>
+  <div class="diary-card">
+   <% if diary.images.attached? %>
+    <% diary.images.each do |image| %>
+     <%= image_tag image.variant(resize_to_limit: [300,300]), class: "diary-image" %>
+    <% end %>
+    <% else %>
+     <p>画像は未登録です</p>
+    <% end %>
+   <%= link_to '日記詳細', current_customer.farmer_diary_path(diary), style:"font-size: 24px; font-weight: bold;" %>
+  </div>
+ <% end %>
+</div>

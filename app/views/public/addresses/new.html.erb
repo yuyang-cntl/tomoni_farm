@@ -1,0 +1,46 @@
+<% if @address.errors.any? %>
+  <div class="alert alert-danger">
+    <ul>
+      <% @address.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+
+<p class="col-md-3 d-flex justify-content-end">
+ <span style="background-color: #f0f0f0;"><strong>配送先</strong>登録</span>
+</p>
+
+ <div class="container">
+ <div class="row">
+ <div class="col-md-9 d-flex flex-column justify-content-center">
+  <%= form_with model:@address, url:public_addresses_path, local: true do |f| %>
+    <div class="field mt-5 mb-3">
+     <%= f.label :name, "宛先", class: "me-4" %>
+     <%= f.text_field :name %>
+    </div>
+
+    <div class="field mt-5 mb-3">
+     <%= f.label :postal_code, "郵便番号", class: "me-4" %>
+     <%= f.text_field :postal_code %>
+    </div>
+
+    <div class="field mt-5 mb-3">
+     <%= f.label :address, "住所", class: "me-4" %>
+     <%= f.text_field :address %>
+    </div>
+
+    <div class="actions d-flex justify-content-center col-md-8">
+     <%= f.submit "登録", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
+    </div>
+  <% end %>
+ </div>
+ </div>
+ </div>
