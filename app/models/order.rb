@@ -7,4 +7,9 @@ class Order < ApplicationRecord
   delivered: 3,
   cancelled: 4
  }
+  def self.payment_methods_i18n
+   payment_methods.keys.each_with_object({}) do |key, hash|
+   hash[key] = I18n.t("activerecord.attributes.order.payment_methods.#{key}")
+  end
+ end
 end

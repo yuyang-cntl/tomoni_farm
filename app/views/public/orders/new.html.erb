@@ -1,12 +1,4 @@
-<% if @order.errors.any? %>
-  <div class="alert alert-danger">
-    <ul>
-      <% @order.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
+
 <% if flash[:alert] %>
   <div class="alert alert-danger"><%= flash[:alert] %></div>
 <% end %>
@@ -22,12 +14,10 @@
  <div class="row">
  <div class="col-md-9 d-flex flex-column justify-content-center">
   <%= form_with model:@order, url:public_orders_path, local: true do |f| %>
-    <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-     <%= f.label :payment_method_credit_card, Order.payment_methods_i18n[:credit_card] %>
-    <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
-     <%= f.label :payment_method_bank_transfer, Order.payment_methods_i18n[:bank_transfer]%>
-    <%= f.radio_button :payment_method, Order.payment_methods.key(2) %>
-     <%= f.label :payment_method_convenience_store, Order.payment_methods_i18n[:convenience_store]%>
+   <% Order.payment_methods.each do |key, value| %>
+    <%= f.radio_button :payment_method, key %>
+     <%= f.label :"payment_method_#{key}", Order.payment_methods_i18n[key] %>
+   <% end %>
 
     <div class="field mt-5 mb-3">
      <%= f.label :name, "宛先", class: "me-4" %>

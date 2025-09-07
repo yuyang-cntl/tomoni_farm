@@ -12,3 +12,10 @@ ja:
       farmer:
         not_found_in_database: "アカウントが見つかりませんでした。"
         signed_up: "農家ユーザー登録が完了しました。"
+  activerecord:
+    attributes:
+      order:
+        payment_methods:
+          credit_card: クレジットカード
+          bank_transfer: 銀行振込
+          convenience_store: コンビニ
