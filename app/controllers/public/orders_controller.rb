@@ -12,6 +12,10 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = current_customer.order.build(order_params)
+    if params[:order][:address_type] == "existing"
+    elsif params[:order][:address_type] == "new"
+    end
+
     if @order.save
      redirect_to public_order_confirm_path
     else

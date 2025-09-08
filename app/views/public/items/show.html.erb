@@ -1,2 +1,18 @@
-<h1>Public::Items#show</h1>
-<p>Find me in app/views/public/items/show.html.erb</p>
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
+ <h3><strong><%= @item.name %></strong>の商品情報</h3>
+ <% if @item.images.attached? %>
+ <% @item.images.each do |image| %>
+  <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
+ <% end %>
+ <% else %>
+  <p>画像は未登録です</p>
+ <% end %>
+ <h3>商品説明：<%= @item.introduction %></h3>
+ <h3>価格：<%= @item.price %>円</h3>
+ <h3>収穫時期：<%= @item.harvest_time %></h3>
+ 
