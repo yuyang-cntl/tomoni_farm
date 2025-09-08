@@ -1,11 +1,11 @@
 class Public::ItemsController < ApplicationController
-
+  before_action :authenticate_customer!
+  
   def index
-    @items = Item.all.includes(images_attachments: :blob)
-    @item = Item.new
+    @items = Item.includes(images_attachments: :blob).where(is_active: true)
   end
 
   def show
-    @item = farmer_items.find(params[:id])
+    @item = Item.find(params[:id])
   end
 end

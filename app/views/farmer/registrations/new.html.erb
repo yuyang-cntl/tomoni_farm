@@ -22,7 +22,7 @@
  <div class="col-md-9 d-flex flex-column justify-content-center">
   <%= form_with model:@farmer, url:farmer_registration_path, scope: :farmer, local: true, html: { multipart: true } do |f| %>
     <div class="field mt-5 mb-3">
-     <%= f.label :image, "プロフィール画像", class: "me-4" %>
+     <%= f.label :image, "プロフィール画像", class: "me-4 form-control-file" %>
      <%= f.file_field :image %>
     </div>
 

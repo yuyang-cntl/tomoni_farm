@@ -14,12 +14,10 @@
  </div>
 <% end %>
 
-<%= link_to '商品登録', new_farmer_item_path, style:"font-size: 32px; font-weight: bold;" %>
-
 <div class="vh-100">
+ <h3>商品一覧</h3>
  <% @items.each do |item| %>
   <div class="item-card">
-  <h3><%= item.name %>の商品一覧</h3>
    <% if item.images.attached? %>
     <% item.images.each do |image| %>
      <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
@@ -27,7 +25,9 @@
     <% else %>
      <p>画像は未登録です</p>
     <% end %>
-   <%= link_to '商品詳細', farmer_item_path(item), style:"font-size: 24px; font-weight: bold;" %>
+    <h5><%= item.name %></h5>
+    <%= link_to '商品詳細', farmer_item_path(item), style:"font-size: 24px; font-weight: bold;" %>
+    <%= link_to 'この商品の日記を投稿', new_farmer_diary_path, style:"font-size: 24px; font-weight: bold;" %>
   </div>
  <% end %>
 </div>

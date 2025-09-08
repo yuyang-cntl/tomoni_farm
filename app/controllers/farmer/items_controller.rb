@@ -8,7 +8,7 @@ class Farmer::ItemsController < ApplicationController
   def create
     @item = current_farmer.items.build(item_params)
     if @item.save
-    redirect_to farmer_items_path, notice: "商品を登録しました"
+      redirect_to farmer_items_path, notice: "商品を登録しました"
     else
       render :new
     end

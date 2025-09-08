@@ -9,5 +9,6 @@
 <% image = @farmer.image.attached? ? @farmer.image : 'default-image.jpg' %>
 <%= image_tag(image, alt: "Farmer image", class: "profile-image") %>
 
+<%= link_to "商品投稿", new_farmer_item_path, class: "btn btn-primary" %>
 <%= link_to "会員情報編集", edit_farmer_profile_path, class: "btn btn-primary" %>
 <%= link_to "退会", confirm_destroy_farmer_profile_path, class: "btn btn-primary" %>

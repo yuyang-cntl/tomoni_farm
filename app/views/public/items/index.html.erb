@@ -2,7 +2,8 @@
 <h3>商品一覧</h3>
  <% @items.each do |item| %>
   <div class="item-card">
-  <h3><%= item.name %>の商品一覧</h3>
+  <h3>商品：<%= item.name %></h3>
+  <h3>農家：<%= item.farmer.name %></h3>
    <% if item.images.attached? %>
     <% item.images.each do |image| %>
      <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
@@ -10,7 +11,7 @@
     <% else %>
      <p>画像は未登録です</p>
     <% end %>
-   <%= link_to '商品詳細', current_customer.farmer_item_path(item), style:"font-size: 24px; font-weight: bold;" %>
+   <%= link_to '商品詳細', public_item_path(item), style:"font-size: 24px; font-weight: bold;" %>
   </div>
  <% end %>
 </div>

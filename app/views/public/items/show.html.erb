@@ -12,6 +12,7 @@
  <% else %>
   <p>画像は未登録です</p>
  <% end %>
+ <h3>農家：<%= @item.farmer.name %></h3>
  <h3>商品説明：<%= @item.introduction %></h3>
  <h3>価格：<%= @item.price %>円</h3>
  <h3>収穫時期：<%= @item.harvest_time %></h3>

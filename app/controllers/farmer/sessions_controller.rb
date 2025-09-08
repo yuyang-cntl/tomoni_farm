@@ -10,6 +10,7 @@ class Farmer::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
    def create
+    sign_out(:customer) if customer_signed_in?
      super
    end
 

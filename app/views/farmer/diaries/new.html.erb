@@ -19,11 +19,11 @@
  <div class= "row">
  <%= form_with model:@diary, url: farmer_diaries_path, html: { multipart: true } do |f| %>
   <div>
-  <%=f.label :images, "表紙" %>
-   <%= f.file_field :images, multiple:true, class: "form-control" %>
-  <%=f.label :titile, "タイトル" %>
+   <%=f.label :images, "表紙" %>
+   <%= f.file_field :images, multiple:true, class: "form-control-file" %>
+   <%=f.label :titile, "タイトル" %>
    <%= f.text_field :title, class: "form-control" %>
-  <%= f.label :body, "本文" %>
+   <%= f.label :body, "本文" %>
    <%= f.text_area :body, maxlength: 500, class: "form-control" %>
 
    <div class="actions d-flex justify-content-center col-md-8">

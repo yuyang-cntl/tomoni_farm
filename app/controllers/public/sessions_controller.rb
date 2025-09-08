@@ -10,6 +10,7 @@ class Public::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
    def create
+    sign_out(:farmer) if farmer_signed_in?
      super
    end
 
