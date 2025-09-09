@@ -25,7 +25,11 @@ class Farmer::PostsController < ApplicationController
   def show
     @diary = Diary.find(params[:diary_id])
     @post = @diary.posts.find(params[:id])
-    customer = current_farmer.customer
+    customer = current_farmer.customers.find_by(id: params[:customer_id])
+    if customer.nil?
+     redirect_to farmer_diary_posts_path(@diary), alert: "顧客情報が見つかりませんでした"
+     return
+    end
     @post.comment = customer.post_comment(params[:id])
   end
 

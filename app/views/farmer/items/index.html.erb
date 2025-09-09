@@ -28,6 +28,7 @@
     <h5><%= item.name %></h5>
     <%= link_to '商品詳細', farmer_item_path(item), style:"font-size: 24px; font-weight: bold;" %>
     <%= link_to 'この商品の日記を投稿', new_farmer_diary_path, style:"font-size: 24px; font-weight: bold;" %>
+    <%= link_to "この商品の日記", farmer_diaries_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
   </div>
  <% end %>
 </div>

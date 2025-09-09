@@ -9,6 +9,8 @@ class Customer < ApplicationRecord
          has_many :comments, dependent: :destroy
          has_many :addresses
          belongs_to :farmer, optional: true
+         has_many :follows
+         has_many :followed_farmers, through: :follows, source: :farmer
          
   def farmer_items
     farmer&.items
@@ -16,6 +18,10 @@ class Customer < ApplicationRecord
 
   def name
     "#{last_name} #{first_name}"
+  end  
+
+  def following?(farmer)
+    followed_farmers.include?(farmer)
   end  
   
 end

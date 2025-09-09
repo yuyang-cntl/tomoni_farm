@@ -11,5 +11,7 @@ class Farmer < ApplicationRecord
   has_many :diaries, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :customers
-  
+  has_many :follows
+  has_many :followers, through: :follows, source: :customer
+
 end

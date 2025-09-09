@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_09_06_091105) do
+ActiveRecord::Schema.define(version: 2025_09_09_133021) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -107,6 +107,15 @@ ActiveRecord::Schema.define(version: 2025_09_06_091105) do
     t.index ["reset_password_token"], name: "index_farmers_on_reset_password_token", unique: true
   end
 
+  create_table "follows", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.integer "farmer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["customer_id"], name: "index_follows_on_customer_id"
+    t.index ["farmer_id"], name: "index_follows_on_farmer_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.integer "farmer_id", null: false
     t.string "name", null: false
@@ -179,6 +188,8 @@ ActiveRecord::Schema.define(version: 2025_09_06_091105) do
   add_foreign_key "comments", "posts"
   add_foreign_key "customers", "farmers"
   add_foreign_key "diaries", "farmers"
+  add_foreign_key "follows", "customers"
+  add_foreign_key "follows", "farmers"
   add_foreign_key "items", "farmers"
   add_foreign_key "likes", "customers"
   add_foreign_key "likes", "posts"

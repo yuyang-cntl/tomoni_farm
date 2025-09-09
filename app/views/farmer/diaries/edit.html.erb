@@ -16,7 +16,7 @@
   <%= form_with model:@diary, url: farmer_diary_path(@diary), html: { multipart: true } do |f| %>
     <div>
     <%=f.label :images, "画像" %>
-     <%= f.file_field :images, multiple:true, class: "form-control" %>
+     <%= f.file_field :images, multiple:true, class: "form-control-file" %>
     <%=f.label :title, "タイトル" %>
      <%= f.text_field :title, class: "form-control" %>
     <%= f.label :body, "本文" %>

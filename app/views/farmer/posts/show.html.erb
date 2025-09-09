@@ -31,3 +31,16 @@
     <%= f.submit "送信する" %>
   <% end %>
 </div>
+<% if @post.favorited_by?(customer) %>
+<p>
+  <%= link_to post_favorite_path(@post), method: :delete do %>
+    ♥<%= @post.favorites.count %> いいね
+  <% end %>
+</p>
+<% else %>
+<p>
+  <%= link_to post_favorite_path(@post), method: :post do %>
+    ♡<%= @post.favorites.count %> いいね
+  <% end %>
+</p>
+<% end %>
