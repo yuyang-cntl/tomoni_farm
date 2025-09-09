@@ -1,6 +1,7 @@
 class Public::CommentsController < ApplicationController
+  before_action :authenticate_customer!
+  
   def new
-<<<<<<< HEAD
     @comment = comment.new
   end
 
@@ -10,7 +11,6 @@ class Public::CommentsController < ApplicationController
     @comment.post_id = post.id
     if @comment.save
     redirect_to farmer_post_comment_path(current_customer.farmer,post,@comment), notice: "コメントを投稿しました"
-=======
     @comment = Comment.new
   end
 
@@ -23,7 +23,6 @@ class Public::CommentsController < ApplicationController
     else
       redirect_to diary_post_path(post.diary, post), alert: "コメントの投稿に失敗しました"
     end
->>>>>>> 5f72503 (likes_controller)
   end
 
   def index

@@ -113,6 +113,7 @@ ActiveRecord::Schema.define(version: 2025_09_06_091105) do
     t.text "introduction", null: false
     t.string "harvest_time", null: false
     t.integer "price", null: false
+    t.integer "status"
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

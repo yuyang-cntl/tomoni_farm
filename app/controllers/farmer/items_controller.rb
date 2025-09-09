@@ -47,7 +47,7 @@ class Farmer::ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(
       :name, :introduction, :harvest_time,
-      :price, :is_active, images:[] )
+      :price, :is_active, :status, images:[] )
   end
 
 end

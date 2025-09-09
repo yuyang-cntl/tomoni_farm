@@ -19,3 +19,8 @@ ja:
           credit_card: クレジットカード
           bank_transfer: 銀行振込
           convenience_store: コンビニ
+      item:
+        statuses:
+          on_sale: "予約受付中"
+          off_sale: "予約停止中"
+

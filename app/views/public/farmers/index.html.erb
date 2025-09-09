@@ -1,5 +1,5 @@
 <div class="vh-100">
-<h3>登録農家一覧</h3>
+<h3>農家一覧</h3>
  <% @farmers.each do |farmer| %>
   <div class="farmer-card">
   <h3><%= farmer.name %></h3>
@@ -10,7 +10,7 @@
     <% else %>
      <p>画像は未登録です</p>
     <% end %>
-   <%= link_to '商品詳細', current_customer.farmer_path(farmer), style:"font-size: 24px; font-weight: bold;" %>
+   <%= link_to '農家詳細', public_farmer_path(farmer), style:"font-size: 24px; font-weight: bold;" %>
   </div>
  <% end %>
 </div>
