@@ -1,0 +1,2 @@
+module Farmer::LikesHelper
+end

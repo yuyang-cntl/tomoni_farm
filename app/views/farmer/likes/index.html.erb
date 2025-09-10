@@ -1,0 +1,13 @@
+<% if @post.likes.any? %>
+  <div class="liked-customers">
+    <p style="font-weight: bold;">いいねしてくれたユーザー一覧：</p>
+    <ul>
+      <% @likes.includes(:customer).each do |like| %>
+        <li><%= like.customer.name %></li>
+      <% end %>
+    </ul>
+  </div>
+<% else %>
+  <p>まだ誰もいいねしていません</p>
+<% end %>
+

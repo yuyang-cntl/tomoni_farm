@@ -5,23 +5,16 @@ class Public::CommentsController < ApplicationController
     @comment = comment.new
   end
 
-  def create
-    post = Post.find(params[:current_customer.farmer_post_id])
-    @comment = current_customer.farmer.comment.build(comment_params)
-    @comment.post_id = post.id
-    if @comment.save
-    redirect_to farmer_post_comment_path(current_customer.farmer,post,@comment), notice: "コメントを投稿しました"
-    @comment = Comment.new
-  end
+  def created
+    @diary = Diary.find(params[:diary_id])
+    @post = @diary.posts.find(params[:post_id])
+    @comment = @post.comments.new(comment_params)
+    @comment.customer = current_customer
 
-  def create
-    post = Post.find(params[:post_id])
-    @comment = current_customer.comment.build(comment_params)
-    @comment.post = post
     if @comment.save
-      redirect_to diary_post_path(post.diary, post), notice: "コメントを投稿しました"
+      redirect_to diary_post_path(@diary, @post), notice: "コメントを投稿しました"
     else
-      redirect_to diary_post_path(post.diary, post), alert: "コメントの投稿に失敗しました"
+      render 'posts/show', alert: "コメントの投稿に失敗しました"
     end
   end
 
@@ -34,11 +27,8 @@ class Public::CommentsController < ApplicationController
 
   def show
     @post = current_customer.farmer_post.find(params[:post_id])
-<<<<<<< HEAD
     @comment = @post.comment.find(params[:id])
-=======
     @comment = @post.comments.find(params[:id])
->>>>>>> 5f72503 (likes_controller)
   end
 
   def destroy
@@ -51,7 +41,7 @@ class Public::CommentsController < ApplicationController
 private
   
   def comment_params
-   params.require(:comment).permit(:comment)
+   params.require(:comment).permit(:body)
   end
 
 end

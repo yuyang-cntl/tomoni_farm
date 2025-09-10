@@ -16,21 +16,19 @@ class Farmer::PostsController < ApplicationController
   end
 
   def index
-    @diary = Diary.find(params[:diary_id])
-    diary = current_farmer.diaries.find(params[:diary_id])
-    @posts = diary.posts.includes(images_attachments: :blob)
+    @diary = current_farmer.diaries.find(params[:diary_id])
+    @posts = @diary.posts.includes(images_attachments: :blob)
     @post = Post.new
   end
 
   def show
-    @diary = Diary.find(params[:diary_id])
+    @comment = Comment.new
+    @diary = current_farmer.diaries.find(params[:diary_id])
     @post = @diary.posts.find(params[:id])
-    customer = current_farmer.customers.find_by(id: params[:customer_id])
-    if customer.nil?
-     redirect_to farmer_diary_posts_path(@diary), alert: "顧客情報が見つかりませんでした"
-     return
-    end
+    @customer = current_farmer.customers.find_by(id: params[:customer_id])
+    if @customer.present?
     @post.comment = customer.post_comment(params[:id])
+    end
   end
 
   def edit

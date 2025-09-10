@@ -29,16 +29,14 @@
     <%= f.submit "送信する" %>
   <% end %>
 </div>
-<% if @post.favorited_by?(current_customer) %>
 <p>
-  <%= link_to post_favorite_path(@post), method: :delete do %>
-    ♥<%= @post.favorites.count %> いいね
+ <% if @post.liked_by?(@customer) %>
+  <%= link_to public_diary_post_like_path(@diary, @post), method: :delete do %>
+    ♥<%= @post.likes.count %> いいね
   <% end %>
-</p>
-<% else %>
-<p>
-  <%= link_to post_favorite_path(@post), method: :post do %>
-    ♡<%= @post.favorites.count %> いいね
+ <% else %>
+  <%= link_to public_diary_post_like_path(@diary, @post), method: :post do %>
+    ♡<%= @post.likes.count %> いいね
   <% end %>
+ <% end %>
 </p>
-<% end %>

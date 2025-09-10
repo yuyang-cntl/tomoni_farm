@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :farmer do
+    get 'likes/index'
+  end
     root to: 'homes#top'
     
   scope module: :public, as: 'public' do
@@ -46,7 +49,9 @@ Rails.application.routes.draw do
     resource :password_change, only: [:edit, :update]
 
     resources :diaries do
-     resources :posts
+     resources :posts do
+      resources :likes, only: [:index]
+     end
     end
     resource :profile, only: [:edit, :update, :destroy] do
      get 'confirm_destroy', on: :collection
