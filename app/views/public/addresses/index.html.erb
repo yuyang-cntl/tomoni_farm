@@ -21,7 +21,7 @@
 
  <div>
   <% @addresses.each do |address| %>
-   <h4>宛名：<%= address.name %></h4>
+   <h4>宛名：<%= address.shipping_name %></h4>
    <h4>〒：<%= address.postal_code %></h4>
    <h4>住所：<%= address.address %></h4>
    <%= link_to "編集", edit_public_address_path(address), class: "btn btn-primary" %>

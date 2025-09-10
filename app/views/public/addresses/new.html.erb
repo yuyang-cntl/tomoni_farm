@@ -23,8 +23,8 @@
  <div class="col-md-9 d-flex flex-column justify-content-center">
   <%= form_with model:@address, url:public_addresses_path, local: true do |f| %>
     <div class="field mt-5 mb-3">
-     <%= f.label :name, "宛先", class: "me-4" %>
-     <%= f.text_field :name %>
+     <%= f.label :shipping_name, "宛先", class: "me-4" %>
+     <%= f.text_field :shipping_name %>
     </div>
 
     <div class="field mt-5 mb-3">

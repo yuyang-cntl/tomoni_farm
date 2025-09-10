@@ -1,0 +1,11 @@
+<h2>注文内容の確認</h2>
+<table class="table">
+  <tr><th>商品</th><td><%= @item.name %></td></tr>
+  <tr><th>数量</th><td><%= @order.amount %> 個</td></tr>
+  <tr><th>単価</th><td><%= number_to_currency(@item.price, unit: "円") %></td></tr>
+  <tr><th>小計</th><td><%= number_to_currency(@item.price * @order.amount, unit: "円") %></td></tr>
+  <tr><th>送料</th><td><%= number_to_currency(@order.shipping_cost, unit: "円") %></td></tr>
+  <tr><th>合計</th><td><%= number_to_currency(@order.grand_total, unit: "円") %></td></tr>
+</table>
+
+<%= button_to "注文を確定する", public_orders_path, method: :post, params: { order: @order.attributes }, class: "btn btn-success" %>

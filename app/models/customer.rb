@@ -11,6 +11,7 @@ class Customer < ApplicationRecord
          belongs_to :farmer, optional: true
          has_many :follows
          has_many :followed_farmers, through: :follows, source: :farmer
+         has_many :orders
          
   def farmer_items
     farmer&.items

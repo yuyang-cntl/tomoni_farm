@@ -1,4 +1,8 @@
 class Order < ApplicationRecord
+
+  belongs_to :customer
+  belongs_to :item
+  
  enum payment_method: { credit_card: 0, bank_transfer: 1, convenience_store: 2 }
  enum status: {
   pending: 0,

@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   has_many_attached :images
+  has_many_attached :orders
   belongs_to :farmer
   validates :name, :introduction, :price, :status, presence: true
 

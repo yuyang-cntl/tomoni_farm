@@ -16,4 +16,14 @@
  <h3>商品説明：<%= @item.introduction %></h3>
  <h3>税込価格：<%= @item.price %>円</h3>
  <h3>収穫時期：<%= @item.harvest_time %></h3>
- 
+ <h3><%= I18n.t("activerecord.attributes.item.statuses.#{@item.status}") %></h3>
+
+ <%= form_with url: new_public_order_path, method: :get, local: true do |f| %>
+  <h3>数量を選択してください：<br>
+  <%= f.hidden_field :item_id, value: @item.id %>
+  <%= f.hidden_field :amount, value: @amount %>
+  <%= f.select :amount,*[1..100] %>個</h3>
+  <div class="actions d-flex justify-content-center col-md-8">
+   <%= f.submit "注文にすすむ", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
+  </div>
+ <% end %>
