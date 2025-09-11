@@ -32,5 +32,7 @@ ja:
         shipped: "発送済み"
         completed: "完了"
         canceled: "キャンセル"
-
-
+      payment_method:
+        credit_card: クレジットカード
+        bank_transfer: 銀行振込
+        convenience_store: コンビニ

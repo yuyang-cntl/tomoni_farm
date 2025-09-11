@@ -23,14 +23,12 @@
      <%= link_to "ログアウト", destroy_farmer_session_path, method: :delete, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
     </li>
   </ul>
-    <div class="offset-9 col-md-3 d-flex justify-content-end">
-    <%= form_with url: farmer_root_path, method: :get, local: true do |f| %>
-     <div class="input-group">
-     <%= f.search_field :query, placeholder: "Search", class:"form-control" %>
-      <button class="btn btn-outline-secondary" type="submit">
-       <i class="fa-solid fa-magnifying-glass"></i>
-      </button>
-     </div>
+   <div class="search-form d-flex flex-row offset-6 col-md-6 justify-content-end">
+    <%= form_with url: public_search_path, method: :get, local: true, class:"d-flex align-items-center gap-2" do %>
+     <%= text_field_tag :q, params[:q], placeholder: "検索キーワードを入力", class:"form-control w-auto" %>
+     <%= button_tag type: 'submit', class: 'btn btn-outline-secondary d-flex align-items-center' do %>
+     <span>検索</span>
+     <% end %>
     <% end %>
    </div>
   </div>

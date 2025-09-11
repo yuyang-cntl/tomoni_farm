@@ -1,0 +1,15 @@
+<h3>検索結果</h3>
+
+<% if @items.present? %>
+  <ul>
+    <% @items.each do |item| %>
+      <li>
+        <strong><%= item.name %></strong><br>
+        <%= number_to_currency(item.price, unit: "円") %><br>
+        <%= link_to "詳細を見る", public_item_path(item), class: "btn btn-sm btn-primary" %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>該当する商品は見つかりませんでした。</p>
+<% end %>

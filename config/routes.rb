@@ -1,23 +1,18 @@
 Rails.application.routes.draw do
 
-  namespace :public do
-    get 'order_details/index'
-    get 'order_details/show'
-  end
-  namespace :farmer do
-    get 'likes/index'
-  end
     root to: 'homes#top'
-    
+
   scope module: :public, as: 'public' do
     get 'mypage', to: 'profiles#show', as: :customers_root
+    get 'search', to: 'items#search', as: 'search'
     resources :customers, only: [:index, :show, :edit, :update] do
      member do
       get 'unsubscribe'
       patch 'withdraw'
      end
     end
-
+    
+    resources :order_details, only: [:index, :show]
     resources :items, only: [:index, :show]
     resources :orders, only: [:new, :create, :index, :show] do
      collection do
@@ -51,6 +46,7 @@ Rails.application.routes.draw do
     resources :items
     resources :order_details, only: [:update]
     resource :password_change, only: [:edit, :update]
+    resources :likes, only: [:index]
 
     resources :diaries do
      resources :posts do

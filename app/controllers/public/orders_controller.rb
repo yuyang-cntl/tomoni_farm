@@ -58,6 +58,14 @@ class Public::OrdersController < ApplicationController
 
   def show
     @order = current_customer.orders.find(params[:id])
+    @item = Item.find(@order.item_id)
+    @postal_code = @order.postal_code
+    @address = @order.address
+    @shipping_name = @order.shipping_name
+    @amount = @order.amount
+    @shipping_cost = 500
+    @grand_total = @order.grand_total
+    render :show
   end
 
   private
