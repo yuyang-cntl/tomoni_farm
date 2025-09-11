@@ -24,21 +24,30 @@ class Public::OrdersController < ApplicationController
   end
 
   def create
-    @order = Order.new
     @order = current_customer.orders.build(order_params)
+    @item = Item.find(@order.item_id)
     if params[:order][:address_type] == "existing"
     elsif params[:order][:address_type] == "new"
     end
 
     if @order.save
-    Order_detail.create(
-      order_id = @order.id
-      item_id = @order.item_id
-      amount = @order.amount
-      price = @item.price
+    detail = OrderDetail.new(
+      order_id: @order.id,
+      item_id: @order.item_id,
+      customer_id: current_customer.id,
+      amount: @order.amount,
+      price: @item.price,
+      status: @item.status
     )
-     redirect_to public_order_confirm_path
+    if detail.save
+      puts "注文成功: #{detail.inspect}"
+      redirect_to complete_public_orders_path
     else
+      puts "注文失敗: #{detail.errors.full_messages}"
+      render :new
+    end
+    else
+      puts "注文失敗: #{@order.errors.full_messages}"
       render :new
     end
   end
@@ -54,7 +63,10 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:item_id, :amount, :payment_method, :postal_code, :address, :shipping_name)
+    params.require(:order).permit(
+      :item_id, :amount, :payment_method, :postal_code, 
+      :address, :shipping_name, :shipping_cost, :grand_total
+      )
   end
 
 end

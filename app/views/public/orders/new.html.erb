@@ -28,6 +28,7 @@
   <h3><%= I18n.t("activerecord.attributes.item.statuses.#{@item.status}") %></h3>
   <h3>数量：<%= @amount %>個</h3>
   <h3>合計金額：<%= number_to_currency(@item.price * @amount, unit: "円") %></h3>
+  
   <%= form_with model:@order, url:confirm_public_orders_path, local: true do |f| %>
    <fieldset>
    <%= f.hidden_field :item_id, value: @item.id %>

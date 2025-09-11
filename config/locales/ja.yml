@@ -23,4 +23,14 @@ ja:
         statuses:
           on_sale: "予約受付中"
           off_sale: "予約停止中"
+          ja:
+  enums:
+    order:
+      status:
+        pending: "未処理"
+        confirmed: "確認済み"
+        shipped: "発送済み"
+        completed: "完了"
+        canceled: "キャンセル"
+
 
