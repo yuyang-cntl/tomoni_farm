@@ -1,9 +1,9 @@
 class Address < ApplicationRecord
   belongs_to :customer
-  validates :name, :postal_code, :address, presence: true
+  validates :shipping_name, :postal_code, :address, presence: true
 
   def address_display
-    '〒' + postal_code + ' ' + address + ' ' + name
+    '〒' + postal_code + ' ' + address + ' ' + shipping_name
   end
 
 end

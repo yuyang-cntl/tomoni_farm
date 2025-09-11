@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'order_details/index'
+    get 'order_details/show'
+  end
   namespace :farmer do
     get 'likes/index'
   end

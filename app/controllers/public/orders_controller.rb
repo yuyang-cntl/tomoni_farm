@@ -13,10 +13,11 @@ class Public::OrdersController < ApplicationController
     @address = Address.find(params[:order][:address_id])
     @order.postal_code = @address.postal_code
     @order.address = @address.address
-    @order.shipping_name = @address.name
+    @order.shipping_name = @address.shipping_name
     @order.amount = params[:order][:amount].to_i
     @order.shipping_cost = 500
-    @order.grand_total = (@item.price * @order.amount) + @order.shipping_cost  
+    @order.grand_total = (@item.price * @order.amount) + @order.shipping_cost
+    render :confirm 
   end
 
   def complete
@@ -30,6 +31,12 @@ class Public::OrdersController < ApplicationController
     end
 
     if @order.save
+    Order_detail.create(
+      order_id = @order.id
+      item_id = @order.item_id
+      amount = @order.amount
+      price = @item.price
+    )
      redirect_to public_order_confirm_path
     else
       render :new
@@ -37,6 +44,7 @@ class Public::OrdersController < ApplicationController
   end
 
   def index
+    @orders = current_customer.orders.page(params[:page]).per(10)
   end
 
   def show

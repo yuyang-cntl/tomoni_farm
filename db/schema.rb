@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2025_09_09_133021) do
 
   create_table "addresses", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.string "name", null: false
+    t.string "shipping_name", null: false
     t.string "postal_code", null: false
     t.string "address", null: false
     t.datetime "created_at", precision: 6, null: false

@@ -46,7 +46,7 @@ private
 
   def address_params
     params.require(:address).permit(
-    :name, :postal_code, :address )
+    :shipping_name, :postal_code, :address )
   end
 
 end

@@ -8,4 +8,4 @@
   <tr><th>合計</th><td><%= number_to_currency(@order.grand_total, unit: "円") %></td></tr>
 </table>
 
-<%= button_to "注文を確定する", public_orders_path, method: :post, params: { order: @order.attributes }, class: "btn btn-success" %>
+<%= link_to "注文を確定する", complete_public_orders_path, class: "btn btn-success" %>
