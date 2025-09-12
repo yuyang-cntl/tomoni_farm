@@ -9,7 +9,9 @@
     <% else %>
      <p>画像は未登録です</p>
     <% end %>
-   <%= link_to '日記詳細', current_customer.farmer_diary_path(diary), style:"font-size: 24px; font-weight: bold;" %>
+    <h3>タイトル：<%= diary.title %></h3>
+    <h3>本文：<%= diary.body %></h3>
+   <%= link_to '日記を読む', public_farmer_diary_path(diary.farmer_id, diary), style:"font-size: 24px; font-weight: bold;" %>
   </div>
  <% end %>
 </div>

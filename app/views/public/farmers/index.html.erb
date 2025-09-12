@@ -1,16 +1,20 @@
 <div class="vh-100">
-<h3>農家一覧</h3>
- <% @farmers.each do |farmer| %>
-  <div class="farmer-card">
-  <h3><%= farmer.name %></h3>
-   <% if farmer.images.attached? %>
-    <% farmer.images.each do |image| %>
-     <%= image_tag image.variant(resize_to_limit: [300,300]), class: "farmer-image" %>
-    <% end %>
+<h3>フォロー中の農家一覧</h3>
+
+ <% if current_customer.followed_farmers.any? %>
+  <% current_customer.followed_farmers.each do |farmer| %>
+   <div class="farmer-card">
+   <h3><%= farmer.name %></h3>
+   <h3><%= farmer.introduction %></h3>
+    <% if farmer.image.attached? %>
+     <%= image_tag farmer.image.variant(resize_to_limit: [300,300]), class: "farmer-image" %>
     <% else %>
      <p>画像は未登録です</p>
     <% end %>
-   <%= link_to '農家詳細', public_farmer_path(farmer), style:"font-size: 24px; font-weight: bold;" %>
-  </div>
+    <%= link_to '日記一覧', public_farmer_diaries_path(farmer), style:"font-size: 24px; font-weight: bold;" %>
+   </div>
+  <% end %>
+ <% else %>
+  <h3>フォロー中の農家はまだありません。</h3>
  <% end %>
 </div>

@@ -10,7 +10,7 @@ class Customer < ApplicationRecord
          has_many :addresses
          belongs_to :farmer, optional: true
          has_many :follows
-         has_many :followed_farmers, through: :follows, source: :farmer
+         has_many :followed_farmers, through: :follows, source: :farmer, dependent: :destroy
          has_many :orders
          has_many :order_details
          

@@ -39,8 +39,13 @@ class Public::OrdersController < ApplicationController
       price: @item.price,
       status: @item.status
     )
+
     if detail.save
-      puts "注文成功: #{detail.inspect}"
+      farmer = @item.farmer
+      unless current_customer.followed_farmers.include?(farmer)
+        current_customer.followed_farmers << farmer
+      end
+      puts "注文と生産者のフォローが完了しました: #{detail.inspect}"
       redirect_to complete_public_orders_path
     else
       puts "注文失敗: #{detail.errors.full_messages}"

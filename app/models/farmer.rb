@@ -11,7 +11,7 @@ class Farmer < ApplicationRecord
   has_many :diaries, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :customers
-  has_many :follows
-  has_many :followers, through: :follows, source: :customer
+  has_many :reverse_follows, class_name: "Follow"
+  has_many :followers, through: :reverse_follows, source: :customer
 
 end

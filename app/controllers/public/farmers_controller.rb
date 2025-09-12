@@ -10,7 +10,4 @@ class Public::FarmersController < ApplicationController
     @farmers = Item.includes(images_attachments: :blob).where(is_active: true)
   end
 
-  def show
-    @farmer = current_customer.farmer.find(params[:id])
-  end
 end

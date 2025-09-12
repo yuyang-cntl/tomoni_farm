@@ -21,17 +21,19 @@ Rails.application.routes.draw do
      end
     end
 
-    resources :addresses
-    resources :farmers, only: [:index, :show]
-    resource :password_change, only: [:edit, :update]
-    resources :comments, only: [:new, :index, :create, :show, :destroy]
-
-    resources :diaries, only: [:index, :show] do
-     resources :posts, only: [:show] do
-      resources :comments, only: [:create]
-      resource :like, only: [:create, :destroy]
+    resources :farmers, only: [:index, :show] do
+     resource :follow, only: [:create, :destroy]
+     resources :diaries, only: [:index, :show] do
+      resources :posts, only: [:show] do
+       resources :comments, only: [:create]
+       resource :like, only: [:create, :destroy]
+      end
      end
     end
+
+    resources :addresses
+    resource :password_change, only: [:edit, :update]
+    resources :comments, only: [:new, :index, :create, :show, :destroy]
 
     resource :profile, only: [:edit, :update, :show, :destroy] do
      get 'confirm_destroy', on: :collection

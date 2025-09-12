@@ -1,2 +1,25 @@
-<h1>Public::Diaries#show</h1>
-<p>Find me in app/views/public/diaries/show.html.erb</p>
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
+ <h3>投稿一覧</h3>
+ <% @posts.each do |post| %>
+  <div class="post-card">
+   <% if post.images.attached? %>
+    <% post.images.each do |image| %>
+    <%= image_tag image.variant(resize_to_limit: [300,300]), class: "post-image" %>
+   <% end %>
+   <% else %>
+    <p>画像は未登録です</p>
+   <% end %>
+   <h3>タイトル：<%= post.title %></h3>
+   <h3>本文：<%= post.body %></h3>
+   <%= link_to '投稿詳細', public_farmer_diary_post_path(@diary.farmer_id, @diary.id, post), class: "btn btn-outline-primary" %>
+  </div>
+ <% end %>
+
+ <div class="d-flex">
+ <%= link_to '戻る', public_farmer_diaries_path, class:"ml-1" %>
+</div>
