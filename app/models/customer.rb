@@ -13,7 +13,16 @@ class Customer < ApplicationRecord
          has_many :followed_farmers, through: :follows, source: :farmer, dependent: :destroy
          has_many :orders
          has_many :order_details
-         
+         has_one_attached :profile_image
+
+  def get_profile_image(width, height)
+    if profile_image.attached?
+      profile_image.variant(resize_to_fill: [width, height]).processed
+    else
+      ActionController::Base.helpers.asset_path('default-image.jpg')
+    end
+  end
+           
   def farmer_items
     farmer&.items
   end

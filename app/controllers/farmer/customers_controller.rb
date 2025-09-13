@@ -1,16 +1,20 @@
 class Farmer::CustomersController < ApplicationController
   before_action :authenticate_farmer!
   def index
-    @customers = current_farmer.customers
+    @farmer = current_farmer
+    @customers = @farmer.followers
     @customer = Customer.new
   end
 
   def show
-    @customer = current_farmer.customer.find(params[:id])
+    @farmer = current_farmer
+    @customer = @farmer.followers.find(params[:id])
+    @orders = @customer.orders.page(params[:page]).per(10)
   end
 
   def edit
-    @customer = current_farmer.customer.find(params[:id])
+    @farmer = current_farmer
+    @customer = @farmer.followers.find(params[:id])
   end
 
   def update

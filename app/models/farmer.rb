@@ -13,5 +13,14 @@ class Farmer < ApplicationRecord
   has_many :customers
   has_many :reverse_follows, class_name: "Follow"
   has_many :followers, through: :reverse_follows, source: :customer
+  has_one_attached :profile_image
 
+  def get_profile_image(width, height)
+    if profile_image.attached?
+      profile_image.variant(resize_to_fill: [width, height]).processed
+    else
+      ActionController::Base.helpers.asset_path('default-image.jpg')
+    end
+  end
+  
 end

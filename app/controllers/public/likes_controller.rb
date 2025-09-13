@@ -2,16 +2,19 @@ class Public::LikesController < ApplicationController
   before_action :authenticate_customer!
 
   def create
-    post = Post.find(params[:post_id])
-    like = current_customer.likes.new(post_id: post.id)
-    like.save
-    redirect_to post_path(post)
+    @diary = Diary.find(params[:diary_id])
+    @post = @diary.posts.find(params[:post_id])
+    @customer = current_customer
+    @like = @post.likes.new(customer_id: current_customer.id)
+    @like.save
+    redirect_to public_farmer_diary_post_path(@diary.farmer_id, @diary.id, @post.id)
   end
 
   def destroy
-    post = Post.find(params[:post_id])
-    like = current_customer.likes.find_by(post_id: post.id)
-    like.destroy
-    redirect_to post_path(post)
+    diary = Diary.find(params[:diary_id])
+    post = diary.posts.find(params[:post_id])
+    like = post.likes.find_by(customer_id: current_customer.id)
+    like.destroy if like.present?
+    redirect_to public_farmer_diary_post_path(diary.farmer_id, diary.id, post.id)
   end
 end

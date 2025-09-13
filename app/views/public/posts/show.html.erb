@@ -19,13 +19,15 @@
   <p>コメント件数：<%= @post.comments.count %></p>
   <% @post.comments.each do |comment| %>
     <p><%= image_tag comment.customer.get_profile_image(100,100) %></p>
-    <%= post.customer.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <%= comment.customer.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %>
+    <%= comment.body %>
+    <%= link_to "削除", public_farmer_diary_post_comment_path(@post.diary.farmer_id, @post.diary_id, @post.id, comment.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-primary" %>
   <% end %>
 </div>
 <div>
   <%= form_with model: @comment, url: public_farmer_diary_post_comments_path(@post.diary.farmer_id, @post.diary_id, @post.id) do |f| %>
-    <%= f.text_area :comment, rows: '5', placeholder: "コメントをここに" %>
+    <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
     <%= f.submit "送信する" %>
   <% end %>
 </div>

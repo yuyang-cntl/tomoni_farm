@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
   
   def show
     @diary = Diary.find(params[:diary_id])
-    @post = @diary.posts.find(params[:id])  
+    @post = @diary.posts.find(params[:id])
+    @comment = Comment.new
   end
 end

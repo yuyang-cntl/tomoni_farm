@@ -1,11 +1,14 @@
 <% if @post.likes.any? %>
   <div class="liked-customers">
-    <p style="font-weight: bold;">いいねしてくれたユーザー一覧：</p>
-    <ul>
+    <h3 style="font-weight: bold;">いいねしてくれたユーザー一覧</h3>
       <% @likes.includes(:customer).each do |like| %>
-        <li><%= like.customer.name %></li>
+       <h4>ユーザー名：<%= like.customer.name %></h4>
+       <% if like.customer.image.attached? %>
+        <%= image_tag like.customer.image.variant(resize_to_limit: [300,300]), class: "customer-image" %>
+       <% else %>
+        <p>画像は未登録です</p>
+       <% end %>
       <% end %>
-    </ul>
   </div>
 <% else %>
   <p>まだ誰もいいねしていません</p>

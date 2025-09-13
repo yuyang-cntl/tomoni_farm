@@ -25,7 +25,7 @@
   <p>コメント件数：<%= @post.comments.count %></p>
   <% @post.comments.each do |comment| %>
     <p><%= image_tag comment.customer.get_profile_image(100,100) %></p>
-    <%= post.customer.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.comment %>
+    <%= comment.customer.name %>
+    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.body %>
   <% end %>
 </div>

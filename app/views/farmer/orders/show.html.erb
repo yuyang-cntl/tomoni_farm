@@ -1,2 +1,17 @@
-<h1>Farmer::Orders#show</h1>
-<p>Find me in app/views/farmer/orders/show.html.erb</p>
+<div class="container">
+ <div class="row">
+  <div class="col-md-6">
+   <h3>注文履歴詳細</h3>
+   <table class="table">
+   <tr><th>注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
+   <tr><th>商品</th><td><%= @item.name %></td></tr>
+   <tr><th>数量</th><td><%= @amount %> 個</td></tr>
+   <tr><th>単価</th><td><%= number_to_currency(@item.price, unit: "円") %></td></tr>
+   <tr><th>送料</th><td><%= number_to_currency(@shipping_cost, unit: "円") %></td></tr>
+   <tr><th>合計</th><td><%= number_to_currency(@grand_total, unit: "円") %></td></tr>
+   <tr><th>支払い方法</th><td><%= @order.payment_method_i18n %></td></tr>
+   <tr><th>ステータス</th><td><%= @order.status_i18n %></td></tr>
+   <tr><th>お届け先</th><td><%= @postal_code %> / <%= @address %> / <%= @shipping_name %></td></tr>
+  </div>
+ </div>
+</div>

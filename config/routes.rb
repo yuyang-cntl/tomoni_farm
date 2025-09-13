@@ -25,7 +25,7 @@ Rails.application.routes.draw do
      resource :follow, only: [:create, :destroy]
      resources :diaries, only: [:index, :show] do
       resources :posts, only: [:show] do
-       resources :comments, only: [:create]
+       resources :comments, only: [:create, :destroy]
        resource :like, only: [:create, :destroy]
       end
      end
@@ -43,12 +43,14 @@ Rails.application.routes.draw do
   namespace :farmer do
     root to: 'homes#top'
     resource :home, only: [:show, :edit]
-    resources :orders, only: [:show, :update]
-    resources :customers, only: [:index, :show, :edit, :update]
     resources :items
     resources :order_details, only: [:update]
     resource :password_change, only: [:edit, :update]
     resources :likes, only: [:index]
+
+    resources :customers, only: [:index, :show, :edit, :update] do
+     resources :orders, only: [:show, :update]
+    end
 
     resources :diaries do
      resources :posts do
