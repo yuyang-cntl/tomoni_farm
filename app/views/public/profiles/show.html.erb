@@ -6,8 +6,7 @@
 
 <h1><%= @customer.name %>さんのページ</h1>
 
-<% image = @customer.image.attached? ? @customer.image : 'default-image.jpg' %>
-<%= image_tag(image, alt: "Customer image", class: "profile-image") %>
+<%= image_tag(@customer.get_profile_image(100, 100), alt: "Customer image", class: "profile-image") %>
 
 <%= link_to "フォロー中の生産者一覧", public_farmers_path, class: "btn btn-primary" %>
 <%= link_to "会員情報編集", edit_public_profile_path, class: "btn btn-primary" %>

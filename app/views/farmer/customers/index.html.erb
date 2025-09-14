@@ -21,7 +21,7 @@
    <% if customer.image.attached? %>
      <%= image_tag customer.image.variant(resize_to_limit: [300,300]), class: "customer-image" %>
     <% else %>
-     <p>画像は未登録です</p>
+     <%= image_tag(customer.get_profile_image(100, 100), alt: "Customer image", class: "profile-image") %>
     <% end %>
    <h3><%= customer.name %></h3>
    <%= link_to '会員詳細', farmer_customer_path(customer), style:"font-size: 24px; font-weight: bold;" %>

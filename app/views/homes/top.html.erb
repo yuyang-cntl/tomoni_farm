@@ -1,3 +1,9 @@
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
 <h1>Tomoni Farm</h1>
 <h2>本サイトは個人農家から発信される農園紹介や栽培過程を見守り、</br>
     愛着を持って購入できる感情体験型の食材予約サイトです。</h2>

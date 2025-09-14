@@ -9,7 +9,7 @@
     <% if farmer.image.attached? %>
      <%= image_tag farmer.image.variant(resize_to_limit: [300,300]), class: "farmer-image" %>
     <% else %>
-     <p>画像は未登録です</p>
+     <%= image_tag(farmer.get_profile_image(100, 100), alt: "Farmer image", class: "profile-image") %>
     <% end %>
     <%= link_to '日記一覧', public_farmer_diaries_path(farmer), style:"font-size: 24px; font-weight: bold;" %>
    </div>

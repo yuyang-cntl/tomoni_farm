@@ -2,7 +2,7 @@ class Order < ApplicationRecord
 
   belongs_to :customer
   belongs_to :item
-  has_many :order_details
+  has_many :order_details, dependent: :destroy
   
  enum payment_method: { credit_card: 0, bank_transfer: 1, convenience_store: 2 }
  enum status: {

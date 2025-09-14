@@ -1,15 +1,16 @@
 class Farmer::PostsController < ApplicationController
   before_action :authenticate_farmer!
   def new
+    @diary = current_farmer.diaries.find(params[:diary_id])
     @post = Post.new
   end
 
   def create
-    diary = current_farmer.diaries.find(params[:diary_id])
-    @post = diary.posts.build(post_params)
+    @diary = current_farmer.diaries.find(params[:diary_id])
+    @post = @diary.posts.build(post_params)
     @post.farmer = current_farmer
     if @post.save
-     redirect_to farmer_diary_post_path(current_farmer,diary,@post), notice: "日記に投稿しました"
+     redirect_to farmer_diary_post_path(@diary,@post), notice: "日記に投稿しました"
     else
       render :new
     end
@@ -23,7 +24,7 @@ class Farmer::PostsController < ApplicationController
 
   def show
     @comment = Comment.new
-    @diary = current_farmer.diaries.find(params[:diary_id])
+    @diary = current_farmer.diaries.find_by(id: params[:diary_id])
     @post = @diary.posts.find(params[:id])
     @customer = current_farmer.customers.find_by(id: params[:customer_id])
     if @customer.present?

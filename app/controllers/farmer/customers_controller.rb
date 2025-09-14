@@ -8,7 +8,7 @@ class Farmer::CustomersController < ApplicationController
 
   def show
     @farmer = current_farmer
-    @customer = @farmer.followers.find(params[:id])
+    @customer = @farmer.followers.find_by(params[:customer_id])
     @orders = @customer.orders.page(params[:page]).per(10)
   end
 

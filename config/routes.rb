@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   namespace :farmer do
     root to: 'homes#top'
+    get 'search', to: 'items#search', as: 'search'
     resource :home, only: [:show, :edit]
     resources :items
     resources :order_details, only: [:update]

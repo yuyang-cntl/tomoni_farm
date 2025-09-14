@@ -7,10 +7,10 @@ class Customer < ApplicationRecord
          has_many :comments, dependent: :destroy
          has_one_attached :image
          has_many :comments, dependent: :destroy
-         has_many :addresses
+         has_many :addresses, dependent: :destroy
          belongs_to :farmer, optional: true
-         has_many :follows
-         has_many :followed_farmers, through: :follows, source: :farmer, dependent: :destroy
+         has_many :follows, dependent: :destroy
+         has_many :followed_farmers, through: :follows, source: :farmer
          has_many :orders
          has_many :order_details
          has_one_attached :profile_image
@@ -19,7 +19,7 @@ class Customer < ApplicationRecord
     if profile_image.attached?
       profile_image.variant(resize_to_fill: [width, height]).processed
     else
-      ActionController::Base.helpers.asset_path('default-image.jpg')
+      ActionController::Base.helpers.asset_path('no_image.jpg')
     end
   end
            

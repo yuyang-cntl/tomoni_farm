@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   has_many_attached :images
   has_many :likes, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to :farmer
   belongs_to :diary
   

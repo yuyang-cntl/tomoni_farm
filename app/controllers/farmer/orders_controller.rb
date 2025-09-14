@@ -2,8 +2,8 @@ class Farmer::OrdersController < ApplicationController
   before_action :authenticate_farmer!
   def show
     @farmer = current_farmer
-    @customer = @farmer.followers.find(params[:id])
-    @order = @customer.orders.page(params[:page]).per(10)
+    @customer = @farmer.followers.find_by(params[:customer_id])
+    @order = @customer.orders.find_by(params[:id])
     @item = Item.find(@order.item_id)
     @postal_code = @order.postal_code
     @address = @order.address

@@ -24,8 +24,8 @@
     </li>
   </ul>
    <div class="search-form d-flex flex-row offset-6 col-md-6 justify-content-end">
-    <%= form_with url: public_search_path, method: :get, local: true, class:"d-flex align-items-center gap-2" do %>
-     <%= text_field_tag :q, params[:q], placeholder: "検索キーワードを入力", class:"form-control w-auto" %>
+    <%= form_with url: farmer_search_path, method: :get, local: true, class:"d-flex align-items-center gap-2" do %>
+     <%= text_field_tag :q, params[:q], placeholder: "検索したい商品名を入力", class:"form-control w-auto" %>
      <%= button_tag type: 'submit', class: 'btn btn-outline-secondary d-flex align-items-center' do %>
      <span>検索</span>
      <% end %>
