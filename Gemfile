@@ -5,7 +5,7 @@ ruby '3.1.2'
 
 # Bundle edge Rails instead: gem 'rails', '= 6.1.7.7'
 gem 'rails', '= 6.1.7.7'
-# Use sqlite3 as the database for Active Record
+
 gem 'sqlite3', '~> 1.4'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
@@ -70,8 +70,8 @@ end
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
+end
   
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
-end
