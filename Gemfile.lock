@@ -157,13 +157,10 @@ GEM
     nokogiri (1.18.10)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-<<<<<<< HEAD
     nokogiri (1.18.10-arm64-darwin)
       racc (~> 1.4)
     nokogiri (1.18.10-x86_64-darwin)
       racc (~> 1.4)
-=======
->>>>>>> 8465b828cf7084cc7b93d14f028e82d5f2f80f57
     orm_adapter (0.5.0)
     parallel (1.27.0)
     parser (3.3.9.0)
@@ -314,12 +311,9 @@ GEM
     zeitwerk (2.6.18)
 
 PLATFORMS
-<<<<<<< HEAD
   arm64-darwin
   ruby
   x86_64-darwin
-=======
->>>>>>> 8465b828cf7084cc7b93d14f028e82d5f2f80f57
   x86_64-linux
 
 DEPENDENCIES
