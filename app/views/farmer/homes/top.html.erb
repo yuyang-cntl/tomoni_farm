@@ -38,7 +38,7 @@
     </td>
     <td><%= order.grand_total %></td>
     <td><%= order.status_i18n %></td>
-    <td><%= link_to "詳細", farmer_customer_order_path(@customer, order), class: "btn btn-primary" %></td>
+    <td><%= link_to "詳細", farmer_customer_order_path(order.customer, order), class: "btn btn-primary" %></td>
    </tr>
   <% end %>
  </table>

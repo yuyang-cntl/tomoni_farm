@@ -23,7 +23,18 @@ ja:
         statuses:
           on_sale: "予約受付中"
           off_sale: "予約停止中"
-          ja:
+        name:"商品名"
+        price: "税込価格"
+        introduction: "説明"
+      diary:
+        body: 本文
+    errors:
+      models:
+        diary:
+          attributes:
+            body:
+              blank: "を入力してください"
+
   enums:
     order:
       status:
