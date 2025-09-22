@@ -1,16 +1,16 @@
-<header class="d-flex">
-<nav class="container pt-3">
+<header>
+<nav class="container-fluid pt-3">
  <div class="row align-items-center">
-  <div class="col-md-2 text-start">
-   <div class="navbar-brand mt-5 mb-3">
-    <%= link_to "LOGO", root_path %>
+  <div class="col-md-2 offset-2">
+   <div class="navbar-brand mt-3 mb-3">
+    <%= link_to "TomoniFarm", root_path %>
    </div>
   </div>
-  <ul class="d-flex offset-4">
-    <li class="d-flex flex-row col-md-6 gap-1 justify-content-end">
+  <ul class="d-flex col-md-3 offset-4">
+    <li class="d-flex justify-content-end mr-2">
      <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
     </li>
-    <li class="d-flex  flex-row col-md-6 gap-1 justify-content-end">
+    <li class="d-flex justify-content-end">
      <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
     </li>
   </ul>

@@ -8,7 +8,22 @@
 
 body {
   font-family: "Noto Sans JP", "Yu Gothic UI", "Hiragino Sans", sans-serif;
-  background-image: url('../../assets/images/hoge.jpg');
+  background-color: beige;
+}
+
+.bg-img {
+  height: 200px;
+  background-position: center;
+  background-size: cover;
+}
+.img1 {
+  background-image: url('/images/IMG_9248.jpg');
+}
+.img2 {
+  background-image: url('/images/IMG_9250.jpg');
+}
+.img3 {
+  background-image: url('/images/IMG_9249.jpg');
 }
 
 .btn {
