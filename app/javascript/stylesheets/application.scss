@@ -8,27 +8,41 @@
 
 body {
   font-family: "Noto Sans JP", "Yu Gothic UI", "Hiragino Sans", sans-serif;
-  background-color: beige;
+  background-image: url('/images/IMG_9253.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .bg-img {
   height: 200px;
+  width: 200px;
+  border-radius: 50%;
   background-position: center;
   background-size: cover;
 }
 .img1 {
-  background-image: url('/images/IMG_9248.jpg');
+  background-image: url('/images/IMG_9249.jpg');
 }
 .img2 {
   background-image: url('/images/IMG_9250.jpg');
 }
 .img3 {
-  background-image: url('/images/IMG_9249.jpg');
+  background-image: url('/images/IMG_9248.jpg');
 }
 
-.btn {
+.btn-outline-secondary {
   border-radius: 8px;
   font-weight: 500;
-  background-color: #f8f9fa;
-  color: #333;
+  background-color: #a89f91;
+  color: white;
+}
+.btn-outline-secondary:hover {
+  background-color: white;
+  color: #a89f91;
+}
+.favicon-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
 }
