@@ -14,12 +14,10 @@
   <div class="alert alert-success"><%= flash[:notice] %></div>
 <% end %>
 
-<p class="col-md-3 d-flex justify-content-end">
- <span style="background-color: #f0f0f0;"><strong>ユーザー</strong>登録</span></p>
-
  <div class="container">
  <div class="row"> 
  <div class="col-md-9 d-flex flex-column justify-content-center">
+  <h5>ユーザー登録</h5>
   <%= form_with model:@customer, url:customer_registration_path, scope: :customer, local: true, html: { multipart: true } do |f| %>
     <div class="field mt-5 mb-3">
      <%= f.label :image, "プロフィール画像", class: "me-4 form-control-file" %>
