@@ -7,15 +7,22 @@
 }
 
 body {
-  font-family: "Noto Sans JP", "Yu Gothic UI", "Hiragino Sans", sans-serif;
+  font-family: 'Meiryo';
   background-image: url('/images/IMG_9253.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding-top: 100px;
+  padding-bottom: 80px;
+}
+body.homes.top {
+  background-image: url('/images/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 .bg-img {
-  height: 200px;
-  width: 200px;
+  height: 160px;
+  width: 160px;
   border-radius: 50%;
   background-position: center;
   background-size: cover;
@@ -45,4 +52,11 @@ body {
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+.copyright {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 6rem;
+  color: black;
 }

@@ -5,25 +5,23 @@
   <div class="alert alert-success"><%= flash[:notice] %></div>
 <% end %>
 
-<p class="col-md-3 d-flex justify-content-end">
- <span style="background-color: #f0f0f0;"><strong>ユーザー</strong>ログイン</p></span>
-
-<div class="container">
- <div class="row"> 
- <div class="col-md-9 d-flex flex-column justify-content-center">
+<div class="container-fluid">
+ <div class="row">
+ <div class="col-md-8 offset-md-2 mt-5 text-black">
+  <h5>ユーザーログイン</h5>
   <%= form_with model:@customer, url:customer_session_path, scope: :customer, local: true do |f| %>
-   <div class="field mt-5 mb-3">
-    <%= f.label :email, "メールアドレス", class: "me-4" %>
+   <div class="field mt-3 mb-3">
+    <%= f.label :email, "メールアドレス", class: "mr-3" %>
     <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email", style: "width: 450px;" %>
    </div>
 
-   <div class="field mb-5">
-    <%= f.label :password, "パスワード", class: "me-5" %>
+   <div class="field mb-3">
+    <%= f.label :password, "パスワード", class: "mr-5" %>
     <%= f.password_field :password, autocomplete: "current-password", style: "width: 450px;" %>
    </div>
    
    <div class="actions d-flex justify-content-center col-md-8">
-    <%= f.submit "ログイン", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
+    <%= f.submit "ログイン", class: "btn btn-outline-secondary text-black", style: "width: 150px; margin-left: 210px;" %>
    </div>
   <% end %>
   <h5>※デモユーザーのログインは以下です。<br>
