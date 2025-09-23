@@ -11,6 +11,8 @@ body {
   background-image: url('/images/IMG_9253.jpg');
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100%;
+  background-attachment: fixed;
   padding-top: 100px;
   padding-bottom: 80px;
 }
@@ -18,6 +20,8 @@ body.homes.top {
   background-image: url('/images/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
+  min-height: 100%;
+  background-attachment: fixed;
 }
 
 .bg-img {

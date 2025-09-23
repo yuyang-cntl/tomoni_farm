@@ -14,53 +14,65 @@
   <div class="alert alert-success"><%= flash[:notice] %></div>
 <% end %>
 
- <div class="container">
+<div class="container-fluid">
  <div class="row"> 
- <div class="col-md-9 d-flex flex-column justify-content-center">
-  <h5>ユーザー登録</h5>
-  <%= form_with model:@customer, url:customer_registration_path, scope: :customer, local: true, html: { multipart: true } do |f| %>
-    <div class="field mt-5 mb-3">
-     <%= f.label :image, "プロフィール画像", class: "me-4 form-control-file" %>
+  <div class="col-md-8 offset-2 mt-5 text-black">
+   <h5>ユーザー登録</h5>
+   <%= form_with model:@customer, url:customer_registration_path, scope: :customer, local: true, html: { multipart: true } do |f| %>
+    <div class="field mt-3 mb-3">
+     <%= f.label :image, "プロフィール画像", class: "form-control-file" %>
      <%= f.file_field :image %>
     </div>
-    <div class="field mt-5 mb-3">
-    <%= f.label :last_name, "姓", class: "me-4" %>
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "family-name", style: "width: 450px;" %>
-   </div>
-   <div class="field mt-5 mb-3">
-    <%= f.label :first_name, "名", class: "me-4" %>
-    <%= f.text_field :first_name, autocomplete: "given-name", style: "width: 450px;" %>
-   </div>
-   <div class="field mt-5 mb-3">
-    <%= f.label :last_name, "姓(カナ)", class: "me-4" %>
-    <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "family-name", style: "width: 450px;" %>
-   </div>
-   <div class="field mt-5 mb-3">
-    <%= f.label :first_name, "名（カナ）", class: "me-4" %>
-    <%= f.text_field :first_name_kana, autocomplete: "given-name", style: "width: 450px;" %>
-   </div>
+  </div>
+  <div class="row">
+    <div class="field mb-3 col-md-2 offset-2">
+     <%= f.label :last_name, "姓" %>
+    </div>
+    <div class="field mb-3 col-md-8">
+     <%= f.text_field :last_name, autofocus: true, autocomplete: "family-name", style: "width: 450px;" %>
+    </div>
+    <div class="field mb-3 col-md-2 offset-2">
+     <%= f.label :first_name, "名" %>
+    </div>
+    <div class="field mb-3 col-md-8">
+     <%= f.text_field :first_name, autocomplete: "given-name", style: "width: 450px;" %>
+    </div>
+    <div class="field mb-3 col-md-2 offset-2">
+     <%= f.label :last_name, "姓(カナ)" %>
+    </div>
+    <div class="field mb-3 col-md-8">
+     <%= f.text_field :last_name_kana, autofocus: true, autocomplete: "family-name", style: "width: 450px;" %>
+    </div>
+    <div class="field mb-3 col-md-2 offset-2">
+     <%= f.label :first_name, "名（カナ）" %>
+    </div>
+    <div class="field mb-3 col-md-8">
+     <%= f.text_field :first_name_kana, autocomplete: "given-name", style: "width: 450px;" %>
+    </div>
+    <div class="field mb-3 col-md-2 offset-2">
+     <%= f.label :email, "メールアドレス" %>
+    </div>
+    <div class="field mb-3 col-md-8">
+     <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email", style: "width: 450px;" %>
+    </div>
+    <div class="field mb-3 col-md-2 offset-2">
+     <%= f.label :password, "パスワード(6文字以上)" %>
+    </div>
+    <div class="field mb-3 col-md-8">
+     <%= f.password_field :password, autocomplete: "current-password", style: "width: 450px;" %>
+    </div>
+    <div class="field mb-5 col-md-2 offset-2">
+     <%= f.label :password_confirmation, "パスワード（確認）" %>
+    </div>
+    <div class="field mb-3 col-md-8">
+     <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 450px;" %>
+    </div>
 
-   <div class="field mb-5">
-    <%= f.label :email, "メールアドレス", class: "me-4" %>
-    <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email", style: "width: 450px;" %>
-   </div>
-
-   <div class="field mb-5">
-    <%= f.label :password, "パスワード(6文字以上)", class: "me-5" %>
-    <%= f.password_field :password, autocomplete: "current-password", style: "width: 450px;" %>
-   </div>
-
-   <div class="field mb-5">
-    <%= f.label :password_confirmation, "パスワード（確認）", class: "me-5" %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 450px;" %>
-   </div>
-
-   <div class="actions d-flex justify-content-center col-md-8">
-    <%= f.submit "登録", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
-   </div>
-  <% end %>
+    <div class="actions d-flex justify-content-center col-md-9">
+     <%= f.submit "登録", class: "btn btn-outline-secondary text-black", style: "width: 150px; margin-left: 210px;" %>
+    </div>
+    <% end %>
+    <%= render "public/shared/links" %>
+  </div>
  </div>
- </div>
- </div>
-
-<%= render "public/shared/links" %>
+</div>
