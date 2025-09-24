@@ -4,26 +4,34 @@
  </div>
 <% end %>
 
- <h3><strong><%= @item.name %></strong>の商品情報</h3>
- <% if @item.images.attached? %>
- <% @item.images.each do |image| %>
-  <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
- <% end %>
- <% else %>
-  <p>画像は未登録です</p>
- <% end %>
- <h3>農家：<%= @item.farmer.name %></h3>
- <h3>商品説明：<%= @item.introduction %></h3>
- <h3>税込価格：<%= @item.price %>円</h3>
- <h3>収穫時期：<%= @item.harvest_time %></h3>
- <h3><%= I18n.t("activerecord.attributes.item.statuses.#{@item.status}") %></h3>
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-md-8 offset-2 mt-5">
+   <h1 class="mt-5"><strong><%= @item.name %></strong>の商品情報</h1>
+   <div class="row">
+    <div class="item-card mt-5 col-md-12">
+    <% if @item.images.attached? %>
+     <% @item.images.each do |image| %>
+     <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
+     <% end %>
+    <% else %>
+     <p>画像は未登録です</p>
+    <% end %>
+     <h3 class="mt-3">生産者：<%= @item.farmer.name %></h3>
+     <h3 class="mt-3">商品説明：<%= @item.introduction %></h3>
+     <h3 class="mt-3">税込価格：<%= @item.price %>円</h3>
+     <h3 class="mt-3">収穫時期：<%= @item.harvest_time %></h3>
+     <h3 class="mt-3"><%= I18n.t("activerecord.attributes.item.statuses.#{@item.status}") %></h3>
 
- <%= form_with url: new_public_order_path, method: :get, local: true do |f| %>
-  <h3>数量を選択してください：<br>
-  <%= f.hidden_field :item_id, value: @item.id %>
-  <%= f.hidden_field :amount, value: @amount %>
-  <%= f.select :amount,*[1..100] %>個</h3>
-  <div class="actions d-flex justify-content-center col-md-8">
-   <%= f.submit "注文にすすむ", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
+    <%= form_with url: new_public_order_path, method: :get, local: true do |f| %>
+     <h3 class="mt-3 mb-5">数量を選択してください：<br>
+     <%= f.hidden_field :item_id, value: @item.id %>
+     <%= f.hidden_field :amount, value: @amount %>
+     <%= f.select :amount,*[1..100] %>個</h3>
+     <%= f.submit "注文にすすむ", class: "btn btn-outline-secondary", style: "width: 120px;" %>
+    <% end %>
+    </div>
+   </div>
   </div>
- <% end %>
+ </div>
+</div>

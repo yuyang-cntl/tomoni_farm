@@ -4,10 +4,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Zen Maru Gothic', 'Rounded M+ 1c', sans-serif;
 }
 
 body {
-  font-family: 'Meiryo';
   background-image: url('/images/IMG_9253.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -63,4 +63,28 @@ body.homes.top {
   padding: 2rem 0;
   margin-top: 6rem;
   color: black;
+}
+
+.profile-image {
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.item-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+.item-image {
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  object-fit: cover;
+}
+.row.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
 }
