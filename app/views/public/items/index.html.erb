@@ -16,13 +16,13 @@
       <div class="mt-3 mb-3">
        <%= link_to '商品詳細', public_item_path(item), class: "btn btn-outline-secondary", style: "width: 120px;" %>
       </div>
-       <% if item.images.attached? %>
+      <% if item.images.attached? %>
       <% item.images.each do |image| %>
        <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
       <% end %>
-     <% else %>
-      <p>画像は未登録です</p>
-     <% end %>
+      <% else %>
+       <p>画像は未登録です</p>
+      <% end %>
      </div>
     <% end %>
    </div>

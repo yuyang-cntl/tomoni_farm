@@ -1,20 +1,38 @@
-<div class="vh-100">
-<h3>フォロー中の農家一覧</h3>
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
 
- <% if current_customer.followed_farmers.any? %>
-  <% current_customer.followed_farmers.each do |farmer| %>
-   <div class="farmer-card">
-   <h3><%= farmer.name %></h3>
-   <h3><%= farmer.introduction %></h3>
-    <% if farmer.image.attached? %>
-     <%= image_tag farmer.image.variant(resize_to_limit: [300,300]), class: "farmer-image" %>
-    <% else %>
-     <%= image_tag(farmer.get_profile_image(100, 100), alt: "Farmer image", class: "profile-image") %>
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-2 mt-5">
+   <h1 class="mt-5">フォロー中の生産者一覧</h1>
+   <div class="row farmer-list">
+    <% if current_customer.followed_farmers.any? %>
+    <% current_customer.followed_farmers.each do |farmer| %>
+     <div class="farmer-card mt-5 col-md-5">
+      <h3>生産者名：<%= farmer.name %></h3>
+      <h3>紹介文：<%= farmer.introduction %></h3>
+      <h3>
+       商品：
+       <%= farmer.items.first.name if farmer.items.any? %>
+       <span style="font-size: 0.7em">ほか</span>
+      </h3>
+      <div class="mt-3 mb-3">
+      <% if farmer.image.attached? %>
+       <%= image_tag farmer.image.variant(resize_to_limit: [150,150]), class: "farmer-image" %>
+      <% else %>
+       <%= image_tag(farmer.get_profile_image(150, 150), alt: "Farmer image", class: "profile-image") %>
+      <% end %>
+       <%= link_to '日記一覧', public_farmer_diaries_path(farmer), class: "ml-5 btn btn-outline-secondary", style: "width: 120px;" %>
+      </div>
+     <% end %>
+     <% else %>
+     <h3>フォロー中の農家はまだありません。</h3>
+     </div>
     <% end %>
-    <%= link_to '日記一覧', public_farmer_diaries_path(farmer), style:"font-size: 24px; font-weight: bold;" %>
    </div>
-  <% end %>
- <% else %>
-  <h3>フォロー中の農家はまだありません。</h3>
- <% end %>
+  </div>
+ </div>
 </div>

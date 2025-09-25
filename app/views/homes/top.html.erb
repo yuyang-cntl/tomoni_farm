@@ -16,9 +16,25 @@
     <div class="col-md-3 mt-5 bg-img img2"></div>
     <div class="col-md-4 bg-img img3"></div>
    </div>
-   <div class="d-flex justify-content-center mt-5">
-    <h3 class="col-md-4 offset-2">農家紹介</h3>
-    <h3 class="col-md-4 offset-2">商品紹介</h3>
+
+   <div class="row @farmer-list">
+    <div class="d-flex justify-content-center mt-5">
+     <div class="@farmer-card mt-5 col-md-12">
+      <h2>生産者紹介</h2>
+      <h3>生産者名：<%= @farmer.name %></h3>
+      <h3>紹介文：<%= @farmer.introduction %></h3>
+      <h3>
+       商品：
+       <%= @farmer.items.first.name if @farmer.items.any? %>
+       <span style="font-size: 0.7em">ほか</span>
+      </h3>
+      <% if @farmer.items.any? && @farmer.items.first.images.attached? %>
+       <%= image_tag @farmer.items.first.images.first.variant(resize_to_limit: [300,300]), class: "item-image" %>
+      <% else %>
+       <p>画像は未登録です</p>
+      <% end %>
+     </div>
+    </div>
    </div>
   </div>
  </div>
