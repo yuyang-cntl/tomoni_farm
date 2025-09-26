@@ -1,17 +1,24 @@
-<div class="container">
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
+<div class="container-fluid">
  <div class="row">
-  <div class="col-md-6">
-   <h3>注文履歴詳細</h3>
-   <table class="table">
-   <tr><th>注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
-   <tr><th>商品</th><td><%= @item.name %></td></tr>
-   <tr><th>数量</th><td><%= @amount %> 個</td></tr>
-   <tr><th>単価</th><td><%= number_to_currency(@item.price, unit: "円") %></td></tr>
-   <tr><th>送料</th><td><%= number_to_currency(@shipping_cost, unit: "円") %></td></tr>
-   <tr><th>合計</th><td><%= number_to_currency(@grand_total, unit: "円") %></td></tr>
-   <tr><th>支払い方法</th><td><%= @order.payment_method_i18n %></td></tr>
-   <tr><th>ステータス</th><td><%= @order.status_i18n %></td></tr>
-   <tr><th>お届け先</th><td><%= @postal_code %> / <%= @address %> / <%= @shipping_name %></td></tr>
+  <div class="col-md-8 offset-2 mt-5">
+   <h3 class="mt-5">注文履歴詳細</h3>
+   <table class="table mt-5">
+    <tr><th>注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
+    <tr><th>商品</th><td><%= @item.name %></td></tr>
+    <tr><th>数量</th><td><%= @amount %> 個</td></tr>
+    <tr><th>単価</th><td><%= number_to_currency(@item.price, unit: "円") %></td></tr>
+    <tr><th>送料</th><td><%= number_to_currency(@shipping_cost, unit: "円") %></td></tr>
+    <tr><th>合計</th><td><%= number_to_currency(@grand_total, unit: "円") %></td></tr>
+    <tr><th>支払い方法</th><td><%= @order.payment_method_i18n %></td></tr>
+    <tr><th>ステータス</th><td><%= @order.status_i18n %></td></tr>
+    <tr><th>お届け先</th><td><%= @postal_code %> / <%= @address %> / <%= @shipping_name %></td></tr>
+   </table>
   </div>
  </div>
 </div>

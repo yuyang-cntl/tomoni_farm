@@ -8,7 +8,7 @@
 <div class="container-fluid">
  <div class="row">
   <div class="col-md-8 offset-md-2 mt-5 text-black">
-   <h5>ユーザーログイン</h5>
+   <h1>ユーザーログイン</h1>
    <%= form_with model:@customer, url:customer_session_path, scope: :customer, local: true do |f| %>
     <div class="field mt-3 mb-3">
      <%= f.label :email, "メールアドレス", class: "mr-3" %>

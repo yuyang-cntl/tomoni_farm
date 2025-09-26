@@ -17,7 +17,7 @@
 <div class="container-fluid">
  <div class="row"> 
   <div class="col-md-8 offset-2 mt-5 text-black">
-   <h5>ユーザー登録</h5>
+   <h1>ユーザー登録</h1>
    <%= form_with model:@customer, url:customer_registration_path, scope: :customer, local: true, html: { multipart: true } do |f| %>
     <div class="field mt-3 mb-3">
      <%= f.label :image, "プロフィール画像", class: "form-control-file" %>
@@ -61,15 +61,15 @@
     <div class="field mb-3 col-md-8">
      <%= f.password_field :password, autocomplete: "current-password", style: "width: 450px;" %>
     </div>
-    <div class="field mb-5 col-md-2 offset-2">
+    <div class="field mb-3 col-md-2 offset-2">
      <%= f.label :password_confirmation, "パスワード（確認）" %>
     </div>
     <div class="field mb-3 col-md-8">
      <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 450px;" %>
     </div>
 
-    <div class="actions d-flex justify-content-center col-md-9">
-     <%= f.submit "登録", class: "btn btn-outline-secondary text-black", style: "width: 150px; margin-left: 210px;" %>
+    <div class="actions d-flex justify-content-center col-md-8 offset-2">
+     <%= f.submit "登録", class: "btn btn-outline-secondary", style: "width: 150px;" %>
     </div>
     <% end %>
     <%= render "public/shared/links" %>

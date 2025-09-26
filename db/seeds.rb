@@ -2,6 +2,7 @@
   farmer = Farmer.find_or_initialize_by(email: 'farmer@example.com')
   farmer.password = 'password'
   farmer.name = '山田'
+  farmer.introduction = '和歌山県の農家です'
   farmer.save!
 
 farmer.profile_image.attach(

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
     root to: 'homes#top'
+    get 'homes/about', to: 'homes#about', as: 'homes_about'
 
   scope module: :public, as: 'public' do
     get 'mypage', to: 'profiles#show', as: :customers_root
