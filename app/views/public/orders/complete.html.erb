@@ -1,9 +1,16 @@
-<div class="container p-3">
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
+
+<div class="container-fluid">
   <div class="row">
-   <div class="col-md-12">
-    <h3>ご注文ありがとうございました！</h3>
-    <li class="d-flex">
-     <%= link_to "マイページへ", public_customers_root_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
+   <div class="mt-5 col-md-8 offset-md-2">
+    <h3 class="mt-5">ご注文ありがとうございました！</h3>
+    <li class="mt-5 d-flex justify-content-start">
+     <%= link_to "マイページへ", public_customers_root_path, class: "btn btn-outline-secondary", style: "width: 150px;" %>
     </li>
    </div>
   </div>

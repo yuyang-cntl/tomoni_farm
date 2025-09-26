@@ -4,43 +4,50 @@
  </div>
 <% end %>
 
-<h1><%= @farmer.name %>さんのページ</h1>
+<div class="container-fluid">
+ <div class="row align-items-center">
+  <div class="col-md-10 offset-2 mt-5">
+   <h1 class="mt-5"><%= @farmer.name %>さんのページ</h1>
+  </div>
+ </div>
+ <div class="row">
+  <div class="mt-3 col-md-8 offset-md-2">
+   <%= image_tag(@farmer.get_profile_image(100, 100), alt: "Farmer image", class: "profile-image") %>
+   <%= link_to "商品投稿", new_farmer_item_path, class: "ml-5 btn btn-outline-secondary", style: "width: 150px;" %>
+   <%= link_to "会員情報編集", edit_farmer_profile_path, class: "btn btn-outline-secondary", style: "width: 150px;" %>
+   <%= link_to "退会", confirm_destroy_farmer_profile_path, class: "btn btn-outline-secondary", style: "width: 150px;" %>
 
-<%= image_tag(@farmer.get_profile_image(100, 100), alt: "Farmer image", class: "profile-image") %>
-
-<%= link_to "商品投稿", new_farmer_item_path, class: "btn btn-primary" %>
-<%= link_to "会員情報編集", edit_farmer_profile_path, class: "btn btn-primary" %>
-<%= link_to "退会", confirm_destroy_farmer_profile_path, class: "btn btn-primary" %>
-
-<h3 class="mt-3">注文履歴一覧</h3>
-<div class="table-responsive">
- <table class="table table-striped">
-  <thead>
-   <tr>
-    <th>注文日</th>
-    <th>配送先</th>
-    <th>注文商品</th>
-    <th>支払金額</th>
-    <th>ステータス</th>
-    <th>注文詳細</th>
-   </tr>
-  </thead>
-  <% @orders.each do |order| %>
-   <tr>
-    <td><%= order.created_at.strftime('%y/%m/%d') %></td>
-    <td><%= order.address %></td>
-    <td>
-     <ul class="list-unstyled">
-      <% order.order_details.each do |detail| %>
-       <li><%= detail.item.name %></li>
-      <% end %>
-     </ul>
-    </td>
-    <td><%= order.grand_total %></td>
-    <td><%= order.status_i18n %></td>
-    <td><%= link_to "詳細", farmer_customer_order_path(order.customer, order), class: "btn btn-primary" %></td>
-   </tr>
-  <% end %>
- </table>
- <%= paginate @orders, theme: 'bootstrap4' %>
+   <h3 class="mt-5">注文履歴一覧</h3>
+   <div class="table-responsive">
+    <table class="table table-striped">
+     <thead>
+      <tr>
+       <th>注文日</th>
+       <th>配送先</th>
+       <th>注文商品</th>
+       <th>支払金額</th>
+       <th>ステータス</th>
+       <th>注文詳細</th>
+      </tr>
+     </thead>
+     <% @orders.each do |order| %>
+      <tr>
+       <td><%= order.created_at.strftime('%y/%m/%d') %></td>
+       <td><%= order.address %></td>
+       <td>
+        <ul class="list-unstyled">
+         <% order.order_details.each do |detail| %>
+          <li><%= detail.item.name %></li>
+         <% end %>
+       </ul>
+       </td>
+       <td><%= order.grand_total %></td>
+       <td><%= order.status_i18n %></td>
+       <td><%= link_to "詳細", farmer_customer_order_path(order.customer, order), class: "btn btn-primary" %></td>
+      </tr>
+     <% end %>
+    </table>
+    <%= paginate @orders, theme: 'bootstrap4' %>
+  </div>
+ </div>
 </div>

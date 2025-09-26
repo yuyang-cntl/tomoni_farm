@@ -8,7 +8,7 @@
 <div class="container-fluid">
  <div class="row">
   <div class="col-md-8 offset-2 mt-5">
-   <h1 class="mt-5">注文内容の確認</h1>
+   <h1 class="mt-5 mb-5">注文内容の確認</h1>
    <table class="table">
     <tr><th>商品</th><td><%= @item.name %></td></tr>
     <tr><th>数量</th><td><%= @order.amount %> 個</td></tr>
@@ -16,7 +16,7 @@
     <tr><th>小計</th><td><%= number_to_currency(@item.price * @order.amount, unit: "円") %></td></tr>
     <tr><th>送料</th><td><%= number_to_currency(@order.shipping_cost, unit: "円") %></td></tr>
     <tr><th>合計</th><td><%= number_to_currency(@order.grand_total, unit: "円") %></td></tr>
-
+    <tr><th>届け先</th><td><%= @order.address %></td></tr>
     <tr>
      <th>支払方法</th>
       <td>
@@ -31,9 +31,6 @@
       </td>
     </tr>
    </table>
-
-   <h4>お届け先</h4>
-   <%= @selected_address %>
 
    <%= form_with url: public_orders_path, method: :post do %>
 
@@ -56,7 +53,7 @@
      <%= hidden_field_tag 'order[new_address]', params[:order][:new_address] %>
      <%= hidden_field_tag 'order[new_shipping_name]', params[:order][:new_shipping_name] %>
     <% end %>
-    <%= submit_tag "注文を確定する", class: "btn btn-success" %>
+     <%= submit_tag "注文を確定する", class: "col-md-6 offset-md-5 mt-5 btn btn-success", style: "width: 150px;" %>
    <% end %>
   </div>
  </div>
