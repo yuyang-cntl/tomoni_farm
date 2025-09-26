@@ -11,6 +11,7 @@ class Public::OrdersController < ApplicationController
     @order = Order.new(order_params)
     @item = Item.find(@order.item_id)
     @address = Address.find(params[:order][:address_id])
+    @selected_address = params[:selected_address]
     @order.postal_code = @address.postal_code
     @order.address = @address.address
     @order.shipping_name = @address.shipping_name

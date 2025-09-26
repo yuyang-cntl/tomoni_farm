@@ -4,6 +4,7 @@ class Public::PostsController < ApplicationController
   def show
     @diary = Diary.find(params[:diary_id])
     @post = @diary.posts.find(params[:id])
+    @customer = current_customer
     @comment = Comment.new
   end
 end

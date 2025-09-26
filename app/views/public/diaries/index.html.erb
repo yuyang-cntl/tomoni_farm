@@ -1,17 +1,34 @@
-<div class="vh-100">
-<h1>登録農家の日記一覧</h1>
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-2 mt-5">
+   <h1 class="mt-5 mb-5">登録農家の日記一覧</h1>
+  </div>
+ </div>
+ <div class="row diary-list">
  <% @diaries.each do |diary| %>
-  <div class="diary-card">
+  <div class="diary-card col-md-8 offset-md-2 mt-3">
    <% if diary.images.attached? %>
     <% diary.images.each do |image| %>
      <%= image_tag image.variant(resize_to_limit: [300,300]), class: "diary-image" %>
     <% end %>
-    <% else %>
-     <p>画像は未登録です</p>
-    <% end %>
+   <% else %>
+    <p>画像は未登録です</p>
+   <% end %>
     <h3>タイトル：<%= diary.title %></h3>
     <h3>本文：<%= diary.body %></h3>
-   <%= link_to '日記を読む', public_farmer_diary_path(diary.farmer_id, diary), style:"font-size: 24px; font-weight: bold;" %>
+    <%= link_to '日記を読む', public_farmer_diary_path(diary.farmer_id, diary),  class: "btn btn-outline-secondary", style: "width: 150px;" %>
   </div>
  <% end %>
+ </div>
+
+ <div class="d-flex justify-content-center mt-5">
+ <%= link_to '戻る', public_farmers_path, class:"btn btn-outline-secondary", style: "width: 90px;" %>
+</div>
+
 </div>

@@ -4,41 +4,60 @@
  </div>
 <% end %>
 
-<h3><%= @post.title %></h3>
-<% if @post.images.attached? %>
-<% @post.images.each do |image| %>
- <%= image_tag image.variant(resize_to_limit: [300,300]), class: "post-image" %>
-<% end %>
-<% else %>
- <p>画像は未登録です</p>
-<% end %>
-<h3>タイトル：<%= @post.title %></h3>
-<h3>本文：<%= @post.body %></h3>
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-2 mt-5">
+   <h1 class="mt-5 mb-5"><%= @post.title %></h1>
+  </div>
+ </div>
 
-<div>
-  <p>コメント件数：<%= @post.comments.count %></p>
-  <% @post.comments.each do |comment| %>
-    <p><%= image_tag comment.customer.get_profile_image(100,100) %></p>
-    <%= comment.customer.name %>
-    <%= comment.created_at.strftime('%Y/%m/%d') %>
-    <%= comment.body %>
-    <%= link_to "削除", public_farmer_diary_post_comment_path(@post.diary.farmer_id, @post.diary_id, @post.id, comment.id), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-primary" %>
-  <% end %>
-</div>
-<div>
-  <%= form_with model: @comment, url: public_farmer_diary_post_comments_path(@post.diary.farmer_id, @post.diary_id, @post.id) do |f| %>
+ <div class="row post-list">
+  <div class="post-card col-md-8 offset-md-2 mt-3">
+   <% if @post.images.attached? %>
+    <% @post.images.each do |image| %>
+     <%= image_tag image.variant(resize_to_limit: [300,300]), class: "post-image" %>
+    <% end %>
+   <% else %>
+    <p>画像は未登録です</p>
+   <% end %>
+   <h3>タイトル：<%= @post.title %></h3>
+   <h3>本文：<%= @post.body %></h3>
+
+  <div class="mt-5">
+   <p>コメント件数：<%= @post.comments.count %></p>
+    <% @post.comments.each do |comment| %>
+     <p><%= image_tag comment.customer.get_profile_image(50,50) %></p>
+     <%= comment.customer.name %>
+     <%= comment.created_at.strftime('%Y/%m/%d') %>
+     <%= comment.body %>
+     <%= link_to "削除", public_farmer_diary_post_comment_path(@post.diary.farmer_id, @post.diary_id, @post.id, comment.id),
+      method: :delete, data: {confirm: "本当に削除しますか？"},
+      class: "ml-3 btn btn-outline-secondary", style: "width: 60px;" %>
+    <% end %>
+  </div>
+  <div>
+   <%= form_with model: @comment, url: public_farmer_diary_post_comments_path(@post.diary.farmer_id, @post.diary_id, @post.id) do |f| %>
     <%= f.text_area :body, rows: '5', placeholder: "コメントをここに" %>
-    <%= f.submit "送信する" %>
-  <% end %>
+    <%= f.submit "送信", class:"ml-3 mb-4 btn btn-outline-secondary", style: "width: 60px;"%>
+   <% end %>
+  </div>
+   <p>
+    <% if @post.liked_by?(@customer) %>
+     <%= link_to public_farmer_diary_post_like_path(@diary.farmer_id, @diary.id, @post.id),
+      method: :delete,
+      data: {turbo: false},
+      class: "btn btn-outline-danger" do %>
+      ♥<%= @post.likes.count %> いいね
+     <% end %>
+    <% else %>
+     <%= link_to public_farmer_diary_post_like_path(@diary.farmer_id, @diary.id, @post.id),
+      method: :post,
+      data: {turbo: false},
+      class: "btn btn-outline-danger" do %>
+      ♡<%= @post.likes.count %> いいね
+     <% end %>
+    <% end %>
+   </p>
+  </div>
+ </div>
 </div>
-<p>
- <% if @post.liked_by?(@customer) %>
-  <%= link_to public_farmer_diary_post_like_path(@diary.farmer_id, @diary.id, @post.id), method: :delete do %>
-    ♥<%= @post.likes.count %> いいね
-  <% end %>
- <% else %>
-  <%= link_to public_farmer_diary_post_like_path(@diary.farmer_id, @diary.id, @post.id), method: :post do %>
-    ♡<%= @post.likes.count %> いいね
-  <% end %>
- <% end %>
-</p>

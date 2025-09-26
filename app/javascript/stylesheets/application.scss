@@ -72,7 +72,9 @@ body.homes.top {
 }
 
 .item-card,
-.farmer-card {
+.farmer-card,
+.diary-card,
+.post-card {
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -80,13 +82,17 @@ body.homes.top {
   margin-bottom: 2rem;
 }
 .item-image,
-.farmer-image {
+.farmer-image,
+.diary-image,
+.post-image {
   border-radius: 8px;
   margin-bottom: 1rem;
   object-fit: cover;
 }
 .row.item-list,
-.row.farmer-list {
+.row.farmer-list,
+.row.diary-list,
+.row.post-list {
   display: flex;
   flex-wrap: wrap;
   gap: 3rem;

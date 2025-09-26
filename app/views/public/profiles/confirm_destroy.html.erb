@@ -1,6 +1,22 @@
-<h2 class="text-danger">本当に退会しますか？</h2>
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
 
-<div class="d-flex gap-3 mt-4">
-  <%= link_to "退会する", public_profile_path, method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-danger" %>
-  <%= link_to "キャンセル", public_profile_path, class: "btn btn-secondary" %>
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-md-2 mt-5">
+   <h1 class="mt-5 mb-5">本当に退会しますか？</h1>
+  </div>
+ </div>
+ <div class="row">
+  <div class="d-flex col-md-6 offset-md-2 mt-5">
+   <%= link_to "退会する", public_profile_path,
+    method: :delete,
+    data: {confirm: "本当に削除しますか？"},
+    class: "mr-5 btn btn-danger", style: "width: 120px;" %>
+   <%= link_to "キャンセル", public_profile_path, class: "btn btn-secondary", style: "width: 120px;" %>
+  </div>
+ </div>
 </div>

@@ -5,15 +5,12 @@
   <div class="alert alert-success"><%= flash[:notice] %></div>
 <% end %>
 
-<p class="col-md-3 d-flex justify-content-end">
- <span style="background-color: #f0f0f0;">注文情報入力</span>
-</p>
-
-<div class="container">
+<div class="container-fluid">
  <div class="row">
- <div class="col-md-9">
-  <h3><strong><%= @item.name %></strong>の商品情報</h3>
-  <% if @item.images.attached? %>
+  <div class="col-md-8 offset-2 mt-5">
+   <h1 class="mt-5">注文情報入力</h1>
+   <h3><strong><%= @item.name %></strong>の商品情報</h3>
+   <% if @item.images.attached? %>
    <% @item.images.each do |image| %>
     <%= image_tag image.variant(resize_to_limit: [200,200]), class:"item-image" %>
    <% end %>
@@ -65,8 +62,8 @@
     </div>
    </fieldset>
 
-    <div class="actions d-flex justify-content-center col-md-8">
-     <%= f.submit "注文する", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
+    <div class="actions d-flex justify-content-center mt-5">
+     <%= f.submit "注文する", class: "mt-5 btn btn-outline-secondary", style: "width: 150px;" %>
     </div>
   <% end %>
   </div>

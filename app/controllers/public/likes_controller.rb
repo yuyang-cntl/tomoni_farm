@@ -5,8 +5,9 @@ class Public::LikesController < ApplicationController
     @diary = Diary.find(params[:diary_id])
     @post = @diary.posts.find(params[:post_id])
     @customer = current_customer
-    @like = @post.likes.new(customer_id: current_customer.id)
-    @like.save
+    unless @post.liked_by?(current_customer)
+      @post.likes.create(customer_id: current_customer.id)
+    end
     redirect_to public_farmer_diary_post_path(@diary.farmer_id, @diary.id, @post.id)
   end
 
