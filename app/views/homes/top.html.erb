@@ -5,36 +5,19 @@
 <% end %>
 
 <div class="container-fluid">
- <div class="row">
-  <div class="mt-5 col-md-8 offset-md-2 text-white">
+ <div class="row justify-content-center">
+  <div class="mt-5 col-md-8 text-white">
    <h1 class="d-flex justify-content-center mt-5"><strong>トモニ育む   トモニ繋げる</strong></h1>
    <h5 class="d-flex justify-content-center mt-5">
      本サイトは個人農家から発信される農園紹介や栽培過程を見守り、</br>
      愛着を持って購入できる感情体験型の食材予約サイトです。</h5>
-   <div class="d-flex mt-5">
-    <div class="offset-md-1 col-md-4 bg-img img1"></div>
+   <div class="d-flex justify-content-center mt-5">
+    <div class="col-md-4 bg-img img1"></div>
     <div class="col-md-3 mt-5 bg-img img2"></div>
     <div class="col-md-4 bg-img img3"></div>
    </div>
-
-   <div class="row @farmer-list">
-    <div class="d-flex justify-content-center mt-5">
-     <div class="@farmer-card mt-5 col-md-12">
-      <h2>生産者紹介</h2>
-      <h3>生産者名：<%= @farmer.name %></h3>
-      <h3>紹介文：<%= @farmer.introduction %></h3>
-      <h3>
-       商品：
-       <%= @farmer.items.first.name if @farmer.items.any? %>
-       <span style="font-size: 0.7em">ほか</span>
-      </h3>
-      <% if @farmer.items.any? && @farmer.items.first.images.attached? %>
-       <%= image_tag @farmer.items.first.images.first.variant(resize_to_limit: [300,300]), class: "item-image" %>
-      <% else %>
-       <p>画像は未登録です</p>
-      <% end %>
-     </div>
-    </div>
+   <div class="d-flex justify-content-center mt-5">
+    <%= link_to '生産者一覧', homes_about_path, class: "btn btn-outline-secondary btn-lg px-4 py-2", style: "font-size: 1.5rem;" %>
    </div>
   </div>
  </div>

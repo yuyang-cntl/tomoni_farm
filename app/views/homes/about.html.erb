@@ -1,0 +1,27 @@
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-2 mt-5">
+   <h1 class="mt-5">生産者一覧</h1>
+   <div class="row @farmer-list">
+    <% @farmers.each do |farmer| %>
+    <div class="farmer-card mt-5 col-md-5">
+     <h2>生産者紹介</h2>
+     <h3>生産者名：<%= farmer.name %></h3>
+     <h3>紹介文：<%= farmer.introduction %></h3>
+     <h3>
+      商品：
+      <%= farmer.items.first.name if farmer.items.any? %>
+      <span style="font-size: 0.7em">ほか</span>
+      </h3>
+      <h5>会員登録・注文後に日記が見れます。</h5>
+     <% if farmer.items.any? && farmer.items.first.images.attached? %>
+     <%= image_tag farmer.items.first.images.first.variant(resize_to_limit: [300,300]), class: "item-image" %>
+    <% else %>
+     <p>画像は未登録です</p>
+    <% end %>
+    </div>
+    <% end %>
+   </div>
+  </div>
+ </div>
+</div>
