@@ -15,7 +15,7 @@
   <div class="mt-3 col-md-2 offset-md-2">
    <%= image_tag(@customer.get_profile_image(150, 150), alt: "Customer image", class: "profile-image") %>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-6 offset-md-1">
    <div>
     <p class="text-muted">商品情報</p>
     <%= link_to "商品", public_items_path, class: "  mr-4 btn btn-outline-secondary", style: "width: 120px;" %>

@@ -14,21 +14,33 @@
  </div>
 <% end %>
 
-<div class="vh-100">
- <h3>商品一覧</h3>
- <% @items.each do |item| %>
-  <div class="item-card">
-   <% if item.images.attached? %>
-    <% item.images.each do |image| %>
-     <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
-    <% end %>
-    <% else %>
-     <p>画像は未登録です</p>
-    <% end %>
-    <h5><%= item.name %></h5>
-    <%= link_to '商品詳細', farmer_item_path(item), style:"font-size: 24px; font-weight: bold;" %>
-    <%= link_to 'この商品の日記を投稿', new_farmer_diary_path, style:"font-size: 24px; font-weight: bold;" %>
-    <%= link_to "この商品の日記", farmer_diaries_path, class: "btn btn-outline-secondary text-black", style: "width: 90px;" %>
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-md-2 mt-5">
+   <h1 class="mt-5 mb-5">商品一覧</h1>
   </div>
- <% end %>
+ </div>
+ <div class="row item-list justify-content-center">
+  <% @items.each do |item| %>
+   <div class="item-card mt-3 col-md-5">
+    <h3 class="mb-3"><%= item.name %></h3>
+    <div class="row">
+     <div class="col-md-6">
+      <% if item.images.attached? %>
+       <% item.images.each do |image| %>
+        <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
+       <% end %>
+      <% else %>
+       <p>画像は未登録です</p>
+      <% end %>
+     </div>
+     <div class="col-md-4 offset-md-1 d-flex flex-column">
+      <%= link_to '商品詳細', farmer_item_path(item), class: "mb-5 btn btn-outline-secondary", style: "width: 120px;" %>
+      <%= link_to 'この商品の日記を投稿', new_farmer_diary_path, class: "mb-5 btn btn-outline-secondary", style: "width: 120px;" %>
+      <%= link_to "この商品の日記", farmer_diaries_path, class: "btn btn-outline-secondary", style: "width: 120px;" %>
+     </div>
+    </div>
+   </div>
+  <% end %>
+ </div>
 </div>
