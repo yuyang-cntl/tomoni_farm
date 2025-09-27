@@ -36,15 +36,14 @@ Rails.application.routes.draw do
     resource :password_change, only: [:edit, :update]
     resources :comments, only: [:new, :index, :create, :show, :destroy]
 
-    resource :profile, only: [:edit, :update, :show, :destroy] do
+    resource :profile, only: [:show, :edit, :update, :destroy] do
      get 'confirm_destroy', on: :collection
     end
   end
 
   namespace :farmer do
-    root to: 'homes#top'
+    root to: 'profiles#show'
     get 'search', to: 'items#search', as: 'search'
-    resource :home, only: [:show, :edit]
     resources :items
     resources :order_details, only: [:update]
     resource :password_change, only: [:edit, :update]
@@ -59,7 +58,7 @@ Rails.application.routes.draw do
       resources :likes, only: [:index]
      end
     end
-    resource :profile, only: [:edit, :update, :destroy] do
+    resource :profile, only: [:show, :edit, :update, :destroy] do
      get 'confirm_destroy', on: :collection
     end
   end

@@ -7,8 +7,8 @@
 
 <div class="container-fluid">
  <div class="row"> 
-  <div class="col-md-8 offset-md-2 mt-5 text-black">
-   <h5>生産者ログイン</h5>
+  <div class="col-md-8 offset-md-2 mt-5">
+   <h1 class="mb-5">生産者ログイン</h1>
    <%= form_with model:@farmer, url:farmer_session_path, scope: :farmer, local: true do |f| %>
     <div class="field mt-3 mb-3">
      <%= f.label :email, "メールアドレス", class: "mr-3" %>
@@ -20,8 +20,8 @@
      <%= f.password_field :password, autocomplete: "current-password", style: "width: 450px;" %>
     </div>
    
-    <div class="actions d-flex justify-content-center col-md-8">
-     <%= f.submit "ログイン", class: "btn btn-outline-secondary text-black", style: "width: 150px; margin-left: 210px;" %>
+    <div class="actions mt-5 d-flex justify-content-center col-md-8 offset-md-2">
+     <%= f.submit "ログイン", class: "btn btn-outline-secondary text-black", style: "width: 150px;" %>
     </div>
    <% end %>
    <div class="lh-lg mt-5">

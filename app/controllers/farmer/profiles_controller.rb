@@ -1,6 +1,16 @@
 class Farmer::ProfilesController < ApplicationController
   before_action :authenticate_farmer!
 
+  def show
+    @farmer = current_farmer
+    @customer = @farmer.followers.find_by(id: params[:customer_id])
+
+    @orders = Order.joins(order_details: :item)
+                   .where(items: { farmer_id: @farmer.id })
+                   .distinct
+                   .page(params[:page]).per(10)
+  end
+
   def edit
    @farmer = current_farmer
   end

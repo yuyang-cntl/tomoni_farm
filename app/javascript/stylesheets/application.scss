@@ -16,7 +16,7 @@ body {
   padding-top: 100px;
   padding-bottom: 80px;
 }
-body.homes.top {
+body.homes.top:not(.farmer_homes_top) {
   background-image: url('/images/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -73,6 +73,7 @@ body.homes.top {
 
 .item-card,
 .farmer-card,
+.customer-card,
 .diary-card,
 .post-card {
   background-color: #ffffff;
@@ -83,6 +84,7 @@ body.homes.top {
 }
 .item-image,
 .farmer-image,
+.customer-image,
 .diary-image,
 .post-image {
   border-radius: 8px;
@@ -91,6 +93,7 @@ body.homes.top {
 }
 .row.item-list,
 .row.farmer-list,
+.row.customer-list,
 .row.diary-list,
 .row.post-list {
   display: flex;

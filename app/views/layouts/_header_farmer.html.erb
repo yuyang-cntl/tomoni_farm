@@ -7,16 +7,7 @@
     <%= link_to "TomoniFarm", root_path, class: "text-secondary" %>
    </div>
   </div>
-  <ul class="d-flex flex-row offset-2 col-md-6">
-    <li class="d-flex mr-2">
-     <%= link_to "商品一覧", farmer_items_path, class: "btn btn-outline-secondary text-black", style: "width: 120px;" %>
-    </li>
-    <li class="d-flex mr-2">
-     <%= link_to "会員一覧", farmer_customers_path, class: "btn btn-outline-secondary text-black", style: "width: 120px;" %>
-    </li>
-    <li class="d-flex mr-2">
-     <%= link_to "日記", farmer_diaries_path, class: "btn btn-outline-secondary text-black", style: "width: 120px;" %>
-    </li>
+  <ul class="d-flex flex-row offset-4 col-md-4">
     <li class="d-flex mr-2">
      <%= link_to "マイページ", farmer_root_path, class: "btn btn-outline-secondary text-black", style: "width: 120px;" %>
     </li>
@@ -24,7 +15,7 @@
      <%= link_to "ログアウト", destroy_farmer_session_path, method: :delete, class: "btn btn-outline-secondary text-black", style: "width: 120px;" %>
     </li>
   </ul>
-   <div class="search-form d-flex flex-row offset-6 col-md-6 justify-content-end">
+   <div class="search-form d-flex flex-row offset-md-7 col-md-5">
     <%= form_with url: farmer_search_path, method: :get, local: true, class:"d-flex align-items-center gap-2" do %>
      <%= text_field_tag :q, params[:q], placeholder: "検索したい商品名を入力", class:"form-control",style: "width: 330px;" %>
      <%= button_tag type: 'submit', class: 'ml-1 btn btn-outline-secondary d-flex align-items-center' do %>

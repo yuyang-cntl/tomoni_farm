@@ -14,17 +14,25 @@
  </div>
 <% end %>
 
-<h3>会員一覧</h3>
-<div class="vh-100">
- <% @customers.each do |customer| %>
-  <div class="customer-card">
-   <% if customer.image.attached? %>
-     <%= image_tag customer.image.variant(resize_to_limit: [300,300]), class: "customer-image" %>
-    <% else %>
-     <%= image_tag(customer.get_profile_image(100, 100), alt: "Customer image", class: "profile-image") %>
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-2 mt-5">
+   <h1 class="mt-5">会員一覧</h1>
+   <div class="row customer-list">
+    <% @customers.each do |customer| %>
+    <div class="customer-card mt-5 col-md-5">
+     <h3><%= customer.name %></h3>
+     <div class="mt-3 mb-3">
+      <% if customer.image.attached? %>
+       <%= image_tag customer.image.variant(resize_to_limit: [150,150]), class: "customer-image" %>
+      <% else %>
+       <%= image_tag(customer.get_profile_image(150, 150), alt: "Customer image", class: "profile-image") %>
+      <% end %>
+     <%= link_to '会員詳細', farmer_customer_path(customer), class: "ml-5 btn btn-outline-secondary", style: "width: 120px;" %>
+     </div>
+    </div>
     <% end %>
-   <h3><%= customer.name %></h3>
-   <%= link_to '会員詳細', farmer_customer_path(customer), style:"font-size: 24px; font-weight: bold;" %>
+   </div>
   </div>
- <% end %>
+ </div>
 </div>
