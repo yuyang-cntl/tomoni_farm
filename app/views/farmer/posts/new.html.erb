@@ -14,7 +14,10 @@
  </div>
 <% end %>
 
-<h1>新規投稿</h1>
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-md-8 offset-2 mt-5">
+   <h1 class="mt-5 mb-5">新規投稿</h1>
 <div class="container">
  <div class= "row">
  <%= form_with model: [@diary,@post], url: farmer_diary_posts_path(@diary), html: { multipart: true } do |f| %>

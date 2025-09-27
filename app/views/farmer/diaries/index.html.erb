@@ -14,21 +14,27 @@
  </div>
 <% end %>
 
-<h3>日記一覧</h3>
-<%= link_to '日記登録', new_farmer_diary_path, style:"font-size: 32px; font-weight: bold;" %>
-<div class="vh-100">
- <% @diaries.each do |diary| %>
-  <div class="diary-card">
-  <h3>タイトル：<%= diary.title %></h3>
-   <% if diary.images.attached? %>
-    <% diary.images.each do |image| %>
-     <%= image_tag image.variant(resize_to_limit: [300,300]), class: "diary-image" %>
-    <% end %>
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-2 mt-5">
+   <h1 class="mt-5 mb-5">日記一覧</h1>
+   <%= link_to '日記登録', new_farmer_diary_path, class: "mb-5 btn btn-outline-secondary", style: "width: 150px;" %>
+  </div>
+ </div>
+ <div class="row diary-list">
+  <% @diaries.each do |diary| %>
+  <div class="diary-card col-md-8 offset-md-2 mt-3">
+    <h3 class="mb-3">タイトル：<%= diary.title %></h3>
+    <% if diary.images.attached? %>
+     <% diary.images.each do |image| %>
+      <%= image_tag image.variant(resize_to_limit: [300,300]), class: "diary-image" %>
+     <% end %>
     <% else %>
-     <p>画像は未登録です</p>
+      <p>画像は未登録です</p>
     <% end %>
-   <%= link_to '日記詳細', farmer_diary_path(diary), style:"font-size: 24px; font-weight: bold;" %>
-   <%= link_to '投稿一覧', farmer_diary_posts_path(diary), style:"font-size: 24px; font-weight: bold;" %>
+   <%= link_to '日記詳細', farmer_diary_path(diary), class: "ml-5 btn btn-outline-secondary", style: "width: 150px;" %>
+   <%= link_to '投稿一覧', farmer_diary_posts_path(diary), class: "btn btn-outline-secondary", style: "width: 150px;" %>
   </div>
  <% end %>
+ </div>
 </div>

@@ -14,30 +14,54 @@
  </div>
 <% end %>
 
-<h1>商品の新規登録</h1>
-<div class="container">
- <div class= "row">
- <%= form_with model:@item, url: farmer_items_path, html: { multipart: true } do |f| %>
-  <div>
-  <%=f.label :name, "商品" %>
-   <%= f.text_field :name, class: "form-control" %>
-  <%=f.label :images, "画像" %>
-   <%= f.file_field :images, multiple:true, class: "form-control-file" %>
-  <%= f.label :introduction, "説明" %>
-   <%= f.text_area :introduction, class: "form-control" %>
-  <%= f.label :price, "税込価格" %>   
-   <%= f.number_field :price, min: 0, step: 1, class: "form-control" %>
-  <%= f.label :harvest_time, "収穫時期" %>
-   <%= f.text_area :harvest_time, class: "form-control" %>
-   <% Item.statuses.each_key do |key| %>
-    <%= f.radio_button :status, key %>
-    <%= f.label :"status_#{key}", I18n.t("activerecord.attributes.item.statuses.#{key}")%>
-   <% end %>
-
-   <div class="actions d-flex justify-content-center col-md-8">
-    <%= f.submit "投稿", class: "btn btn-primary", style: "width: 150px; margin-left: 210px;" %>
-   </div>
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-md-8 offset-md-2 mt-5">
+   <h1 class="mt-5 mb-5">商品の新規登録</h1>
   </div>
- <% end %>
  </div>
+
+ <%= form_with model:@item, url: farmer_items_path, html: { multipart: true } do |f| %>
+ <div class="row">
+  <div class="field mt-5 mb-3 col-md-2 offset-md-2">
+   <%=f.label :name, "商品" %>
+  </div>
+  <div class="field mt-5 mb-3 col-md-8">
+   <%= f.text_field :name, style: "width: 450px;" %>
+  </div>
+  <div class="field mb-3 col-md-2 offset-md-2">
+   <%=f.label :images, "画像" %>
+  </div>
+  <div class="field mb-3 col-md-8">
+    <%= f.file_field :images, multiple:true, class: "form-control-file", style: "width: 450px;" %>
+  </div>
+  <div class="field mb-3 col-md-2 offset-md-2">
+   <%= f.label :introduction, "説明" %>
+  </div>
+  <div class="field mb-3 col-md-8">
+    <%= f.text_area :introduction, class: "form-control", style: "width: 450px;" %>
+  </div>
+  <div class="field mb-3 col-md-2 offset-md-2">
+   <%= f.label :price, "税込価格" %>
+  </div>
+  <div class="field mb-3 col-md-8">
+    <%= f.number_field :price, min: 0, step: 1, class: "form-control", style: "width: 450px;" %>
+  </div>
+  <div class="field mb-3 col-md-2 offset-md-2">
+   <%= f.label :harvest_time, "収穫時期" %>
+  </div>
+  <div class="field mb-3 col-md-8">
+    <%= f.text_area :harvest_time, class: "form-control", style: "width: 450px;" %>
+  </div>
+  <div class="field mt-3 mb-3 col-md-2 offset-md-4">
+    <% Item.statuses.each_key do |key| %>
+     <%= f.radio_button :status, key %>
+     <%= f.label :"status_#{key}", I18n.t("activerecord.attributes.item.statuses.#{key}")%>
+    <% end %>
+  </div>
+  <div class="actions d-flex justify-content-center col-md-8 offset-md-2">
+   <%= f.submit "投稿", class: "mt-5 btn btn-outline-secondary", style: "width: 150px;" %>
+  </div>
+ </div>
+ <% end %>
 </div>

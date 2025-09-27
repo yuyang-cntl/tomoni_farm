@@ -4,7 +4,10 @@
  </div>
 <% end %>
 
- <h3><strong><%= @item.name %></strong>の商品情報</h3>
+<div class="container p-3">
+ <div class="row">
+  <div class="col-md-8 offset-md-2 mt-5">
+  <h1 class="mt-5 mb-5"><strong><%= @item.name %></strong>の商品情報</h1>
  <% if @item.images.attached? %>
   <% @item.images.each do |image| %>
    <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>

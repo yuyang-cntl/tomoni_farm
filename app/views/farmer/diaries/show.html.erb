@@ -4,15 +4,25 @@
  </div>
 <% end %>
 
- <h3><strong><%= @diary.title %></strong>の日記</h3>
-  <% if @diary.images.attached? %>
-   <% @diary.images.each do |image| %>
-    <%= image_tag image.variant(resize_to_limit: [300,300]), class: "diary-image" %>
+<div class="container p-3">
+ <div class="row">
+  <div class="col-md-8 offset-md-2 mt-5">
+   <h1 class="mt-5 mb-5"><strong><%= @diary.title %></strong>の日記</h1>
+  </div>
+ </div>
+ <div class="row">
+  <div class="diary-card mt-5 col-md-8 offset-md-2 mt-5">
+   <% if @diary.images.attached? %>
+    <% @diary.images.each do |image| %>
+     <%= image_tag image.variant(resize_to_limit: [300,300]), class: "diary-image" %>
+    <% end %>
+   <% else %>
+    <p>画像は未登録です</p>
    <% end %>
-  <% else %>
-   <p>画像は未登録です</p>
-  <% end %>
- <h3>タイトル：<%= @diary.title %></h3>
- <h3>本文：<%= @diary.body %></h3>
-  <%= link_to "編集", edit_farmer_diary_path(@diary), class: "btn btn-primary" %>
-  <%= link_to "削除", farmer_diary_path(@diary), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-primary" %>
+   <h3 class="mt-3">タイトル：<%= @diary.title %></h3>
+   <h3 class="mt-3">本文：<%= @diary.body %></h3>
+   <%= link_to "編集", edit_farmer_diary_path(@diary), class: "mt-3 btn btn-outline-secondary", style: "width: 90px;" %>
+   <%= link_to "削除", farmer_diary_path(@diary), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "mt-3 btn btn-outline-secondary", style: "width: 90px;" %>
+  </div>
+ </div>
+</div>

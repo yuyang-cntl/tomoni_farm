@@ -14,6 +14,7 @@
 <% end %>
 <h3>タイトル：<%= @post.title %></h3>
 <h3>本文：<%= @post.body %></h3>
+<h3>投稿日：<%= @post.created_at.strftime('%y/%m/%d') %></h3>
 <%= link_to "編集", edit_farmer_diary_post_path(@diary,@post), class: "btn btn-primary" %>
 <%= link_to "削除", farmer_diary_post_path(@diary,@post), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-primary" %>
 

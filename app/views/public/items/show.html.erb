@@ -8,8 +8,10 @@
  <div class="row">
   <div class="col-md-8 offset-2 mt-5">
    <h1 class="mt-5"><strong><%= @item.name %></strong>の商品情報</h1>
-   <div class="row">
-    <div class="item-card mt-5 col-md-12">
+  </div>
+ </div>
+ <div class="row">
+  <div class="item-card mt-5 col-md-12">
     <% if @item.images.attached? %>
      <% @item.images.each do |image| %>
      <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
@@ -30,8 +32,6 @@
      <%= f.select :amount,*[1..100] %>個</h3>
      <%= f.submit "注文にすすむ", class: "btn btn-outline-secondary", style: "width: 120px;" %>
     <% end %>
-    </div>
-   </div>
   </div>
  </div>
 </div>
