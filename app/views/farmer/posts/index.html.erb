@@ -17,11 +17,11 @@
 
 <div class="container-fluid">
  <div class="row align-items-start">
-  <div class="post-card col-md-8 offset-2 mt-5">
+  <% @posts.each do |post| %>
+  <div class="post-card col-md-6 offset-2 mt-5">
    <% if @posts.empty? %>
     <p style="font-size: 18px; color: gray;">まだ投稿がありません</p>
    <% else %>
-   <% @posts.each do |post| %>
     <h3><%= post.title %></h3>
    <% if post.images.attached? %>
     <% post.images.each do |image| %>
@@ -30,11 +30,13 @@
     <% else %>
      <p>画像は未登録です</p>
     <% end %>
+    <%= link_to '投稿詳細', farmer_diary_post_path(@diary, post), class: "ml-5 btn btn-outline-secondary", style: "width: 120px;" %>
+    <h3>投稿日：<%= post.created_at.strftime('%y/%m/%d') %></h3>
    <% end %>
-   <%= link_to '投稿詳細', farmer_diary_post_path(@diary, post), style:"font-size: 24px; font-weight: bold;" %>
-   <h3>投稿日：<%= post.created_at.strftime('%y/%m/%d') %></h3>
   </div>
+  <% end %>
  </div>
- <%= link_to '新規投稿', new_farmer_diary_post_path, class:"btn btn-outline-secondary", style: "width: 120px;" %>
-<% end %>
+  <div class="d-flex justify-content-center mt-5">
+   <%= link_to '新規投稿', new_farmer_diary_post_path, class:"btn btn-outline-secondary", style: "width: 120px;" %>
+  </div>
 </div>
