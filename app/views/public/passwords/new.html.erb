@@ -1,6 +1,16 @@
-<h2>Forgot your password?</h2>
+<% if flash[:alert] %>
+  <div class="alert alert-danger"><%= flash[:alert] %></div>
+<% end %>
+<% if flash[:notice] %>
+  <div class="alert alert-success"><%= flash[:notice] %></div>
+<% end %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+<div class="container-fluid">
+ <div class="row">
+  <div class="col-md-8 offset-md-2 mt-5">
+  <h1 class="mb-5">パスワードをお忘れの方</h1>
+
+<%= form_with model:@customer, url: public_profile_path, scope: :customer, method: :post, local: true, html: { multipart: true } do |f| %>
   <%= render "publics/shared/error_messages", resource: resource %>
 
   <div class="field">
@@ -12,5 +22,3 @@
     <%= f.submit "Send me reset password instructions" %>
   </div>
 <% end %>
-
-<%= render "publics/shared/links" %>

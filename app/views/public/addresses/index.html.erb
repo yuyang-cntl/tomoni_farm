@@ -21,9 +21,9 @@
   </div>
  </div>
 
- <div class="row mt-5">
+ <div class="row address-list mt-5">
   <% @addresses.each do |address| %>
-   <div class="col-md-8 offset-md-2 mt-5 mb-5">
+   <div class="address-card col-md-8 offset-md-2 mt-5 mb-5">
     <h4 class="mb-3">宛名：<%= address.shipping_name %></h4>
     <h4 class="mb-3">〒：<%= address.postal_code %></h4>
     <h4 class="mb-3">住所：<%= address.address %></h4>

@@ -3,17 +3,19 @@
   <div class="liked-customers col-md-10 offset-2 mt-5">
    <h1 class="mt-5 mb-5">いいねしてくれたユーザー一覧</h1>
     <% if @post.likes.any? %>
-      <% @likes.each do |like| %>
-        <h4>ユーザー名：<%= like.customer.name %></h4>
-       <% if like.customer.profile_image.attached? %>
-        <%= image_tag like.customer.profile_image.variant(resize_to_limit: [300,300]), class: "profile-image" %>
-       <% else %>
-        <p>画像は未登録です</p>
-       <% end %>
+     <% @likes.each do |like| %>
+      <div class="customer-card mt-5 col-md-4">
+       <h4>ユーザー名：<%= like.customer.name %></h4>
+      <% if like.customer.profile_image.attached? %>
+       <%= image_tag like.customer.profile_image.variant(resize_to_limit: [300,300]), class: "profile-image" %>
+      <% else %>
+       <p>画像は未登録です</p>
       <% end %>
-   <% else %>
-    <p>まだ誰もいいねしていません</p>
-   <% end %>
+      </div>
+     <% end %>
+    <% else %>
+     <p>まだ誰もいいねしていません</p>
+    <% end %>
   </div>
  </div>
 </div>
