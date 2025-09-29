@@ -9,6 +9,7 @@
   <div class="order-card table-responsive col-md-8 offset-md-2 mt-5">
    <h1 class="mt-5 mb-5">注文履歴詳細</h1>
    <table class="table table-striped">
+    <tr><th>注文者</th><td><%= @order.customer.name %></td></tr>
     <tr><th>注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
     <tr><th>商品</th><td><%= @item.name %></td></tr>
     <tr><th>数量</th><td><%= @amount %> 個</td></tr>
@@ -19,6 +20,9 @@
     <tr><th>ステータス</th><td><%= @order.status_i18n %></td></tr>
     <tr><th>お届け先</th><td><%= @postal_code %> / <%= @address %> / <%= @shipping_name %></td></tr>
    </table>
+  </div>
+  <div class="d-flex justify-content-center mt-3 col-md-8 offset-md-2">
+   <%= link_to "戻る", farmer_customer_path(@customer), class: "btn btn-outline-secondary", style: "width: 90px;" %>
   </div>
  </div>
 </div>

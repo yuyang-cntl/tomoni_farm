@@ -25,4 +25,5 @@ class Farmer::CustomersController < ApplicationController
       render :edit
     end
   end
+  
 end

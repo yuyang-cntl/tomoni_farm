@@ -42,10 +42,6 @@ class Farmer::ItemsController < ApplicationController
     redirect_to farmer_items_path,notice:"商品を削除しました"
   end
 
-  def search 
-    @items = Item.where("name LIKE ?", "%#{params[:q]}%")
-  end
-
   private
 
   def item_params

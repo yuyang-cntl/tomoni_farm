@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   scope module: :public, as: 'public' do
     get 'mypage', to: 'profiles#show', as: :customers_root
-    get 'search', to: 'items#search', as: 'search'
+    get 'search', to: 'search#search'
     resources :customers, only: [:index, :show, :edit, :update] do
      member do
       get 'unsubscribe'
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   namespace :farmer do
     root to: 'profiles#show'
-    get 'search', to: 'items#search', as: 'search'
+    get 'search', to: 'search#search'
     resources :items
     resources :order_details, only: [:update]
     resource :password_change, only: [:edit, :update]

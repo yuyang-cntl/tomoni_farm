@@ -8,9 +8,5 @@ class Public::ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
   end
-
-  def search 
-    @items = Item.where("name LIKE ?", "%#{params[:q]}%")
-  end
   
 end
