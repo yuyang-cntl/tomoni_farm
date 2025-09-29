@@ -8,7 +8,7 @@
 }
 
 body {
-  font-size: 24px;
+  font-size: 16px;
   background-image: url('/images/IMG_9257.jpg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -18,7 +18,7 @@ body {
   padding-bottom: 80px;
 }
 body.homes.top {
-  font-size: 24px;
+  font-size: 16px;
   background-image: url('/images/bg.png');
   background-repeat: no-repeat;
   background-size: cover;
@@ -76,6 +76,7 @@ body.homes.top {
 .item-card,
 .farmer-card,
 .customer-card,
+.order-card,
 .diary-card,
 .post-card,
 .address-card {
@@ -97,10 +98,11 @@ body.homes.top {
 .row.item-list,
 .row.farmer-list,
 .row.customer-list,
+.row.order-list,
 .row.diary-list,
 .row.post-list,
 .address-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 3rem;
+  gap: 2rem;
 }

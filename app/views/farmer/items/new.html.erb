@@ -53,14 +53,14 @@
   <div class="field mb-3 col-md-8">
     <%= f.text_area :harvest_time, class: "form-control", style: "width: 450px;" %>
   </div>
-  <div class="field mt-3 mb-3 col-md-2 offset-md-4">
+  <div class="field mt-3 mb-3 col-md-8 offset-md-4 mt-3">
     <% Item.statuses.each_key do |key| %>
      <%= f.radio_button :status, key %>
      <%= f.label :"status_#{key}", I18n.t("activerecord.attributes.item.statuses.#{key}")%>
     <% end %>
   </div>
   <div class="actions d-flex justify-content-center col-md-8 offset-md-2">
-   <%= f.submit "投稿", class: "mt-5 btn btn-outline-secondary", style: "width: 150px;" %>
+   <%= f.submit "投稿", class: "mt-5 btn btn-outline-secondary", style: "width: 90px;" %>
   </div>
  </div>
  <% end %>

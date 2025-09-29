@@ -5,10 +5,10 @@
 <% end %>
 
 <div class="container-fulid">
- <div class="row align-items-center">
-  <div class="col-md-10 offset-2 mt-5">
-   <h1 class="mt-5">注文履歴詳細</h1>
-   <table class="table mt-5">
+ <div class="row order-list align-items-center mt-5">
+  <div class="order-card table-responsive col-md-8 offset-md-2 mt-5">
+   <h1 class="mt-5 mb-5">注文履歴詳細</h1>
+   <table class="table table-striped">
     <tr><th>注文日</th><td><%= @order.created_at.strftime('%Y/%m/%d') %></td></tr>
     <tr><th>商品</th><td><%= @item.name %></td></tr>
     <tr><th>数量</th><td><%= @amount %> 個</td></tr>

@@ -31,7 +31,8 @@
      <%= f.hidden_field :amount, value: @amount %>
      <%= f.select :amount,*[1..100] %>個</h3>
      <%= f.submit "注文にすすむ", class: "mt-3 mb-3 offset-md-5 btn btn-outline-secondary", style: "width: 120px;" %>
-    <% end %>
+     <%= link_to "戻る", public_items_path, class: "mt-3 mb-3 offset-md-5 btn btn-outline-secondary", style: "width: 120px;" %>
+     <% end %>
   </div>
  </div>
 </div>

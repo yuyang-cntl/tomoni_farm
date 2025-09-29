@@ -1,22 +1,29 @@
-<h3>検索結果</h3>
-
-<% if @items.present? %>
-  <ul>
-    <% @items.each do |item| %>
-      <li>
-        <h3><%= item.name %></h3><br>
-        <h3><%= number_to_currency(item.price, unit: "円") %></h3><br>
-        <%= link_to "詳細を見る", farmer_item_path(item), class: "btn btn-sm btn-primary" %>
-      </li>
-      <% if item.images.attached? %>
-       <% item.images.each do |image| %>
-       <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
-      <% end %>
-      <% else %>
-       <p>画像は未登録です</p>
-      <% end %>
-    <% end %>
-  </ul>
-<% else %>
-  <p>該当する商品は見つかりませんでした。</p>
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
 <% end %>
+
+<div class="container-fluid">
+ <h1 class="col-md-8 offset-md-2 mt-5">検索結果</h1>
+ <div class="row mt-5">
+  <div class="item-card col-md-4 offset-md-2 mt-5">
+   <% if @items.present? %>
+    <% @items.each do |item| %>
+     <h3><%= item.name %></h3>
+     <h3><%= number_to_currency(item.price, unit: "円") %></h3>
+     <% if item.images.attached? %>
+     <% item.images.each do |image| %>
+      <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
+     <% end %>
+     <% else %>
+      <p>画像は未登録です</p>
+     <% end %>
+     <%= link_to "詳細を見る", farmer_item_path(item), class: "offset-md-1 btn btn-outline-secondary", style: "width: 120px;" %>
+    <% end %>
+   <% else %>
+    <p>該当する商品は見つかりませんでした。</p>
+   <% end %>
+  </div>
+ </div>
+</div>

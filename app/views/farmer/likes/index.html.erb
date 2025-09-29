@@ -11,11 +11,15 @@
       <% else %>
        <p>画像は未登録です</p>
       <% end %>
+       <%= link_to '会員詳細', farmer_customer_path(like.customer), class: "ml-5 btn btn-outline-secondary", style: "width: 120px;" %>
       </div>
      <% end %>
     <% else %>
      <p>まだ誰もいいねしていません</p>
     <% end %>
   </div>
+ <div class="d-flex justify-content-center mt-3 col-md-8 offset-md-2">
+  <%= link_to "戻る", farmer_diary_posts_path(@diary), class: "btn btn-outline-secondary", style: "width: 90px;" %>
+ </div>
  </div>
 </div>

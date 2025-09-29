@@ -4,15 +4,15 @@
   <div class="col-md-2 offset-2">
    <div class="navbar-brand mt-3 mb-3">
    <img src="/images/logo2.png" class="favicon-circle" alt="TomoniFarm Logo">
-    <%= link_to "TomoniFarm", root_path, class: "text-secondary" %>
+    <%= link_to "TomoniFarm", root_path, class: "text-white" %>
    </div>
   </div>
   <ul class="d-flex flex-row offset-4 col-md-4">
     <li class="d-flex mr-2">
-     <%= link_to "マイページ", public_customers_root_path, class: "btn btn-outline-secondary text-black", style: "width: 120px;" %>
+     <%= link_to "マイページ", public_customers_root_path, class: "btn btn-outline-secondary", style: "font-size: 18px; width: 120px;" %>
     </li>
     <li class="d-flex mr-2">
-     <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary text-black", style: "width: 120px;" %>
+     <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary", style: "font-size: 18px; width: 120px;" %>
     </li>
   </ul>
    <div class="search-form d-flex flex-row offset-md-7 col-md-5">
