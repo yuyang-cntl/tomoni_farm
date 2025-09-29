@@ -24,6 +24,18 @@ class Farmer::CustomersController < ApplicationController
     else
       render :edit
     end
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+      redirect_to farmer_profile_path, notice: "ステータスを更新しました"
+    else
+      redirect_to farmer_profile_path, alert: "更新に失敗しました"
+    end
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:status)
   end
   
 end

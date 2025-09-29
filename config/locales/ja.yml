@@ -41,8 +41,8 @@ ja:
         pending: "未処理"
         confirmed: "確認済み"
         shipped: "発送済み"
-        completed: "完了"
-        canceled: "キャンセル"
+        delivered: "配達完了"
+        cancelled: "キャンセル"
       payment_method:
         credit_card: クレジットカード
         bank_transfer: 銀行振込
