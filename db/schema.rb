@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_09_14_051359) do
+ActiveRecord::Schema.define(version: 2025_09_30_084542) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 2025_09_14_051359) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["email"], name: "index_farmers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_farmers_on_reset_password_token", unique: true
   end
@@ -138,6 +140,19 @@ ActiveRecord::Schema.define(version: 2025_09_14_051359) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_likes_on_customer_id"
     t.index ["post_id"], name: "index_likes_on_post_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.integer "farmer_id", null: false
+    t.string "prefecture"
+    t.string "city"
+    t.string "street"
+    t.string "postal_code"
+    t.float "latitude"
+    t.float "longitude"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["farmer_id"], name: "index_locations_on_farmer_id"
   end
 
   create_table "order_details", force: :cascade do |t|
@@ -196,6 +211,7 @@ ActiveRecord::Schema.define(version: 2025_09_14_051359) do
   add_foreign_key "items", "farmers"
   add_foreign_key "likes", "customers"
   add_foreign_key "likes", "posts"
+  add_foreign_key "locations", "farmers"
   add_foreign_key "order_details", "customers"
   add_foreign_key "order_details", "items"
   add_foreign_key "order_details", "orders"

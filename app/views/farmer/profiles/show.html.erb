@@ -30,8 +30,8 @@
    </div>
   </div>
  </div>
-  <div id="map" style="height: 400px;" data-lat="<%= @farmer.latitude %>" data-lng="<%= @farmer.longitude %>"></div>
- <div class="row order-list align-items-center mt-5">
+
+  <div class="row order-list align-items-center mt-5">
    <div class="order-card table-responsive col-md-10 offset-md-1 mt-5">
     <h3 class="mt-5 mb-5">注文履歴一覧</h3>
     <table class="table table-striped">
@@ -73,5 +73,14 @@
     </table>
     <%= paginate @orders, theme: 'bootstrap4' %>
    </div>
+
+  <div class="mt-5 col-md-8 offset-md-2">
+   <% if @farmer.location.latitude && @farmer.location.longitude %>
+    <div data-controller="map" style="height: 400px;" data-lat="<%= @farmer.location.latitude %>" data-lng="<%= @farmer.location.longitude %>"></div>
+   <% else %>
+    <h3>住所が未登録のため、地図は表示できません。</h3>
+   <% end %>
+  </div>
+
  </div>
 </div>

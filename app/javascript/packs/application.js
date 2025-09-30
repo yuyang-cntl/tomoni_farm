@@ -11,7 +11,7 @@ import "jquery";
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"; 
-import "./farmer_map";
+import "controllers"
 
 Rails.start()
 Turbolinks.start()

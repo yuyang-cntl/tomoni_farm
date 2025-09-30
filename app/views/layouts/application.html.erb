@@ -6,12 +6,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <script src="https://kit.fontawesome.com/gongyoumi@gmail.com.js" crossorigin="anonymous"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>&callback=initMap"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GOOGLE_MAPS_API_KEY'] %>"></script>
     <link rel="icon" type="image/png" href="/images/logo2.png">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&family=Rounded+M+Plus+1c&display=swap" rel="stylesheet">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body class="<%= "#{controller_name} #{action_name}" %> vh-100">
@@ -24,5 +23,6 @@
       <small>&copy; 2025 Tomoni Farm</small>
      </div>
     </footer>
+        <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </body>
 </html>

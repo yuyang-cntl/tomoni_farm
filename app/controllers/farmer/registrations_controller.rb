@@ -23,12 +23,16 @@ class Farmer::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_sign_up_params
-     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :image])
+     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :image,
+     location_attributes: [:prefecture, :city, :street, :postal_code]
+   ])
    end
 
   # If you have extra params to permit, append them to the sanitizer.
    def configure_account_update_params
-     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :image])
+     devise_parameter_sanitizer.permit(:account_update, keys: [:name, :image,
+     location_attributes: [:prefecture, :city, :street, :postal_code]
+   ])
    end
 
   # The path used after sign up.

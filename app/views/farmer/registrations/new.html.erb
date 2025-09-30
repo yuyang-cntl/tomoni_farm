@@ -49,6 +49,26 @@
     <div class="field mb-3 col-md-8">
      <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 450px;" %>
     </div>
+    <%= f.fields_for :location do |loc| %>
+     <div class="field mb-3 col-md-2 offset-md-2">
+      <%= loc.label :prefecture, "都道府県" %>
+     </div>
+     <div class="field mb-3 col-md-8">
+      <%= loc.text_field :prefecture, placeholder: "和歌山県", style: "width: 450px;" %>
+     </div>
+     <div class="field mb-3 col-md-2 offset-md-2">
+      <%= loc.label :city, "市区町村" %>
+     </div>
+     <div class="field mb-3 col-md-8">
+      <%= loc.text_field :city, placeholder: "海草郡紀美野町", style: "width: 450px;" %>
+     </div>
+     <div class="field mb-3 col-md-2 offset-md-2">
+      <%= loc.label :street, "番地・建物名" %>
+     </div>
+     <div class="field mb-3 col-md-8">
+      <%= loc.text_field :street, placeholder: "西野971-1", style: "width: 450px;" %>
+     </div>
+    <% end %>
     <div class="actions mt-5 d-flex justify-content-center col-md-8 offset-md-2">
      <%= f.submit "登録", class: "btn btn-outline-secondary", style: "font-size: 18px; width: 120px;" %>
     </div>
