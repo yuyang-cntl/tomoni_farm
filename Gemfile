@@ -58,7 +58,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'rails-i18n'
 gem 'kaminari'
-gem 'enum_help'
+gem 'enum_help','0.0.20'
 
 group :development do
   gem 'rubocop', require: false
@@ -67,11 +67,12 @@ group :development do
   gem 'rubocop-rspec', require: false 
 end
 
-gem 'dotenv-rails'
-group :production do
-  gem 'mysql2'
-end
+# gem 'dotenv-rails'
+# group :production do
+  # gem 'mysql2'
+# end
   
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+gem "geocode"

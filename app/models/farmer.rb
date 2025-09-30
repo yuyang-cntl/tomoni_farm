@@ -5,6 +5,8 @@ class Farmer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   validates :name, presence: true, length: { maximum: 30}
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
   has_one_attached :image
   has_many :items, dependent: :destroy
