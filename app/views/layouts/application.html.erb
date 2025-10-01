@@ -2,14 +2,14 @@
 <html>
   <head>
     <title>TomoniFarm</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <link rel="icon" type="image/png" href="/images/logo2.png">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&family=Rounded+M+Plus+1c&display=swap" rel="stylesheet">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', 'data-turbolinks-suppress-warning': true %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
   </head>
 
   <body class="<%= "#{controller_name} #{action_name}" %> vh-100">
@@ -22,6 +22,5 @@
       <small>&copy; 2025 Tomoni Farm</small>
      </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
   </body>
 </html>

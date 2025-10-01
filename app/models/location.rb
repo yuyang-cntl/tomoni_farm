@@ -1,10 +1,10 @@
 class Location < ApplicationRecord
   belongs_to :farmer
 
-  geocoded_by :full_address
+  geocoded_by :address
   after_validation :geocode, if: :address_changed?
 
-  def full_address
+  def address
     [postal_code, prefecture, city, street].compact.join(' ')
   end
   def address_changed?
