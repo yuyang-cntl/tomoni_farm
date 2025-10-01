@@ -27,13 +27,7 @@
         <% end %>
          <%= link_to '日記一覧', public_farmer_diaries_path(farmer), class: "ml-5 btn btn-outline-secondary", style: "width: 120px;" %>
        </div>
-       <div class="mt-5 col-md-8 offset-md-2">
-       <% if farmer.location.latitude && farmer.location.longitude %>
-        <div id="map" style="height: 200px;" data-lat="<%= farmer.location.latitude %>" data-lng="<%= farmer.location.longitude %>"></div>
-       <% else %>
-        <h3>住所が未登録のため、地図は表示できません。</h3>
-       <% end %>
-      </div>
+
       </div>
      <% end %>
     <% else %>

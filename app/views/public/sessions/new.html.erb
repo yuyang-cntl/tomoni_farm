@@ -30,7 +30,7 @@
     パスワード：password
     </h5>
     <%= link_to "生産者ログインページ", new_farmer_session_path %><br>
-    <%= link_to "生産者新規登録ページ", new_farmer_registration_path %><br>
+    <%= link_to "生産者新規登録ページ", new_farmer_registration_path, data: {turbolinks: "false"} %><br>
     <%= render "public/shared/links" %>
    </div>
   </div>

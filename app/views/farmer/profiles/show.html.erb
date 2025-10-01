@@ -75,12 +75,18 @@
    </div>
 
   <div class="mt-5 col-md-8 offset-md-2">
-   <% if @farmer.location.latitude && @farmer.location.longitude %>
-    <div data-controller="map" style="height: 400px;" data-lat="<%= @farmer.location.latitude %>" data-lng="<%= @farmer.location.longitude %>"></div>
+   <% if @farmer.location&.latitude.present? && @farmer.location&.longitude.present? %>
+    <div
+     data-controller="map"
+     data-lat="<%= @farmer.location.latitude %>"
+     data-lng="<%= @farmer.location.longitude %>"
+     style="height: 400px;">
+    </div>
    <% else %>
     <h3>住所が未登録のため、地図は表示できません。</h3>
    <% end %>
   </div>
-
  </div>
 </div>
+
+<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
