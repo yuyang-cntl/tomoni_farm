@@ -44,6 +44,8 @@ Rails.application.routes.draw do
   namespace :farmer do
     root to: 'profiles#show'
     get 'search', to: 'search#search'
+    get "location", to: "locations#index", defaults: { format: :json }
+    
     resources :items
     resources :order_details, only: [:update]
     resource :password_change, only: [:edit, :update]

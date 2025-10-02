@@ -24,17 +24,42 @@ export default class extends Controller {
       }));
       d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n));
     })({
-      key: process.env.Maps_API_Key // ここは Webpacker環境変数で注入する必要あり
+      key: process.env.GOOGLE_MAPS_API_KEY
     });
 
     await loader;
 
     const { Map } = await google.maps.importLibrary("maps");
+    const {AdvancedMarkerElement} = await google.maps.importLibrary("marker")
 
     const map = new Map(this.element, {
       center: { lat: lat, lng: lng },
       zoom: 15,
+      mapId: "DEMO_MAP_ID",
       mapTypeControl: false
     });
+    try {
+      const response = await fetch("/farmer/location.json");
+      if (!response.ok) throw new Error('Network response was not ok');
+  
+      const { data: { farmers } } = await response.json();
+      if (!Array.isArray(farmers)) throw new Error("Farmers is not an array");
+  
+      farmers.forEach( farmer => {
+        const latitude = farmer.latitude;
+        const longitude = farmer.longitude;
+        const farmerName = farmer.name;
+  
+        const marker = new google.maps.marker.AdvancedMarkerElement ({
+          position: { lat: latitude, lng: longitude },
+          map,
+          title: farmerName,
+          // 他の任意のオプションもここに追加可能
+        });
+      });
+    } catch (error) {
+      console.error('Error fetching or processing locations:', error);
+    }
   }
 }
+
