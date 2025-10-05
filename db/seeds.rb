@@ -12,7 +12,7 @@
     city: "海草郡紀美野町",
     street: "西野971-1",
     latitude: 34.226,
-    longitude: 135.370  
+    longitude: 135.370
   )
   location.save!
 
