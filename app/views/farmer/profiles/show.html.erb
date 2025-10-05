@@ -74,8 +74,9 @@
     <%= paginate @orders, theme: 'bootstrap4' %>
    </div>
 
+  <h3 class="mt-5 col-md-8 offset-md-2">生産所</h3>
   <div class="mt-5 col-md-8 offset-md-2">
-   <% if @farmer.location&.latitude.present? && @farmer.location&.longitude.present? %>
+   <% if @farmer.location&.latitude.to_f != 0 && @farmer.location&.longitude.to_f != 0 %>
     <div
      data-controller="map"
      data-lat="<%= @farmer.location.latitude %>"

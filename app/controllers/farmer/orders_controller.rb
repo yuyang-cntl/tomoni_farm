@@ -2,8 +2,8 @@ class Farmer::OrdersController < ApplicationController
   before_action :authenticate_farmer!
   def show
     @farmer = current_farmer
-    @customer = @farmer.followers.find_by(params[:customer_id])
-    @order = @customer.orders.find_by(params[:id])
+    @customer = @farmer.followers.find_by(id: params[:customer_id])
+    @order = @customer.orders.find_by(params[:id]) 
     @item = Item.find(@order.item_id)
     @postal_code = @order.postal_code
     @address = @order.address
@@ -11,7 +11,6 @@ class Farmer::OrdersController < ApplicationController
     @amount = @order.amount
     @shipping_cost = 500
     @grand_total = @order.grand_total
-    render :show
   end
 
   def update

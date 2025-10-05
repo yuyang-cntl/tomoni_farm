@@ -2,7 +2,7 @@ class Farmer::ProfilesController < ApplicationController
   before_action :authenticate_farmer!
 
   def show
-    @farmer = current_farmer
+    @farmer = Farmer.includes(:location).find_by(id: current_farmer.id)
     @customer = @farmer.followers.find_by(id: params[:customer_id])
 
     @orders = Order.joins(order_details: :item)
@@ -35,7 +35,7 @@ class Farmer::ProfilesController < ApplicationController
    redirect_to root_path, notice: "退会が完了しました。ご利用ありがとうございました。"
   end
 
-  private
+private
 
   def farmer_params
    params.require(:farmer).permit(:name, :email, :password, :password_confirmation, :image)

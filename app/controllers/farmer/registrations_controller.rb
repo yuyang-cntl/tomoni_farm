@@ -11,9 +11,9 @@ class Farmer::RegistrationsController < Devise::RegistrationsController
   
    private
 
-   def sign_up_params
-    params.require(:farmer).permit(:name, :email, :password, :password_confirmation, :image)
-   end
+  #  def sign_up_params
+    # params.require(:farmer).permit(:name, :email, :password, :password_confirmation, :image)
+  #  end
 
    def farmer_image_tag(farmer)
     if farmer.image.attached?

@@ -6,13 +6,12 @@ class Customer < ApplicationRecord
 
          has_many :comments, dependent: :destroy
          has_one_attached :image
-         has_many :comments, dependent: :destroy
          has_many :addresses, dependent: :destroy
          belongs_to :farmer, optional: true
          has_many :follows, dependent: :destroy
          has_many :followed_farmers, through: :follows, source: :farmer
-         has_many :orders
-         has_many :order_details
+         has_many :orders, dependent: :destroy
+         has_many :order_details, dependent: :destroy
          has_one_attached :profile_image
 
   def get_profile_image(width, height)

@@ -10,11 +10,20 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     @item = Item.find(@order.item_id)
-    @address = Address.find(params[:order][:address_id])
-    @order.postal_code = @address.postal_code
-    @order.address = @address.address
-    @order.shipping_name = @address.shipping_name
-    @order.amount = params[:order][:amount].to_i
+    @address_type = params[:order][:address_type]
+    @selected_payment_method = params[:order][:payment_method]
+
+    if @address_type == "existing"
+      @address = Address.find(params[:order][:address_id])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+      @order.shipping_name = @address.shipping_name
+    elsif @address_type == "new"
+      @order.postal_code = params[:order][:postal_code]
+      @order.address = params[:order][:address]
+      @order.shipping_name = params[:order][:name]
+    end
+
     @order.shipping_cost = 500
     @order.grand_total = (@item.price * @order.amount) + @order.shipping_cost
     render :confirm 
@@ -70,7 +79,6 @@ class Public::OrdersController < ApplicationController
     @amount = @order.amount
     @shipping_cost = 500
     @grand_total = @order.grand_total
-    render :show
   end
 
   private
