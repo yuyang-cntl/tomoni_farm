@@ -10,7 +10,7 @@ import "channels"
 import "jquery"
 import "popper.js"
 import "bootstrap"
-import "../stylesheets/application.scss"
+import "../stylesheets/application"
 import "controllers"
 
 Rails.start()

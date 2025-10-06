@@ -1,0 +1,2 @@
+module Farmer::BroadcastLogsHelper
+end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_09_30_084542) do
+ActiveRecord::Schema.define(version: 2025_10_06_140833) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -48,6 +48,19 @@ ActiveRecord::Schema.define(version: 2025_09_30_084542) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["customer_id"], name: "index_addresses_on_customer_id"
+  end
+
+  create_table "broadcast_logs", force: :cascade do |t|
+    t.integer "farmer_id", null: false
+    t.integer "email_template_id"
+    t.string "subject", null: false
+    t.text "body", null: false
+    t.text "recipient_ids"
+    t.datetime "sent_at", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email_template_id"], name: "index_broadcast_logs_on_email_template_id"
+    t.index ["farmer_id"], name: "index_broadcast_logs_on_farmer_id"
   end
 
   create_table "comments", force: :cascade do |t|
@@ -90,6 +103,16 @@ ActiveRecord::Schema.define(version: 2025_09_30_084542) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["farmer_id"], name: "index_diaries_on_farmer_id"
+  end
+
+  create_table "email_templates", force: :cascade do |t|
+    t.string "title"
+    t.string "subject"
+    t.text "body"
+    t.integer "farmer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["farmer_id"], name: "index_email_templates_on_farmer_id"
   end
 
   create_table "farmers", force: :cascade do |t|
@@ -202,10 +225,13 @@ ActiveRecord::Schema.define(version: 2025_09_30_084542) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "customers"
+  add_foreign_key "broadcast_logs", "email_templates"
+  add_foreign_key "broadcast_logs", "farmers"
   add_foreign_key "comments", "customers"
   add_foreign_key "comments", "posts"
   add_foreign_key "customers", "farmers"
   add_foreign_key "diaries", "farmers"
+  add_foreign_key "email_templates", "farmers"
   add_foreign_key "follows", "customers"
   add_foreign_key "follows", "farmers"
   add_foreign_key "items", "farmers"

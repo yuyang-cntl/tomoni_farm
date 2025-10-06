@@ -50,7 +50,7 @@ export default class extends Controller {
         const longitude = farmer.longitude;
         const farmerName = farmer.name;
   
-        const marker = new AdvancedMarkerElement ({
+        const marker = new google.maps.marker.AdvancedMarkerElement ({
           position: { lat: latitude, lng: longitude },
           map,
           title: farmerName,
@@ -62,3 +62,4 @@ export default class extends Controller {
     }
   }
 }
+

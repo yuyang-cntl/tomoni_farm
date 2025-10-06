@@ -1,0 +1,25 @@
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-md-2 mt-5">
+   <h1 class="mt-5">送信履歴詳細</h1>
+
+    <p><strong>送信日時:</strong> <%= @broadcast_log.sent_at.strftime('%Y/%m/%d %H:%M') %></p>
+    <p><strong>件名:</strong> <%= @broadcast_log.subject %></p>
+    <p><strong>本文:</strong></p>
+    <pre><%= @broadcast_log.body %></pre>
+
+    <p><strong>テンプレート:</strong> <%= @broadcast_log.email_template&.title || 'なし' %></p>
+    <p><strong>対象顧客数:</strong> <%= @broadcast_log.recipient_ids.size %></p>
+    <ul>
+      <% @broadcast_log.recipient_ids.each do |id| %>
+        <li>Customer ID: <%= id %></li>
+      <% end %>
+    </ul>
+
+<%= link_to '一覧に戻る', farmer_broadcast_logs_path %>

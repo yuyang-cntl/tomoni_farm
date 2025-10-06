@@ -2,7 +2,7 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
   
   def new
-    @order = Order.new(order_params)
+    @order = Order.new
     @order.customer = current_customer
     @item = Item.find(params[:item_id])
     @amount = params[:amount].to_i
@@ -80,6 +80,12 @@ class Public::OrdersController < ApplicationController
     @amount = @order.amount
     @shipping_cost = 500
     @grand_total = @order.grand_total
+  end
+
+  def destroy
+    order = current_customer.orders.find(params[:id])
+    order.destroy
+    redirect_to public_orders_path,notice:"注文を削除しました"
   end
 
   private

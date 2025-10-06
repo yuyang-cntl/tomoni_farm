@@ -1,0 +1,36 @@
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>
+
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-md-2 mt-5">
+   <h1 class="mt-5">送信履歴一覧</h1>
+
+   <table class="col-md-10 mt-5">
+    <thead>
+     <tr>
+      <th>送信日時</th>
+      <th>件名</th>
+      <th>対象数</th>
+      <th>テンプレート</th>
+      <th></th>
+     </tr>
+    </thead>
+   <tbody>
+    <% @broadcast_logs.each do |log| %>
+      <tr>
+        <td><%= log.sent_at.strftime('%Y/%m/%d %H:%M') %></td>
+        <td><%= log.subject %></td>
+        <td><%= log.recipient_ids.size %></td>
+        <td><%= log.email_template&.title || 'なし' %></td>
+        <td><%= link_to '詳細', farmer_broadcast_log_path(log) %></td>
+      </tr>
+    <% end %>
+   </tbody>
+</table>
+  </div>
+ </div>
+</div>

@@ -20,7 +20,7 @@ class Farmer::OrdersController < ApplicationController
       redirect_to farmer_profile_path, alert: "更新に失敗しました"
     end
   end
-
+  
   def order_params
     params.require(:order).permit(
       :customer_id,

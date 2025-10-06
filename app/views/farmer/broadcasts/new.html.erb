@@ -1,0 +1,35 @@
+<div class="container-fluid">
+ <div class="row align-items-center">
+  <div class="col-md-10 offset-2 mt-5">
+   <h1 class="mt-5">フォロワーへの一斉メール送信</h1>
+  </div>
+ </div>
+
+<%= form_with url: farmer_broadcasts_path, method: :post do |f| %>
+ <div class="row">
+  <div class="field mt-5 mb-3 col-md-2 offset-md-2">
+    <%= f.label :subject, "件名" %>
+  </div>
+  <div class="field mt-5 mb-3 col-md-8">
+    <%= f.text_field :subject, autofocus: true, placeholder: "sample@example.com", style: "width: 450px;" %>
+  </div>
+
+  <div class="field mb-3 col-md-2 offset-md-2">
+    <%= f.label :body, "本文" %>
+  </div>
+  <div class="field mb-3 col-md-8">
+    <%= f.text_area :body, style: "width: 450px;" %>
+  </div>
+
+  <!--
+  <div>
+   <%= f.label :template_id, "テンプレート選択（任意）" %>
+   <%= f.select :template_id, options_from_collection_for_select(@templates, :id, :title), include_blank: true %>
+  </div>
+  -->
+  <div class="col-md-4 offset-md-5 mt-3">
+   <%= f.submit "送信する", class: "btn btn-outline-secondary", style: "width: 120px;" %>
+  </div>
+ </div>
+<% end %>
+</div>

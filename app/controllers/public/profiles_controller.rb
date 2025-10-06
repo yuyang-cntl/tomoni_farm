@@ -24,7 +24,7 @@ class Public::ProfilesController < ApplicationController
    end
 
   def destroy
-    current_customer.destroy
+    current_customer.update!(is_active: false)
     sign_out current_customer
     redirect_to root_path, notice: "退会が完了しました。ご利用ありがとうございました。"
    end

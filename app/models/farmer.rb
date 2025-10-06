@@ -16,6 +16,8 @@ class Farmer < ApplicationRecord
   has_many :reverse_follows, class_name: "Follow", dependent: :destroy
   has_many :followers, through: :reverse_follows, source: :customer
   has_one_attached :profile_image
+  has_many :email_templates, dependent: :destroy
+  has_many :broadcast_logs, dependent: :destroy
 
   def get_profile_image(width, height)
     if profile_image.attached?
