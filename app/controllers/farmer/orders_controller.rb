@@ -1,16 +1,15 @@
 class Farmer::OrdersController < ApplicationController
   before_action :authenticate_farmer!
+  
   def show
     @farmer = current_farmer
     @customer = @farmer.followers.find_by(id: params[:customer_id])
-    @order = @customer.orders.find_by(params[:id]) 
-    @item = Item.find(@order.item_id)
+    @order = @customer.orders.find_by(id: params[:id])
+    @order_details = @order.order_details.includes(:item)
+    @shipping_cost = 500
     @postal_code = @order.postal_code
     @address = @order.address
     @shipping_name = @order.shipping_name
-    @amount = @order.amount
-    @shipping_cost = 500
-    @grand_total = @order.grand_total
   end
 
   def update
@@ -23,7 +22,11 @@ class Farmer::OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:status)
+    params.require(:order).permit(
+      :customer_id,
+      :address,
+      order_details_attributes: [:item_id, :amount, :price]  
+    )
   end
 
 end

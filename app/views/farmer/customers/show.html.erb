@@ -11,7 +11,7 @@
   </div>
  </div>
  <div class="row">
-  <div class="customer-card mt-5 col-md-8 offset-md-2 mt-5">
+  <div class="customer-card mt-5 col-md-10 offset-md-1 mt-5">
    <% if @customer.image.attached? %>
     <%= image_tag @customer.profile_image.variant(resize_to_limit: [300,300]), class: "profile-image" %>
    <% else %>
@@ -26,6 +26,7 @@
        <th>注文日</th>
        <th>配送先</th>
        <th>注文商品</th>
+       <th>数量</th>
        <th>支払金額</th>
        <th>ステータス</th>
        <th>注文詳細</th>
@@ -42,6 +43,7 @@
          <% end %>
         </ul>
        </td>
+       <td><strong><%= order.amount %></strong></td>
        <td><%= order.grand_total %></td>
        <%= form_with model: order, url: farmer_customer_order_path(order.customer, order), method: :patch, local: true do |f| %>
        <td><% order.status_i18n %>
@@ -51,7 +53,7 @@
         class: "form-control mr-2", style: "width: 140px;", onchange: "this.form.submit();" %>
        </td>
        <% end %>
-       <td><%= link_to "詳細", farmer_customer_order_path(order), class: "btn btn-outline-secondary" %></td>
+       <td><%= link_to "詳細", farmer_customer_order_path(order.customer, order), class: "btn btn-outline-secondary" %></td>
       </tr>
      <% end %>
     </table>

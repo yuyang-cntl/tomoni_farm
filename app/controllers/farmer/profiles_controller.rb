@@ -4,7 +4,6 @@ class Farmer::ProfilesController < ApplicationController
   def show
     @farmer = Farmer.includes(:location).find_by(id: current_farmer.id)
     @customer = @farmer.followers.find_by(id: params[:customer_id])
-
     @orders = Order.joins(order_details: :item)
                    .where(items: { farmer_id: @farmer.id })
                    .distinct
@@ -38,7 +37,7 @@ class Farmer::ProfilesController < ApplicationController
 private
 
   def farmer_params
-   params.require(:farmer).permit(:name, :email, :password, :password_confirmation, :image)
+   params.require(:farmer).permit(:name, :email, :password, :password_confirmation, :profile_image, :image)
   end
 
 end

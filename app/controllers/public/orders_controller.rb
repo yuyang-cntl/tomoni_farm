@@ -2,7 +2,8 @@ class Public::OrdersController < ApplicationController
   before_action :authenticate_customer!
   
   def new
-    @order = Order.new
+    @order = Order.new(order_params)
+    @order.customer = current_customer
     @item = Item.find(params[:item_id])
     @amount = params[:amount].to_i
   end

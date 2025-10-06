@@ -23,19 +23,35 @@ class Farmer::RegistrationsController < Devise::RegistrationsController
    end
   end
 
-  protected
+  #  def sign_up_params
+    # params.require(:farmer).permit(:name, :email, :password, :password_confirmation, :image)
+  #  end
+  
+   protected
 
- # If you have extra params to permit, append them to the sanitizer.
-  def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :image,
-    location_attributes: [:prefecture, :city, :street, :postal_code]
-  ])
-  end
+  # If you have extra params to permit, append them to the sanitizer.
+   def configure_sign_up_params
+     devise_parameter_sanitizer.permit(:sign_up, keys: [
+      :name, :profile_image,
+      { location_attributes: [:prefecture, :city, :street, :postal_code] }
+   ])
+   end
 
- # If you have extra params to permit, append them to the sanitizer.
-  def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :image,
-    location_attributes: [:prefecture, :city, :street, :postal_code]
-  ])
-  end
+  # If you have extra params to permit, append them to the sanitizer.
+   def configure_account_update_params
+     devise_parameter_sanitizer.permit(:account_update, keys: [
+      :name, :profile_image,
+      { location_attributes: [:prefecture, :city, :street, :postal_code] }
+   ])
+   end
+
+  # The path used after sign up.
+   def after_sign_up_path_for(resource)
+     farmer_root_path
+   end
+
+  # The path used after sign up for inactive accounts.
+  # def after_inactive_sign_up_path_for(resource)
+  #   super(resource)
+  # end
 end

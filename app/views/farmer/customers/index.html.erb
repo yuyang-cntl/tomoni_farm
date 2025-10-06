@@ -1,13 +1,3 @@
-<% if @customer.errors.any? %>
-  <div class="alert alert-danger">
-  <h4>error</h4>
-    <ul>
-      <% @customer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
 <% if flash[:notice] %>
  <div class="alert alert-success">
   <%= flash[:notice] %>

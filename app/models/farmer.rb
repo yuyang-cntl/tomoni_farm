@@ -9,7 +9,6 @@ class Farmer < ApplicationRecord
   has_one :location, dependent: :destroy
   accepts_nested_attributes_for :location
 
-  has_one_attached :image
   has_many :items, dependent: :destroy
   has_many :diaries, dependent: :destroy
   has_many :posts, dependent: :destroy

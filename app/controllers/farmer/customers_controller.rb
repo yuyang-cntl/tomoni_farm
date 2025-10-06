@@ -3,13 +3,17 @@ class Farmer::CustomersController < ApplicationController
   def index
     @farmer = current_farmer
     @customers = @farmer.followers
-    @customer = Customer.new
+    @customer = @farmer.followers.find_by(id: params[:customer_id])
   end
 
   def show
-    @farmer = current_farmer
-    @customer = @farmer.followers.find_by(params[:customer_id])
-    @orders = @customer.orders.page(params[:page]).per(10)
+    @farmer = Farmer.find_by(id: current_farmer.id)
+    @customer = @farmer.followers.find_by(id: params[:id])
+    @orders = Order.joins(order_details: :item)
+              .where(customer_id: @customer.id)
+              .where(items: { farmer_id: @farmer.id })
+              .distinct
+              .page(params[:page]).per(10)
   end
 
   def edit

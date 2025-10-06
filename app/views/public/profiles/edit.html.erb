@@ -21,7 +21,7 @@
   <%= form_with model:@customer, url:public_profile_path, method: :patch, local: true, html: { multipart: true } do |f| %>
   <div class="field mt-5 mb-3">
    <%= f.label :image, "プロフィール画像" %>
-   <%= f.file_field :image, class:"form-control-file" %>
+   <%= f.file_field :profile_image, class:"form-control-file" %>
   </div>
  </div>
 
