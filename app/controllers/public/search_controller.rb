@@ -5,7 +5,9 @@ class Public::SearchController < ApplicationController
       @farmers = Farmer.where("name LIKE ?", "%#{params[:q]}%")
       render "public/farmers/search"
     when "diary"
-      @diaries = Diary.where("title LIKE ?", "%#{params[:q]}%")
+      followed_farmer_ids = current_customer.followed_farmers.pluck(:id)
+      @diaries = Diary.where(farmer_id: followed_farmer_ids)
+                      .where("title LIKE ?", "%#{params[:q]}%")
       render "public/diaries/search"
     when "item"
       @items = Item.where("name LIKE ?", "%#{params[:q]}%")

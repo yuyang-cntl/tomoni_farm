@@ -11,12 +11,12 @@
    <% if @farmers.present? %>
     <% @farmers.each do |farmer| %>
      <h3>生産者名：<%= farmer.name %></h3>
-     <% if farmer.image.attached? %>
+     <% if farmer.profile_image.attached? %>
       <%= image_tag farmer.profile_image.variant(resize_to_limit: [150,150]), class: "profile-image" %>
      <% else %>
       <%= image_tag(farmer.get_profile_image(150, 150), alt: "Farmer image", class: "profile-image") %>
      <% end %>
-     <%= link_to "会員詳細", public_farmers_path(farmer), class: "offset-1 btn btn-outline-secondary", style: "width: 120px;" %>
+     <%= link_to "会員一覧", public_farmers_path(farmer), class: "offset-1 btn btn-outline-secondary", style: "width: 120px;" %>
     <% end %>
    <% else %>
     <p>該当する生産者は見つかりませんでした。</p>

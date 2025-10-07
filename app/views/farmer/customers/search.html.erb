@@ -11,13 +11,14 @@
    <% if @customers.present? %>
     <% @customers.each do |customer| %>
      <h3>会員名：<%= customer.name %></h3>
-     <% if customer.image.attached? %>
+     <% if customer.profile_image.attached? %>
       <%= image_tag customer.profile_image.variant(resize_to_limit: [150,150]), class: "profile-image" %>
      <% else %>
       <%= image_tag(customer.get_profile_image(150, 150), alt: "Customer image", class: "profile-image") %>
      <% end %>
-     <%= link_to "会員詳細", farmer_customers_path(customer), class: "offset-1 btn btn-outline-secondary", style: "width: 120px;" %>
-    <% end %>
+     <%#= link_to "会員詳細", farmer_customer_path(customer), class: "offset-1 btn btn-outline-secondary", style: "width: 120px;" %>
+     <%# 他農家の会員にアクセスできない仕様のため一時的に非表示 %>
+     <% end %>
    <% else %>
     <p>該当する生産者は見つかりませんでした。</p>
    <% end %>

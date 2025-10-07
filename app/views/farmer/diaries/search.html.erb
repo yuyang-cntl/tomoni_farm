@@ -19,8 +19,9 @@
      <% else %>
       <p>画像は未登録です</p>
      <% end %>
-     <%= link_to "詳細を見る", farmer_diary_path(di), class: "offset-md-1 btn btn-outline-secondary", style: "width: 120px;" %>
-    <% end %>
+     <%#= link_to "詳細を見る", farmer_diary_path(diary), class: "offset-md-1 btn btn-outline-secondary", style: "width: 120px;" %>
+     <%# 他農家の日記にアクセスできない仕様のため一時的に非表示 %>
+     <% end %>
    <% else %>
     <p>該当する商品は見つかりませんでした。</p>
    <% end %>
