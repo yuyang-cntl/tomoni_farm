@@ -20,7 +20,7 @@ class Farmer < ApplicationRecord
   has_many :broadcast_logs, dependent: :destroy
 
   def get_profile_image(width, height)
-    if profile_image.attached?
+    if profile_image.attached? && profile_image.variable?
       profile_image.variant(resize_to_fill: [width, height]).processed
     else
       ActionController::Base.helpers.asset_path('no_image.jpg')

@@ -16,7 +16,7 @@ class Customer < ApplicationRecord
          scope :active, -> { where(is_active: true) }
 
   def get_profile_image(width, height)
-    if profile_image.attached?
+    if profile_image.attached? && profile_image.variable?
       profile_image.variant(resize_to_fill: [width, height]).processed
     else
       ActionController::Base.helpers.asset_path('no_image.jpg')

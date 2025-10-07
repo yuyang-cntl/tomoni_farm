@@ -9,12 +9,15 @@
  <div class="row">
   <div class="col-md-8 offset-2 mt-5">
    <h1 class="mt-5">検索結果</h1>
-   <div class="row">
-    <div class="item-card mt-5 col-md-12">
-    <% if @items.present? %>
-     <% @items.each do |item| %>
-      <h3><%= item.name %></h3><br>
-      <h3><%= number_to_currency(item.price, unit: "円")%>/個 </h3><br>
+  </div>
+ </div>
+  <div class="row item-list justify-content-center">
+   <% if @items.present? %>
+    <% @items.each do |item| %>
+     <div class="item-card mt-5 col-md-5">
+      <h3>生産者：<%= item.farmer.name %></h3><br>
+      <h3>商品名：<%= item.name %></h3><br>
+      <h3>価格：<%= number_to_currency(item.price, unit: "円")%>/個 </h3><br>
       <% if item.images.attached? %>
        <% item.images.each do |image| %>
        <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
@@ -23,11 +26,10 @@
        <p>画像は未登録です</p>
       <% end %>
        <%= link_to "詳細を見る", public_item_path(item), class: "ml-5 btn btn-outline-secondary", style: "width: 120px;" %>
-     <% end %>
-    <% else %>
-     <p>該当する商品は見つかりませんでした。</p>
-    <% end %>
-   </div>
-  </div>
+     </div>
+   <% end %>
+   <% else %>
+    <p>該当する商品は見つかりませんでした。</p>
+   <% end %>
  </div>
 </div>

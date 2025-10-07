@@ -10,6 +10,7 @@
   <div class="diary-card col-md-8 offset-md-2 mt-5">
    <% if @diaries.present? %>
     <% @diaries.each do |diary| %>
+     <h3 class="mt-3">生産者：<%= diary.farmer.name %></h3>
      <h3 class="mt-3">タイトル：<%= diary.title %></h3>
      <h3 class="mt-3">本文：<%= diary.body %></h3>
      <% if diary.images.attached? %>

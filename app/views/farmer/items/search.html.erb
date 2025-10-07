@@ -6,10 +6,10 @@
 
 <div class="container-fluid">
  <h1 class="col-md-8 offset-md-2 mt-5">検索結果</h1>
- <div class="row mt-5">
-  <div class="item-card col-md-4 offset-md-2 mt-5">
+ <div class="row item-list mt-5">
    <% if @items.present? %>
     <% @items.each do |item| %>
+    <div class="item-card col-md-4 offset-md-2 mt-5">
      <h3><%= item.name %></h3>
      <h3><%= number_to_currency(item.price, unit: "円") %></h3>
      <% if item.images.attached? %>
@@ -21,10 +21,10 @@
      <% end %>
      <%#= link_to "詳細を見る", farmer_item_path(item), class: "offset-md-1 btn btn-outline-secondary", style: "width: 120px;" %>
      <%# 他農家の商品にアクセスできない仕様のため一時的に非表示 %>
-     <% end %>
+    </div>
+    <% end %>
    <% else %>
     <p>該当する商品は見つかりませんでした。</p>
    <% end %>
-  </div>
  </div>
 </div>
