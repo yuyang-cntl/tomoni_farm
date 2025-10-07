@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     
     resources :order_details, only: [:index, :show]
     resources :items, only: [:index, :show]
-    resources :orders, only: [:new, :create, :index, :show] do
+    resources :orders, only: [:new, :create, :index, :show, :destroy] do
      collection do
       post 'confirm'
       get 'complete'
@@ -45,11 +45,16 @@ Rails.application.routes.draw do
     root to: 'profiles#show'
     get 'search', to: 'search#search'
     get "location", to: "locations#index", defaults: { format: :json }
+    get 'dashboard', to: 'profiles#show', as: :dashboard
+    get 'broadcast_logs/index'
+    get 'broadcast_logs/show'
     
     resources :items
     resources :order_details, only: [:update]
     resource :password_change, only: [:edit, :update]
     resources :likes, only: [:index]
+    resources :broadcasts, only: [:new, :create]
+    resources :broadcast_logs, only: [:index, :show]
 
     resources :customers, only: [:index, :show, :edit, :update] do
      resources :orders, only: [:show, :update]

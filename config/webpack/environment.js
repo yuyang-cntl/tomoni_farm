@@ -1,21 +1,9 @@
 require("dotenv").config();
 
-const { environment } = require('@rails/webpacker');
-const webpack = require('webpack');
+const { environment } = require('@rails/webpacker')
 
-// CSS loader
-environment.loaders.append('style', {
-  test: /\.css$/,
-  use: ['style-loader', 'css-loader']
-});
-
-// SASS loader
-environment.loaders.append('sass', {
-  test: /\.scss$/,
-  use: ['style-loader', 'css-loader', 'sass-loader']
-});
-
-// jQuery plugin
+module.exports = environment
+const webpack = require('webpack')
 environment.plugins.prepend(
   'Provide',
   new webpack.ProvidePlugin({
@@ -23,6 +11,4 @@ environment.plugins.prepend(
     jQuery: 'jquery/src/jquery',
     Popper: 'popper.js'
   })
-);
-
-module.exports = environment;
+)
