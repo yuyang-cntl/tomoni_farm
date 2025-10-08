@@ -66,14 +66,15 @@
        </td>
        <td><strong><%= order.amount %></strong></td>
        <td><%= order.grand_total %></td>
-       <%= form_with model: order, url: farmer_customer_order_path(order.customer, order), method: :patch, local: true do |f| %>
-       <td><% order.status_i18n %>
-        <%= f.select :status,
-        Order.statuses.map { |key,_| [I18n.t("enums.order.status.#{key}"), key] },
-        {selected: order.status},
-        class: "form-control mr-2", style: "width: 140px;", onchange: "this.form.submit();" %>
+       <td>
+        <%= form_with model: order, url: farmer_customer_order_path(order.customer, order), method: :patch, local: true do |f| %>
+         <% order.status_i18n %>
+         <%= f.select :status,
+         Order.statuses.map { |key,_| [I18n.t("enums.order.status.#{key}"), key] },
+         {selected: order.status},
+         class: "form-control mr-2", style: "width: 140px;", onchange: "this.form.submit();" %>
+        <% end %>
        </td>
-       <% end %>
        <td><%= link_to "詳細", farmer_customer_order_path(order.customer, order), class: "btn btn-outline-secondary" %></td>
       </tr>
      <% end %>

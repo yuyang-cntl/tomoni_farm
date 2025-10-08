@@ -25,6 +25,7 @@ class Farmer::OrdersController < ApplicationController
     params.require(:order).permit(
       :customer_id,
       :address,
+      :status,
       order_details_attributes: [:item_id, :amount, :price]  
     )
   end
