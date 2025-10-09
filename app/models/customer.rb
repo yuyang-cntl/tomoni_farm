@@ -15,6 +15,29 @@ class Customer < ApplicationRecord
 
          scope :active, -> { where(is_active: true) }
 
+         enum account_status: { active: 0, inactive: 1 }
+
+  def self.account_statuses_i18n
+    account_status.keys.each_with_object({}) do |key, hash|
+    hash[key] = I18n.t("activerecord.attributes.account_status.#{key}")
+   end
+  end
+
+  def account_status_i18n
+    I18n.t("activerecord.attributes.account_status.#{account_status}")
+  end
+
+  def account_status_badge_class
+    case account_status
+    when "active"
+      "badge badge-success"
+    when "inactive"
+      "badge badge-danger"
+    when nil
+      "badge badge-light"
+    end
+  end
+
   def get_profile_image(width, height)
     if profile_image.attached? && profile_image.variable?
       profile_image.variant(resize_to_fill: [width, height]).processed
@@ -36,10 +59,10 @@ class Customer < ApplicationRecord
   end  
 
   def deactivate!
-    update!(is_active: false)
+    update!(is_active: false, account_status: :inactive)
   end
   def reactivate!
-    update!(is_active: true)
+    update!(is_active: true, account_status: :active)
   end
   def active_for_authentication?
     super && is_active?

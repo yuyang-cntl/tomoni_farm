@@ -10,6 +10,9 @@
   <div class="customer-card col-md-4 offset-md-2 mt-5">
    <% if @customers.present? %>
     <% @customers.each do |customer| %>
+     <span class="<%= customer.account_status_badge_class %>">
+      <%= customer.account_status_i18n %>
+     </span>
      <h3>会員名：<%= customer.name %></h3>
      <% if customer.profile_image.attached? %>
       <%= image_tag customer.profile_image.variant(resize_to_limit: [150,150]), class: "profile-image" %>

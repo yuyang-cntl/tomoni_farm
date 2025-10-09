@@ -2,11 +2,12 @@ ja:
   devise:
     registrations:
       signed_up: "登録が完了しました。ようこそ！"
+      
     failure:
       unauthenticated: "ログインしてください。"
       invalid: "メールアドレスまたはパスワードが正しくありません。"
       timeout: "セッションがタイムアウトしました。再度ログインしてください。"
-      inactive: "アカウントが有効化されていません。"
+      inactive_account: "このアカウントは退会済みです。再開をご希望の場合はお問い合わせください。"
       locked: "アカウントがロックされています。"
       already_authenticated: "すでにログインしています。"
       customer:
@@ -29,6 +30,9 @@ ja:
         introduction: "説明"
       diary:
         body: 本文
+      account_status:
+        active: "利用中"
+        inactive: "退会済"
     errors:
       models:
         diary:

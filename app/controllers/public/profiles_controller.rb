@@ -32,7 +32,9 @@ class Public::ProfilesController < ApplicationController
    private
 
    def customer_params
-    params.require(:customer).permit(:name, :email, :password, :password_confirmation, :profile_image, :image)
+    params.require(:customer).permit(
+    :last_name, :first_name, :last_name_kana, :first_name_kana,
+    :email, :password, :password_confirmation, :profile_image)
    end
 
 end

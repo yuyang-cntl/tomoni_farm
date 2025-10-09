@@ -54,7 +54,12 @@
      </thead>
      <% @orders.each do |order| %>
       <tr>
-       <td><%= order.customer.name %></td>
+       <td>
+        <%= order.customer.name %><br>
+        <span class="<%= order.customer.account_status_badge_class %>">
+        <%= order.customer.account_status_i18n %>
+        </span>
+       </td>
        <td><%= order.created_at.strftime('%y/%m/%d') %></td>
        <td><%= order.address %></td>
        <td>
