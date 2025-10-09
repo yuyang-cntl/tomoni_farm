@@ -4,7 +4,7 @@
    <h1 class="mt-5 mb-5">いいねしてくれたユーザー一覧</h1>
     <% if @post.likes.any? %>
      <% @likes.each do |like| %>
-      <div class="customer-card mt-5 col-md-4">
+      <div class="customer-card mt-5 col-md-5">
        <h4>ユーザー名：<%= like.customer.name %></h4>
       <% if like.customer.profile_image.attached? %>
        <%= image_tag like.customer.profile_image.variant(resize_to_limit: [150,150]), class: "profile-image" %>

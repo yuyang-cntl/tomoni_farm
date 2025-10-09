@@ -16,7 +16,7 @@
      <% else %>
       <%= image_tag(farmer.get_profile_image(150, 150), alt: "Farmer image", class: "profile-image") %>
      <% end %>
-     <%= link_to "会員一覧", public_farmers_path(farmer), class: "offset-1 btn btn-outline-secondary", style: "width: 120px;" %>
+     <%= link_to "詳細", public_farmers_path(farmer), class: "offset-1 btn btn-outline-secondary", style: "width: 90px;" %>
     <% end %>
    <% else %>
     <p>該当する生産者は見つかりませんでした。</p>
