@@ -15,7 +15,7 @@ class Customer < ApplicationRecord
 
          scope :active, -> { where(is_active: true) }
 
-         enum account_status: { active: 0, inactive: 1 }
+         enum account_status: { inactive: 0, active: 1 }
 
   def self.account_statuses_i18n
     account_status.keys.each_with_object({}) do |key, hash|
