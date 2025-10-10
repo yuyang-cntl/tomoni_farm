@@ -52,3 +52,7 @@ ja:
         credit_card: クレジットカード
         bank_transfer: 銀行振込
         convenience_store: コンビニ
+
+  notifications:
+    new_post: "%{actor}が新しい投稿をしました"
+    order_received: "%{actor}から注文が入りました"

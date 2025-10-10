@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :farmer do
+    get 'notifications/index'
+  end
     root to: 'homes#top'
     get 'homes/about', to: 'homes#about', as: 'homes_about'
 
@@ -22,6 +25,7 @@ Rails.application.routes.draw do
      end
     end
 
+    resources :notifications, only: [:index, :show, :update]
     resources :farmers, only: [:index, :show] do
      resource :follow, only: [:create, :destroy]
      resources :diaries, only: [:index, :show] do
@@ -55,6 +59,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:index]
     resources :broadcasts, only: [:new, :create]
     resources :broadcast_logs, only: [:index, :show]
+    resources :notifications, only: [:index, :show, :update]
 
     resources :customers, only: [:index, :show, :edit, :update] do
      resources :orders, only: [:show, :update]

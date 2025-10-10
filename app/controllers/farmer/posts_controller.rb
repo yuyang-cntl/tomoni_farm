@@ -10,6 +10,14 @@ class Farmer::PostsController < ApplicationController
     @post = @diary.posts.build(post_params)
     @post.farmer = current_farmer
     if @post.save
+      Customer.find_each do|customer|
+        NotificationService.notify(
+          recipient: customer,
+          actor: @post.farmer,
+          notifiable: @post,
+          notification_key: "new_post"
+          )
+      end
      redirect_to farmer_diary_post_path(@diary,@post), notice: "日記に投稿しました"
     else
       render :new

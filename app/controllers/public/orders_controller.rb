@@ -55,6 +55,12 @@ class Public::OrdersController < ApplicationController
       unless current_customer.followed_farmers.include?(farmer)
         current_customer.followed_farmers << farmer
       end
+      NotificationService.notify(
+        recipient: farmer,
+        actor: current_customer,
+        notifiable: @order,
+        notification_key: "order_received"
+      )
       puts "注文と生産者のフォローが完了しました: #{detail.inspect}"
       redirect_to complete_public_orders_path
     else

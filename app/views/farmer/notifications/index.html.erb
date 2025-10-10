@@ -1,0 +1,14 @@
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-md-2 mt-5">
+   <h1 class="mt-5">通知一覧</h1>
+    <ul>
+     <% @notifications.each do |notification| %>
+      <li class="mt-5 <%= 'unread' unless notification.read %>">
+       <%= t("notifications.#{notification.notification_key}", actor: notification.actor.name) %>
+      </li>
+     <% end %>
+    </ul>
+  </div>
+ </div>
+</div>

@@ -12,6 +12,8 @@ class Customer < ApplicationRecord
          has_many :order_details, dependent: :destroy
          has_many :orders, dependent: :destroy
          has_one_attached :profile_image
+         has_many :notifications, as: :recipient, dependent: :destroy
+         has_many :sent_notifications, as: :actor, class_name: "Notification"
 
          scope :active, -> { where(is_active: true) }
 

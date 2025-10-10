@@ -18,6 +18,8 @@ class Farmer < ApplicationRecord
   has_one_attached :profile_image
   has_many :email_templates, dependent: :destroy
   has_many :broadcast_logs, dependent: :destroy
+  has_many :notifications, as: :recipient, dependent: :destroy
+  has_many :sent_notifications, as: :actor, class_name: "Notification"
 
   def get_profile_image(width, height)
     if profile_image.attached? && profile_image.variable?

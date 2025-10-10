@@ -15,6 +15,26 @@
      <%= link_to "ログアウト", destroy_farmer_session_path, method: :delete, class: "btn btn-outline-secondary", style: "font-size: 18px; width: 120px;" %>
     </li>
   </ul>
+
+  <div class="notification-area offset-md-2 col-md-2">
+   <%= link_to farmer_notifications_path, class: "text-white" do %>
+    <strong>🔔通知</strong>
+    <% unread_count = current_farmer.notifications.where(read: false).count %>
+    <% if unread_count > 0 %>
+     <span class="badge"><%= unread_count %></span>
+    <% end %>
+   <% end %>
+   <div class="notification-dropdown">
+    <% current_farmer.notifications.order(created_at: :desc).limit(5).each do |notification| %>
+     <div class="notification-item <%= 'unread' unless notification.read %>">
+      <% link_to farmer_notification_path(notification), method: :patch do %>
+       <%= t("notifications.#{notification.notification_key}", actor: notification.actor.name) %>
+      <% end %>
+     </div>
+    <% end %>
+   </div>
+  </div>
+
    <div class="search-form offset-md-6">
     <%= form_with url: farmer_search_path, method: :get, local: true, class:"d-flex align-items-center gap-2" do %>
      <%= select_tag :target, options_for_select([["ユーザー名","customer"],["日記タイトル","diary"],["商品名","item"]], params[:target]), class: "form-control mr-2", style: "width: 140px;" %>
