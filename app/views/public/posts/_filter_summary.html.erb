@@ -1,0 +1,11 @@
+<div class="container-fluid">
+ <div class="row align-items-start">
+  <div class="col-md-10 offset-2">
+   <% if params[:start_date].present? && params[:end_date].present? %>
+    <p class="filter_summary">
+     <%= "#{params[:start_date]} ~ #{params[:end_date]} の投稿を表示しています。" %>
+    </p>
+   <% end %>
+  </div>
+ </div>
+</div>

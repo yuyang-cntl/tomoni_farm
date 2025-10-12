@@ -10,4 +10,8 @@ class Post < ApplicationRecord
     likes.exists?(customer_id: customer.id)
   end
 
+  scope :within_period, ->(start_date, end_date){
+    where(created_at: start_date.beginning_of_day..end_date.end_of_day)
+  }
+
 end

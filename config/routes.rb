@@ -29,7 +29,7 @@ Rails.application.routes.draw do
     resources :farmers, only: [:index, :show] do
      resource :follow, only: [:create, :destroy]
      resources :diaries, only: [:index, :show] do
-      resources :posts, only: [:show] do
+      resources :posts, only: [:show, :index] do
        resources :comments, only: [:create, :destroy]
        resource :like, only: [:create, :destroy]
       end

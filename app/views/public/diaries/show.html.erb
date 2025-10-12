@@ -9,6 +9,21 @@
   <div class="col-md-10 offset-2 mt-5">
    <h1 class="mt-5 mb-5">投稿一覧</h1>
   </div>
+  <%= form_with url: public_farmer_diary_posts_path(@diary.farmer_id, @diary.id), method: :get, local: true do |f| %>
+    <div class="filter-form row">
+     <div class="field col-md-4 offset-md-6">
+      <%= f.label :start_date, t("activerecord.attributes.post.start_date") %>
+      <%= f.date_field :start_date, value: params[:start_date], class: "form-control" %>
+     </div>
+     <div class="field col-md-4 offset-md-6 mt-2">
+      <%= f.label :end_date, t("activerecord.attributes.post.end_date") %>
+      <%= f.date_field :end_date, value: params[:end_date], class: "form-control" %>
+     </div>
+     <div class="actions col-md-4 offset-md-6 mt-2">
+      <%= f.submit "絞り込む", class: "btn btn-outline-secondary", style: "width: 120px;" %>
+     </div>
+    </div>
+  <% end %>
  </div>
 
  <div class="row post-list">

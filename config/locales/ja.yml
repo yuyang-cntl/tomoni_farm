@@ -33,12 +33,18 @@ ja:
       account_status:
         active: "利用中"
         inactive: "退会済"
+      post:
+        start_date: "開始日"
+        end_date: "終了日"
+
     errors:
       models:
         diary:
           attributes:
             body:
               blank: "を入力してください"
+      invalid_date_range: "開始日は終了日より前にしてください"
+      invalid_date_format: "日付の形式が正しくありません"
 
   enums:
     order:
