@@ -12,6 +12,7 @@ import "popper.js"
 import "bootstrap"
 import "../stylesheets/application"
 import "controllers"
+import './calendar';
 
 Rails.start()
 Turbolinks.start()

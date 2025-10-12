@@ -90,7 +90,16 @@ class Public::OrdersController < ApplicationController
 
   def destroy
     order = current_customer.orders.find(params[:id])
+    farmer = order.order_details.first&.item&.farmer
+
     order.destroy
+
+    NotificationService.notify(
+      recipient: farmer,
+      actor: current_customer,
+      notifiable: order,
+      notification_key: :order_deleted
+    )
     redirect_to public_orders_path,notice:"注文を削除しました"
   end
 

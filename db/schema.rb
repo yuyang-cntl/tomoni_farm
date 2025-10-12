@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2025_10_10_021604) do
+ActiveRecord::Schema.define(version: 2025_10_12_083922) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -114,6 +114,14 @@ ActiveRecord::Schema.define(version: 2025_10_10_021604) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["farmer_id"], name: "index_email_templates_on_farmer_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "title"
+    t.date "start"
+    t.date "end"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "farmers", force: :cascade do |t|

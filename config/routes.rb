@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
 
-  namespace :farmer do
-    get 'notifications/index'
-  end
     root to: 'homes#top'
     get 'homes/about', to: 'homes#about', as: 'homes_about'
+    
+    resources :events, only: [:index]
+    get '/api/events', to: 'events#index', defaults: { format: 'json' } 
 
   scope module: :public, as: 'public' do
     get 'mypage', to: 'profiles#show', as: :customers_root
@@ -52,6 +52,7 @@ Rails.application.routes.draw do
     get 'dashboard', to: 'profiles#show', as: :dashboard
     get 'broadcast_logs/index'
     get 'broadcast_logs/show'
+    get 'notifications/index'
     
     resources :items
     resources :order_details, only: [:update]
