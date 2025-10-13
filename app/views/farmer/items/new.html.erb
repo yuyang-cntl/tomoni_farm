@@ -48,11 +48,17 @@
     <%= f.number_field :price, min: 0, step: 1, class: "form-control", style: "width: 450px;" %>
   </div>
   <div class="field mb-3 col-md-2 offset-md-2">
-   <%= f.label :harvest_time, "収穫時期" %>
+   <%= f.label :harvest_start, "収穫開始日" %>
   </div>
   <div class="field mb-3 col-md-8">
-    <%= f.text_area :harvest_time, class: "form-control", style: "width: 450px;" %>
+    <%= f.date_field :harvest_start, class: "form-control", style: "width: 450px;" %>
   </div>
+  <div class="field mb-3 col-md-2 offset-md-2">
+  <%= f.label :harvest_end, "収穫終了日" %>
+ </div>
+ <div class="field mb-3 col-md-8">
+   <%= f.date_field :harvest_end, class: "form-control", style: "width: 450px;" %>
+ </div>
   <div class="field mt-3 mb-3 col-md-8 offset-md-4 mt-3">
     <% Item.statuses.each_key do |key| %>
      <%= f.radio_button :status, key %>

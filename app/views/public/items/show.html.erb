@@ -22,17 +22,35 @@
      <h3 class="mt-3">生産者：<%= @item.farmer.name %></h3>
      <h3 class="mt-3">商品説明：<%= @item.introduction %></h3>
      <h3 class="mt-3">税込価格：<%= @item.price %>円</h3>
-     <h3 class="mt-3">収穫時期：<%= @item.harvest_time %></h3>
+     <h3 class="mt-3">
+      収穫時期：
+      <% if @item.harvest_start && @item.harvest_end %>
+       <%= @item.harvest_start.strftime('%Y年%m月%d日') %> 〜 <%= @item.harvest_end.strftime('%Y年%m月%d日') %>
+      <% elsif @item.harvest_start %>
+       <%= @item.harvest_start.strftime('%Y年%m月%d日') %>（開始日のみ）
+      <% elsif @item.harvest_end %>
+       <%= @item.harvest_end.strftime('%Y年%m月%d日') %>（終了日のみ）
+      <% else %>
+       未設定
+      <% end %>
+     </h3>
      <h3 class="mt-3"><%= I18n.t("activerecord.attributes.item.statuses.#{@item.status}") %></h3>
-
-    <%= form_with model: @order, url: new_public_order_path, method: :get, local: true do |f| %>
-     <h3 class="mt-3 mb-5">数量を選択してください：<br>
-     <%= f.hidden_field :item_id, value: @item.id %>
-     <%= f.hidden_field :amount, value: @amount %>
-     <%= f.select :amount,*[1..100] %>個</h3>
-     <%= f.submit "注文にすすむ", class: "mt-3 mb-3 offset-md-5 btn btn-outline-secondary", style: "width: 120px;" %>
-     <%= link_to "戻る", public_items_path, class: "mt-3 mb-3 offset-md-5 btn btn-outline-secondary", style: "width: 120px;" %>
+    
+    <% if @item.on_sale? %>
+     <%= form_with model: @order, url: new_public_order_path, method: :get, local: true do |f| %>
+      <h3 class="mt-3 mb-5">数量を選択してください：<br>
+      <%= f.hidden_field :item_id, value: @item.id %>
+      <%= f.hidden_field :amount, value: @amount %>
+      <%= f.select :amount,*[1..100] %>個</h3>
+      <%= f.submit "注文にすすむ", class: "mt-3 mb-3 offset-md-5 btn btn-outline-secondary", style: "width: 120px;" %>
+      <%= link_to "戻る", public_items_path, class: "mt-3 mb-3 offset-md-5 btn btn-outline-secondary", style: "width: 120px;" %>
      <% end %>
+    <% else %>
+     <div class="alert alert-warning mt-4 mb-4 text-center">
+      この商品は現在販売されていません。
+     </div>
+     <%= link_to "戻る", public_items_path, class: "mt-3 mb-3 offset-md-5 btn btn-outline-secondary", style: "width: 120px;" %>
+    <% end %>
   </div>
  </div>
 </div>

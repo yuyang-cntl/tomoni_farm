@@ -18,10 +18,19 @@
       </div>
       <% if item.images.attached? %>
        <% item.images.each do |image| %>
-        <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
+        <%= image_tag image.variant(resize_to_limit: [200,200]), class: "item-image" %>
        <% end %>
       <% else %>
        <p>画像は未登録です</p>
+      <% end %>
+      <% if item.on_sale? %>
+       <h3 class="d-flex mt-5">収穫カレンダー</h3>
+       <div id="calendar-<%= item.id %>" class="mb-5" data-start-date="<%= item.harvest_start %>">
+       </div>
+      <% else %>
+       <div class="alert alert-warning mt-5 text-center">
+       この商品は現在販売されていません。
+       </div>
       <% end %>
      </div>
     <% end %>

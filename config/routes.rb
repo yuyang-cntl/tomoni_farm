@@ -17,7 +17,12 @@ Rails.application.routes.draw do
     end
     
     resources :order_details, only: [:index, :show]
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+      member do
+        get :calendar_events
+      end
+    end
+  
     resources :orders, only: [:new, :create, :index, :show, :destroy] do
      collection do
       post 'confirm'
