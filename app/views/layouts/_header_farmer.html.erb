@@ -28,7 +28,11 @@
     <% current_farmer.notifications.order(created_at: :desc).limit(5).each do |notification| %>
      <div class="notification-item <%= 'unread' unless notification.read %>">
       <% link_to farmer_notification_path(notification), method: :patch do %>
-       <%= t("notifications.#{notification.notification_key}", actor: notification.actor.name) %>
+       <% if notification.actor.present? %>
+        <%= t("notifications.#{notification.notification_key}", actor: "#{notification.actor.name}さん") %>
+       <% else %>
+        <%= t("notifications.#{notification.notification_key}", actor: '退会済みのユーザー') %>
+       <% end %>
       <% end %>
      </div>
     <% end %>

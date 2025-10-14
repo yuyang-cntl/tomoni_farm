@@ -156,7 +156,6 @@ ActiveRecord::Schema.define(version: 2025_10_13_105410) do
     t.integer "farmer_id", null: false
     t.string "name", null: false
     t.text "introduction", null: false
-    t.date "harvest_time"
     t.integer "price", null: false
     t.integer "status"
     t.boolean "is_active", default: true, null: false
