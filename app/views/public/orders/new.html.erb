@@ -24,7 +24,7 @@
     <h3>農家：<%= @item.farmer.name %></h3>
     <h3>商品説明：<%= @item.introduction %></h3>
     <h3>税込価格：<%= @item.price %>円</h3>
-    <h3>収穫時期：<%= @item.harvest_time %></h3>
+    <h3>収穫時期：<%= @item.harvest_start.strftime('%Y年%m月%d日') %> 〜 <%= @item.harvest_end.strftime('%Y年%m月%d日') %></h3>
     <h3><%= I18n.t("activerecord.attributes.item.statuses.#{@item.status}") %></h3>
     <h3>数量：<%= @amount %>個</h3>
     <h3>合計金額：<%= number_to_currency(@item.price * @amount, unit: "円") %></h3>
