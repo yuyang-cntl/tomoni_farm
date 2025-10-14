@@ -38,7 +38,8 @@
 - 学校教育の一環として、栽培過程を時期ごとに確認し、実際に収穫体験を行う
 ​
 ## 設計書
-後ほど作成予定
+- tomoni_farm_ER図
+- tomoni_farm_UIFlows_.drawio
 ​
 ## 開発環境
 - OS：Linux(CentOS)
