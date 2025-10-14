@@ -5,7 +5,7 @@
     <ul>
      <% @notifications.each do |notification| %>
       <li class="mt-5 <%= 'unread' unless notification.read %>">
-       <%= t("notifications.#{notification.notification_key}", actor: notification.actor.name) %>
+       <%= t("notifications.#{notification.notification_key}", actor: "#{notification.actor.name}さん") %>
       </li>
      <% end %>
     </ul>

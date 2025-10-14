@@ -110,3 +110,8 @@ body.homes.top {
   max-width: 800px;
   margin: 0 auto;
 }
+.thumbnail {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}

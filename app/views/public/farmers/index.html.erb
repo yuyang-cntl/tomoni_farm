@@ -20,7 +20,7 @@
         <span style="font-size: 0.7em">ほか</span>
        </h3>
        <div class="mt-3 mb-3">
-        <% if farmer.profile_image.attached? %>
+        <% if farmer.profile_image.attached? && farmer.profile_image.variable? %>
          <%= image_tag farmer.profile_image.variant(resize_to_limit: [150,150]), class: "farmer-image" %>
         <% else %>
          <%= image_tag(farmer.get_profile_image(150, 150), alt: "Farmer image", class: "profile-image") %>

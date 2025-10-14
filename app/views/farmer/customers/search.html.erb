@@ -7,24 +7,24 @@
 <div class="container-fluid">
  <h1 class="col-md-8 offset-md-2 mt-5">検索結果</h1>
  <div class="row mt-5">
-  <div class="customer-card col-md-4 offset-md-2 mt-5">
-   <% if @customers.present? %>
-    <% @customers.each do |customer| %>
+  <% if @customers.present? %>
+   <% @customers.each do |customer| %>
+    <div class="customer-card col-md-4 offset-md-2 mt-5">
      <span class="<%= customer.account_status_badge_class %>">
       <%= customer.account_status_i18n %>
      </span>
      <h3>会員名：<%= customer.name %></h3>
-     <% if customer.profile_image.attached? %>
+     <% if customer.profile_image.attached? && customer.profile_image.variable? %>
       <%= image_tag customer.profile_image.variant(resize_to_limit: [150,150]), class: "profile-image" %>
      <% else %>
       <%= image_tag(customer.get_profile_image(150, 150), alt: "Customer image", class: "profile-image") %>
      <% end %>
      <%#= link_to "会員詳細", farmer_customer_path(customer), class: "offset-1 btn btn-outline-secondary", style: "width: 120px;" %>
      <%# 他農家の会員にアクセスできない仕様のため一時的に非表示 %>
-     <% end %>
-   <% else %>
-    <p>該当する生産者は見つかりませんでした。</p>
+    </div>
    <% end %>
-  </div>
+  <% else %>
+   <p class="col-md-4 offset-md-2 mt-5">該当する生産者は見つかりませんでした。</p>
+  <% end %>
  </div>
 </div>

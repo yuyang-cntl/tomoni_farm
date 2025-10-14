@@ -12,7 +12,7 @@
  </div>
  <div class="row">
   <div class="customer-card mt-5 col-md-10 offset-md-1 mt-5">
-   <% if @customer.profile_image.attached? %>
+   <% if @customer.profile_image.attached? && @customer.profile_image.variable? %>
     <%= image_tag @customer.profile_image.variant(resize_to_limit: [150,150]), class: "profile-image" %>
    <% else %>
     <%= image_tag(@customer.get_profile_image(100, 100), alt: "Customer image", class: "profile-image") %>

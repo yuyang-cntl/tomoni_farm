@@ -16,7 +16,7 @@
      <%= customer.account_status_i18n %>
      </span>
      <div class="mt-3 mb-3">
-      <% if customer.profile_image.attached? %>
+      <% if customer.profile_image.attached? && customer.profile_image.variable? %>
        <%= image_tag customer.profile_image.variant(resize_to_limit: [150,150]), class: "customer-image" %>
       <% else %>
        <%= image_tag(customer.get_profile_image(150, 150), alt: "Customer image", class: "profile-image") %>
