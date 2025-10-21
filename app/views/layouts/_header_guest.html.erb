@@ -1,20 +1,17 @@
 <header>
-<nav class="container-fluid pt-3">
- <div class="row align-items-center">
-  <div class="col-md-2 offset-2">
-   <div class="navbar-brand mt-3 mb-3">
-   <img src="/images/logo2.png" class="favicon-circle" alt="TomoniFarm Logo">
-    <%= link_to "TomoniFarm", root_path, class: "text-white" %>
+<nav class="container-fluid">
+ <div class="row">
+  <div class="col-12 col-md-10 offset-md-1 d-flex flex-wrap align-items-center">
+   <div class="navbar-brand mr-auto">
+    <img src="/images/logo2.png" class="favicon-circle" alt="TomoniFarm Logo">
+    <%= link_to "TomoniFarm", root_path, class: "text-white", style: "font-size: 24px;" %>
    </div>
-  </div>
-  <ul class="d-flex col-md-3 offset-4">
-    <li class="d-flex justify-content-end mr-2">
-     <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary", style: "font-size: 18px; width: 120px;" %>
-    </li>
+
     <li class="d-flex justify-content-end">
-     <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary", style: "font-size: 18px; width: 120px;" %>
+     <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary", style: "width: 120px;" %>
+     <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary ml-2", style: "width: 120px;" %>
     </li>
-  </ul>
+  </div>
  </div>
 </nav>
 </header>

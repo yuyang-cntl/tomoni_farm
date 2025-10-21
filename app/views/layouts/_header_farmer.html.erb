@@ -1,29 +1,21 @@
 <header>
-<nav class="container-fluid pt-3">
- <div class="row align-items-center">
-  <div class="col-md-2 offset-2">
-   <div class="navbar-brand mt-3 mb-3">
-   <img src="/images/logo2.png" class="favicon-circle" alt="TomoniFarm Logo">
-    <%= link_to "TomoniFarm", root_path, class: "text-white" %>
+<nav class="container-fluid">
+ <div class="row">
+  <div class="col-12 col-md-10 offset-md-1 d-flex flex-wrap align-items-center">
+   <div class="navbar-brand mr-auto">
+    <img src="/images/logo2.png" class="favicon-circle" alt="TomoniFarm Logo">
+    <%= link_to "TomoniFarm", root_path, class: "text-white", style: "font-size: 24px;" %>
    </div>
-  </div>
-  <ul class="d-flex flex-row offset-4 col-md-4">
-    <li class="d-flex mr-2">
-     <%= link_to "マイページ", farmer_root_path, class: "btn btn-outline-secondary", style: "font-size: 18px; width: 120px;" %>
-    </li>
-    <li class="d-flex mr-2">
-     <%= link_to "ログアウト", destroy_farmer_session_path, method: :delete, class: "btn btn-outline-secondary", style: "font-size: 18px; width: 120px;" %>
-    </li>
-  </ul>
 
-  <div class="notification-area offset-md-2 col-md-2">
-   <%= link_to farmer_notifications_path, class: "text-white" do %>
-    <strong>🔔通知</strong>
-    <% unread_count = current_farmer.notifications.where(read: false).count %>
-    <% if unread_count > 0 %>
-     <span class="badge"><%= unread_count %></span>
+   <div class="notification-area">
+    <%= link_to farmer_notifications_path, class: "text-white" do %>
+     <strong>🔔通知</strong>
+     <% unread_count = current_farmer.notifications.where(read: false).count %>
+     <% if unread_count > 0 %>
+      <span class="badge"><%= unread_count %></span>
+     <% end %>
     <% end %>
-   <% end %>
+   </div>
    <div class="notification-dropdown">
     <% current_farmer.notifications.order(created_at: :desc).limit(5).each do |notification| %>
      <div class="notification-item <%= 'unread' unless notification.read %>">
@@ -37,17 +29,23 @@
      </div>
     <% end %>
    </div>
-  </div>
 
-   <div class="search-form offset-md-6">
-    <%= form_with url: farmer_search_path, method: :get, local: true, class:"d-flex align-items-center gap-2" do %>
+   <div class="search-form ml-2 mr-5">
+    <%= form_with url: farmer_search_path, method: :get, local: true, class:"d-flex align-items-center" do %>
      <%= select_tag :target, options_for_select([["ユーザー名","customer"],["日記タイトル","diary"],["商品名","item"]], params[:target]), class: "form-control mr-2", style: "width: 140px;" %>
-     <%= text_field_tag :q, params[:q], placeholder: "検索キーワード入力", class:"form-control",style: "width: 330px;" %>
+     <%= text_field_tag :q, params[:q], placeholder: "検索キーワード入力", class:"form-control",style: "width: 220px;" %>
      <%= button_tag type: 'submit', class: 'ml-1 btn btn-outline-secondary d-flex align-items-center' do %>
-     <span>検索</span>
+      <span>検索</span>
      <% end %>
     <% end %>
    </div>
+
+  <div class="d-flex ml-auto">
+   <%= link_to "マイページ", farmer_root_path, class: "btn btn-outline-secondary", style: "width: 120px;" %>
+   <%= link_to "ログアウト", destroy_farmer_session_path, method: :delete, class: "btn btn-outline-secondary ml-2", style: "width: 120px;" %>
   </div>
- </nav>
+
+  </div>
+ </div>
+</nav>
 </header>

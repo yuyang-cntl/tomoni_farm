@@ -6,7 +6,19 @@
   box-sizing: border-box;
   font-family: 'Zen Maru Gothic', 'Rounded M+ 1c', sans-serif;
 }
-
+header {
+  background-color: #95b05f;
+}
+@media (max-width: 768px) {
+  .search-form {
+    flex-direction: column;
+    gap: 8px;
+  }
+  .btn-nav {
+    width: 100%;
+    font-size: 16px;
+  }
+}
 body {
   font-size: 16px;
   background-image: url('/images/IMG_9257.jpg');
@@ -46,12 +58,12 @@ body.homes.top {
 .btn-outline-secondary {
   border-radius: 8px;
   font-weight: 500;
-  background-color: #a89f91;
+  background-color: #9f8745;
   color: white;
 }
 .btn-outline-secondary:hover {
   background-color: white;
-  color: #a89f91;
+  color: #9f8745;
 }
 .favicon-circle {
   width: 32px;
@@ -94,6 +106,8 @@ body.homes.top {
   border-radius: 8px;
   margin-bottom: 1rem;
   object-fit: cover;
+  max-width: 100%;
+  height: auto;
 }
 .row.item-list,
 .row.farmer-list,
@@ -114,4 +128,10 @@ body.homes.top {
   width: 150px;
   height: 150px;
   object-fit: cover;
+}
+.table {
+  background-color: #faf9f2;
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: middle;
 }
