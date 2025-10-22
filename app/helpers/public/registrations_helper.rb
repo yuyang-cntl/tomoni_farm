@@ -4,7 +4,7 @@ module Public::RegistrationsHelper
     if customer.profile_image.attached?
       image_tag customer.profile_image
     else
-      image_tag 'default-image.jpg'
+      image_tag 'https://pf-yuyang-bucket.s3.ap-northeast-1.amazonaws.com/default-image.jpg'
     end
   end
 
