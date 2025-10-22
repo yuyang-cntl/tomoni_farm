@@ -14,9 +14,9 @@
     <tr><th>注文日</th><td><%= detail.created_at.strftime('%Y/%m/%d') %></td></tr>
     <tr><th>商品</th><td><%= detail.item.name %></td></tr>
     <tr><th>数量</th><td><%= detail.amount %> 個</td></tr>
-    <tr><th>単価</th><td><%= number_to_currency(detail.item.price, unit: "円") %></td></tr>
+    <tr><th>単価</th><td><%= number_to_currency(detail.item.price, unit: "円(税込)") %></td></tr>
     <tr><th>送料</th><td><%= number_to_currency(@shipping_cost, unit: "円") %></td></tr>
-    <tr><th>合計</th><td><%= number_to_currency(@order_details.sum { |d| d.amount * d.price } + @shipping_cost, unit: "円") %></td></tr>
+    <tr><th>合計</th><td><%= number_to_currency(@order_details.sum { |d| d.amount * d.price } + @shipping_cost, unit: "円(税込)") %></td></tr>
     <tr><th>支払い方法</th><td><%= @order.payment_method_i18n %></td></tr>
     <tr><th>ステータス</th><td><%= @order.status_i18n %></td></tr>
     <tr><th>お届け先</th><td><%= @postal_code %> / <%= @address %> / <%= @shipping_name %></td></tr>

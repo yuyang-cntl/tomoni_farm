@@ -13,7 +13,7 @@
      <div class="item-card mt-5 col-md-5">
       <h3>生産者：<%= item.farmer.name %></h3><br>
       <h3>商品名：<%= item.name %></h3><br>
-      <h3>価格：<%= number_to_currency(item.price, unit: "円")%>/個 </h3><br>
+      <h3>価格：<%= number_to_currency(item.price, unit: "円(税込)")%>/個 </h3><br>
       <% if item.images.attached? %>
        <% item.images.each do |image| %>
        <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
