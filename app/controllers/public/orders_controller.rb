@@ -11,6 +11,7 @@ class Public::OrdersController < ApplicationController
   def confirm
     @order = Order.new(order_params)
     @item = Item.find(@order.item_id)
+    @amount = @order.amount.to_i
     @address_type = params[:order][:address_type]
     @selected_payment_method = params[:order][:payment_method]
 
@@ -20,25 +21,48 @@ class Public::OrdersController < ApplicationController
       @order.address = @address.address
       @order.shipping_name = @address.shipping_name
     elsif @address_type == "new"
-      @order.postal_code = params[:order][:postal_code]
-      @order.address = params[:order][:address]
-      @order.shipping_name = params[:order][:name]
+      saved_address = save_new_address(params[:order])
+
+      if saved_address.persisted?
+        @order.postal_code = saved_address.postal_code
+        @order.address = saved_address.address
+        @order.shipping_name = saved_address.shipping_name
+      else
+        flash[:error] = "住所の保存に失敗しました: #{saved_address.errors.full_messages.join(', ')}"
+        render :new and return
+      end
     end
 
     @order.shipping_cost = 500
     @order.grand_total = (@item.price * @order.amount) + @order.shipping_cost
-    render :confirm 
-  end
-
-  def complete
+    render :confirm
   end
 
   def create
     @order = current_customer.orders.build(order_params)
     @item = Item.find(@order.item_id)
-    if params[:order][:address_type] == "existing"
-    elsif params[:order][:address_type] == "new"
+    address_type = params[:order][:address_type]
+
+    if address_type == "existing"
+      address = Address.find(params[:order][:address_id])
+      @order.postal_code = address.postal_code
+      @order.address = address.address
+      @order.shipping_name = address.shipping_name
+
+    elsif address_type == "new"
+      saved_address = save_new_address(params[:order])
+      if saved_address.persisted?
+        @order.postal_code = saved_address.postal_code
+        @order.address = saved_address.address
+        @order.shipping_name = saved_address.shipping_name
+      else
+        flash[:error] = "住所の保存に失敗しました: #{saved_address.errors.full_messages.join(', ')}"
+        render :new and return
+      end
     end
+
+    @order.shipping_cost = 500
+    @order.grand_total = (@item.price * @order.amount) + @order.shipping_cost
 
     if @order.save
     detail = OrderDetail.new(
@@ -112,4 +136,24 @@ class Public::OrdersController < ApplicationController
       )
   end
 
+  def save_new_address(params)
+    existing_address = Address.find_by(
+      customer_id: current_customer.id,
+      postal_code: params[:postal_code],
+      address: params[:address],
+      shipping_name: params[:shipping_name]
+    )
+  
+    return existing_address if existing_address.present?
+  
+    new_address = Address.new(
+      customer_id: current_customer.id,
+      postal_code: params[:postal_code],
+      address: params[:address],
+      shipping_name: params[:shipping_name]
+    )
+
+    new_address.save
+    new_address
+  end
 end
