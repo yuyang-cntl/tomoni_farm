@@ -13,4 +13,5 @@ class Farmer::BroadcastsController < ApplicationController
     service.call
     redirect_to farmer_dashboard_path, notice: "フォロワーにメールを送信しました"
   end
+
 end

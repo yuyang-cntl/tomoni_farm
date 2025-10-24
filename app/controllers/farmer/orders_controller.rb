@@ -15,6 +15,12 @@ class Farmer::OrdersController < ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
+        NotificationService.notify(
+          recipient: @order.customer,
+          actor: current_farmer,
+          notifiable: @order,
+          notification_key: "update_status"
+          )
       redirect_to farmer_profile_path, notice: "ステータスを更新しました"
     else
       redirect_to farmer_profile_path, alert: "更新に失敗しました"
