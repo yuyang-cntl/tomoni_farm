@@ -31,6 +31,7 @@ Rails.application.routes.draw do
     end
 
     resources :notifications, only: [:index, :show, :update]
+    resources :checkouts, only: [:create]
     resources :farmers, only: [:index, :show] do
      resource :follow, only: [:create, :destroy]
      resources :diaries, only: [:index, :show] do

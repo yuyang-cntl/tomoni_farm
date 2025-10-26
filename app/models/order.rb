@@ -1,8 +1,16 @@
 class Order < ApplicationRecord
 
   belongs_to :customer
+  belongs_to :item
   has_many :order_details, dependent: :destroy
-  
+
+  validates :postal_code, presence: true
+  validates :address, presence: true
+  validates :shipping_name, presence: true
+  validates :amount, numericality: { greater_than: 0 }
+  validates :grand_total, numericality: { greater_than_or_equal_to: 0 }
+  validates :payment_method, presence: true
+
  enum payment_method: { credit_card: 0, bank_transfer: 1, convenience_store: 2 }
  enum status: {
   pending: 0,

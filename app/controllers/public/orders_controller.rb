@@ -41,6 +41,7 @@ class Public::OrdersController < ApplicationController
   def create
     @order = current_customer.orders.build(order_params)
     @item = Item.find(@order.item_id)
+    @amount = @order.amount
     address_type = params[:order][:address_type]
 
     if address_type == "existing"
@@ -62,14 +63,14 @@ class Public::OrdersController < ApplicationController
     end
 
     @order.shipping_cost = 500
-    @order.grand_total = (@item.price * @order.amount) + @order.shipping_cost
+    @order.grand_total = (@item.price * @amount) + @order.shipping_cost
 
     if @order.save
     detail = OrderDetail.new(
       order_id: @order.id,
       item_id: @order.item_id,
       customer_id: current_customer.id,
-      amount: @order.amount,
+      amount: @amount,
       price: @item.price,
       status: @item.status
     )
@@ -85,14 +86,14 @@ class Public::OrdersController < ApplicationController
         notifiable: @order,
         notification_key: "order_received"
       )
-      puts "注文と生産者のフォローが完了しました: #{detail.inspect}"
+      flash[:notice] = "ご注文が完了しました、生産者の投稿がご覧になれます"
       redirect_to complete_public_orders_path
     else
-      puts "注文失敗: #{detail.errors.full_messages}"
+      flash[:alert] = "お届け先を入力してください"
       render :new
     end
     else
-      puts "注文失敗: #{@order.errors.full_messages}"
+      flash[:alert] = "お届け先を入力してください"
       render :new
     end
   end
@@ -124,7 +125,7 @@ class Public::OrdersController < ApplicationController
       notifiable: order,
       notification_key: :order_deleted
     )
-    redirect_to public_orders_path,notice:"注文を削除しました"
+    redirect_to public_orders_path, notice:"注文を削除しました"
   end
 
   private

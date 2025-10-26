@@ -3,6 +3,7 @@ class Item < ApplicationRecord
   has_many :orders, dependent: :destroy
   has_many :order_details, dependent: :destroy
   belongs_to :farmer
+  
   validates :name, :introduction, :price, :status, presence: true
   validates :harvest_start, presence: true
   validates :harvest_end, presence: true

@@ -37,7 +37,7 @@
      <h3 class="mt-3"><%= I18n.t("activerecord.attributes.item.statuses.#{@item.status}") %></h3>
     
     <% if @item.on_sale? %>
-     <%= form_with model: @order, url: new_public_order_path, method: :get, local: true do |f| %>
+     <%= form_with model: @order, url: new_public_order_path(item.id), method: :get, local: true do |f| %>
       <h3 class="mt-3 mb-5">数量を選択してください：<br>
       <%= f.hidden_field :item_id, value: @item.id %>
       <%= f.hidden_field :amount, value: @amount %>

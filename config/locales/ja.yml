@@ -43,6 +43,14 @@ ja:
           attributes:
             body:
               blank: "を入力してください"
+        order:
+          attributes:
+            postal_code:
+              blank: "を入力してください"
+            address:
+              blank: "を入力してください"
+            shipping_name:
+              blank: "を入力してください"
       invalid_date_range: "開始日は終了日より前にしてください"
       invalid_date_format: "日付の形式が正しくありません"
 
