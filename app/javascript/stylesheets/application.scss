@@ -10,6 +10,12 @@ header {
   background-color: #a3b77c;
 }
 @media (max-width: 768px) {
+  body {
+    background-attachment: scroll;
+  }
+  body.homes.top {
+    background-attachment: scroll;
+  }
   .search-form {
     flex-direction: column;
     gap: 8px;

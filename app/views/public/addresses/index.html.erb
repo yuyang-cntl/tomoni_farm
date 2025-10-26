@@ -14,28 +14,28 @@
   <div class="alert alert-success"><%= flash[:notice] %></div>
 <% end %>
 
-<div class="container-fluid>
+<div class="container">
  <div class="row">
-  <div class="col-md-8 offset-2">
+  <div class="col-12 col-md-8 mx-auto">
    <h1 class="mt-5">配送先一覧</h1>
   </div>
  </div>
 
  <div class="row address-list mt-5">
   <% @addresses.each do |address| %>
-   <div class="address-card col-md-8 offset-md-2 mt-5 mb-5">
+   <div class="address-card col-12 col-md-8 mx-auto mt-5 mb-5">
     <h4 class="mb-3">宛名：<%= address.shipping_name %></h4>
     <h4 class="mb-3">〒：<%= address.postal_code %></h4>
     <h4 class="mb-3">住所：<%= address.address %></h4>
-    <%= link_to "編集", edit_public_address_path(address), class: "btn btn-outline-secondary", style: "width: 90px;" %>
-    <%= link_to "削除", public_address_path(address), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-outline-secondary", style: "width: 90px;" %>
+    <%= link_to "編集", edit_public_address_path(address), class: "btn btn-outline-secondary w-25" %>
+    <%= link_to "削除", public_address_path(address), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "btn btn-outline-secondary w-25" %>
    </div>
   <% end %>
  </div>
   <div class="d-flex justify-content-center mt-5">
-   <%= link_to "新規登録", new_public_address_path, class: "btn btn-outline-secondary text-black", style: "width: 120px;" %>
+   <%= link_to "新規登録", new_public_address_path, class: "btn btn-outline-secondary text-black w-25" %>
   </div>
   <div class="d-flex justify-content-center mt-3">
-   <%= link_to "戻る", public_customers_root_path, class: "btn btn-outline-secondary", style: "width: 120px;" %>
+   <%= link_to "戻る", public_customers_root_path, class: "btn btn-outline-secondary w-25" %>
   </div>
 </div>

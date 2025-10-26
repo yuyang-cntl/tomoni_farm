@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
  <div class="row align-items-start">
-  <div class="col-md-10 offset-2 mt-5">
+  <div class="col-12 col-md-10 mx-auto mt-5">
    <h1 class="mt-5">フォロー中の生産者一覧</h1>
    <div class="row farmer-list">
     <% if @farmers.any? %>
@@ -25,9 +25,9 @@
         <% else %>
          <%= image_tag(farmer.get_profile_image(150, 150), alt: "Farmer image", class: "profile-image") %>
         <% end %>
-         <%= link_to '日記一覧', public_farmer_diaries_path(farmer), class: "ml-5 btn btn-outline-secondary", style: "width: 120px;" %>
+         <%= link_to '日記一覧', public_farmer_diaries_path(farmer), class: "ml-5 btn btn-outline-secondary flex-fill" %>
        </div>
-       <div class="mt-5 col-md-8 offset-md-1">
+       <div class="mt-5 col-md-8 mx-auto">
         <% if farmer.location&.latitude.present? && farmer.location&.longitude.present? %>
          <div
           data-controller="map"
@@ -44,8 +44,8 @@
     <% else %>
      <h3>フォロー中の農家はまだありません。</h3>
     <% end %>
-    <div class="d-flex justify-content-center mt-3 col-md-8 offset-md-1">
-     <%= link_to "戻る", public_customers_root_path, class: "btn btn-outline-secondary", style: "width: 90px;" %>
+    <div class="d-flex justify-content-center mt-3 col-md-8 mx-auto">
+     <%= link_to "戻る", public_customers_root_path, class: "btn btn-outline-secondary w-50" %>
     </div>
    </div>
   </div>

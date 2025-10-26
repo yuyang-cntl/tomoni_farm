@@ -7,12 +7,9 @@
 
 <div class="container-fluid">
  <div class="row">
-  <div class="col-md-8 offset-2 mt-5">
+  <div class="col-12 col-md-8 mx-auto mt-5">
    <h1 class="mt-5 mb-3">注文情報入力</h1>
-  </div>
- </div>
- <div class="row">
-  <div class="item-card mt-5 col-md-8 offset-md-2">
+   <div class="item-card p-3 mb-4">
    <h3><strong><%= @item.name %></strong>の商品情報</h3>
     <% if @item.images.attached? %>
     <% @item.images.each do |image| %>
@@ -28,12 +25,9 @@
     <h3><%= I18n.t("activerecord.attributes.item.statuses.#{@item.status}") %></h3>
     <h3>数量：<%= @amount %>個</h3>
     <h3>合計金額：<%= number_to_currency(@item.price * @amount, unit: "円(税込)") %></h3>
-  </div>
- </div>
+   </div>
 
- <%= form_with model:@order, url:confirm_public_orders_path, local: true do |f| %>
- <div class="row">
-  <div class="col-md-8 offset-2 mt-5">
+  <%= form_with model:@order, url:confirm_public_orders_path, local: true do |f| %>
    <fieldset>
    <%= f.hidden_field :item_id, value: @item.id %>
    <%= f.hidden_field :amount, value: @amount %> 
@@ -43,49 +37,46 @@
      <%= f.label :"payment_method_#{key}", Order.payment_methods_i18n[key] %>
     <% end %>
    </fieldset>
-  </div>
 
-  <div class="col-md-8 offset-2 mt-5">
    <fieldset>
     <legend>お届け先</legend>
      <div class= "form-check">
       <%= f.radio_button :address_type, "existing", id:"address_existing", class:"form-check-input" %>
       <%= f.label :address_existing, "登録済み住所から選択", class:"form-check-label" %>
-      <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display), {}, class: "offset-md-1 form-select"%>
+      <%= f.select :address_id, options_from_collection_for_select(current_customer.addresses, :id, :address_display), {}, class: "form-select w-50"%>
      </div>
      <div class="form-check mt-2">
       <%= f.radio_button :address_type, "new", id:"address_new", class:"form-check-input" %>
       <%= f.label :address_new, "新しいお届け先", class:"form-check-label" %>
      </div>
    </fieldset>
-  </div>
-    <div class="row">
-     <div class= "field mt-5 mb-3 col-md-2 offset-2">
-      <%= f.label :shipping_name, "宛先", class: "form-label" %>
+
+     <div class= "field mt-5 mb-3 col-12 col-md-2 offset-md-2">
+      <%= f.label :shipping_name, "宛先" %>
      </div>
-     <div class="field mt-5 mb-3 col-md-8">
-      <%= f.text_field :shipping_name, class: "form-control", style: "width: 450px;" %>
+     <div class="field mb-3 col-12 col-md-8 mx-auto">
+      <%= f.text_field :shipping_name, class: "form-control w-100" %>
      </div>
-     <div class= "field mb-3 col-md-2 offset-2">
-      <%= f.label :postal_code, "郵便番号", class: "form-label mt-2" %>
+     <div class= "field mb-3 col-12 col-md-2 offset-md-2">
+      <%= f.label :postal_code, "郵便番号" %>
      </div>
-     <div class="field mb-3 col-md-8">
-      <%= f.text_field :postal_code, class: "form-control", style: "width: 450px;" %>
+     <div class="field mb-3 col-md-8 mx-auto">
+      <%= f.text_field :postal_code, class: "form-control w-100" %>
      </div>
-     <div class= "field mb-3 col-md-2 offset-2">
-      <%= f.label :address, "住所", class: "form-label mt-2" %>
+     <div class= "field mb-3 col-12 col-md-2 offset-md-2">
+      <%= f.label :address, "住所" %>
      </div>
-     <div class="field mb-3 col-md-8">
-      <%= f.text_field :address, class: "form-control", style: "width: 450px;" %>
+     <div class="field mb-3 col-md-8 mx-auto">
+      <%= f.text_field :address, class: "form-control w-100" %>
      </div>
+
+    <div class="actions text-center mt-5">
+     <%= f.submit "注文する", class: "mt-5 btn btn-outline-secondary w-50" %>
+    </div>
+  <% end %>
+    <div class="text-center mt-3">
+     <%= link_to "戻る", public_item_path(@item), class: "btn btn-outline-secondary w-50" %>
     </div>
   </div>
-    <div class="actions d-flex justify-content-center col-md-8 offset-2 mt-5">
-     <%= f.submit "注文する", class: "mt-5 btn btn-outline-secondary", style: "width: 120px;" %>
-    </div>
- </div>
- <% end %>
- <div class="d-flex justify-content-center mt-3 col-md-8 offset-md-2">
-  <%= link_to "戻る", public_item_path(@item), class: "btn btn-outline-secondary", style: "width: 120px;" %>
  </div>
 </div>

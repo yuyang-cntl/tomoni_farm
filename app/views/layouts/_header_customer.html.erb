@@ -1,51 +1,57 @@
 <header>
-<nav class="container-fluid">
+<nav class="navbar navbar-expand-md">
+<div class="container-fluid">
  <div class="row">
-  <div class="col-12 col-md-10 offset-md-1 d-flex flex-wrap align-items-center">
-   <div class="navbar-brand mr-auto">
+  <div class="col-12 offset-md-1 d-flex align-items-center">
+   <div class="navbar-brand">
     <img src="/images/logo2.png" class="favicon-circle" alt="TomoniFarm Logo">
     <%= link_to "TomoniFarm", root_path, class: "text-white", style: "font-size: 24px;" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent">
+     <span class="navbar-toggler-icon text-white">☰</span>
+    </button>
    </div>
 
-   <div class="notification-area">
-    <%= link_to public_notifications_path, class: "text-white" do %>
-     <strong>🔔通知</strong>
-     <% unread_count = current_customer.notifications.where(read: false).count %>
-     <% if unread_count > 0 %>
-      <span class="badge"><%= unread_count %></span>
-     <% end %>
-    <% end %>
-   </div>
-   <div class="notification-dropdown">
-    <% current_customer.notifications.order(created_at: :desc).limit(5).each do |notification| %>
-     <div class="notification-item <%= 'unread' unless notification.read %>">
-      <% link_to public_notification_path(notification), method: :patch do %>
-       <% if notification.actor.present? %>
-        <%= t("notifications.#{notification.notification_key}", actor: "#{notification.actor.name}さん") %>
-       <% else %>
-        <%= t("notifications.#{notification.notification_key}", actor: '退会済みのユーザー') %>
-       <% end %>
+   <div class="collapse navbar-collapse" id="navbarContent">
+    <div class="notification-area">
+     <%= link_to public_notifications_path, class: "text-white" do %>
+      <strong>🔔通知</strong>
+      <% unread_count = current_customer.notifications.where(read: false).count %>
+      <% if unread_count > 0 %>
+       <span class="badge"><%= unread_count %></span>
       <% end %>
-     </div>
-    <% end %>
-   </div>
-
-   <div class="search-form ml-2">
-    <%= form_with url: public_search_path, method: :get, local: true, class:"d-flex align-items-center" do %>
-     <%= select_tag :target, options_for_select([["商品名","item"],["生産者名","farmer"],["日記タイトル","diary"]], params[:target]), class: "form-control mr-2", style: "width: 140px;" %>
-     <%= text_field_tag :q, params[:q], placeholder: "検索キーワード入力", class:"form-control",style: "width: 300px;" %>
-     <%= button_tag type: 'submit', class: 'ml-2 text-white', style: 'background: none; border: none;' do %>
-      <span>検索</span>
      <% end %>
-    <% end %>
-   </div>
+    </div>
+    <div class="notification-dropdown">
+     <% current_customer.notifications.order(created_at: :desc).limit(5).each do |notification| %>
+      <div class="notification-item <%= 'unread' unless notification.read %>">
+       <% link_to public_notification_path(notification), method: :patch do %>
+        <% if notification.actor.present? %>
+         <%= t("notifications.#{notification.notification_key}", actor: "#{notification.actor.name}さん") %>
+        <% else %>
+         <%= t("notifications.#{notification.notification_key}", actor: '退会済みのユーザー') %>
+        <% end %>
+       <% end %>
+      </div>
+     <% end %>
+    </div>
 
-   <div class="d-flex ml-auto">
-    <%= link_to "マイページ", public_customers_root_path, class: "text-white", style: "font-size: 20px; width: 120px;" %>
-    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "text-white ml-2", style: "font-size: 20px; width: 120px;" %>
-   </div>
+    <div class="search-form mt-2 mt-md-0 ml-md-2">
+     <%= form_with url: public_search_path, method: :get, local: true, class:"d-flex align-items-center" do %>
+      <%= select_tag :target, options_for_select([["商品名","item"],["生産者名","farmer"],["日記タイトル","diary"]], params[:target]), class: "form-control mr-2", style: "width: 140px;" %>
+      <%= text_field_tag :q, params[:q], placeholder: "検索キーワード入力", class:"form-control",style: "width: 300px;" %>
+      <%= button_tag type: 'submit', class: 'ml-2 text-white', style: 'background: none; border: none;' do %>
+       <span>検索</span>
+      <% end %>
+     <% end %>
+    </div>
 
+    <div class="d-flex mt-md-0 ml-md-3">
+     <%= link_to "マイページ", public_customers_root_path, class: "text-white", style: "font-size: 20px; width: 120px;" %>
+     <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "text-white", style: "font-size: 20px; width: 120px;" %>
+    </div>
+   </div>
   </div>
  </div>
+</div>
 </nav>
 </header>

@@ -6,12 +6,12 @@
 
 <div class="container-fluid">
  <div class="row">
-  <div class="col-md-8 offset-2 mt-5">
+  <div class="col-12 col-md-8 mx-auto mt-5">
    <h1 class="mt-5"><strong><%= @item.name %></strong>の商品情報</h1>
   </div>
  </div>
  <div class="row">
-  <div class="item-card mt-5 col-md-8 offset-md-2">
+  <div class="item-card mt-5 col-12 col-md-8 mx-auto">
     <% if @item.images.attached? %>
      <% @item.images.each do |image| %>
      <%= image_tag image.variant(resize_to_limit: [300,300]), class: "item-image" %>
@@ -37,19 +37,23 @@
      <h3 class="mt-3"><%= I18n.t("activerecord.attributes.item.statuses.#{@item.status}") %></h3>
     
     <% if @item.on_sale? %>
-     <%= form_with model: @order, url: new_public_order_path(item.id), method: :get, local: true do |f| %>
+     <%= form_with model: @order, url: new_public_order_path, method: :get, local: true do |f| %>
       <h3 class="mt-3 mb-5">数量を選択してください：<br>
       <%= f.hidden_field :item_id, value: @item.id %>
       <%= f.hidden_field :amount, value: @amount %>
       <%= f.select :amount,*[1..100] %>個</h3>
-      <%= f.submit "注文にすすむ", class: "mt-3 mb-3 offset-md-5 btn btn-outline-secondary", style: "width: 120px;" %>
-      <%= link_to "戻る", public_items_path, class: "mt-3 mb-3 offset-md-5 btn btn-outline-secondary", style: "width: 120px;" %>
+      <div class="text-center mt-3 mb-3">
+       <%= f.submit "注文にすすむ", class: "btn btn-outline-secondary w-50" %>
+       <%= link_to "戻る", public_items_path, class: "mt-3 btn btn-outline-secondary w-50" %>
+      </div>
      <% end %>
     <% else %>
-     <div class="alert alert-warning mt-4 mb-4 text-center">
-      この商品は現在販売されていません。
+     <div class="text-center mt-4 mb-4">
+      <div class="alert alert-warning">
+       この商品は現在販売されていません。
+      </div>
+      <%= link_to "戻る", public_items_path, class: "mt-3 btn btn-outline-secondary w-25" %>
      </div>
-     <%= link_to "戻る", public_items_path, class: "mt-3 mb-3 offset-md-5 btn btn-outline-secondary", style: "width: 120px;" %>
     <% end %>
   </div>
  </div>

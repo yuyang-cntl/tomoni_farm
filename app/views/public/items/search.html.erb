@@ -6,11 +6,11 @@
 
 
 <div class="container-fluid">
- <h1 class="col-md-8 offset-2 mt-5">検索結果</h1>
+ <h1 class="col-12 col-md-8 mx-auto mt-5">検索結果</h1>
  <div class="row item-list justify-content-center">
    <% if @items.present? %>
     <% @items.each do |item| %>
-     <div class="item-card mt-5 col-md-5">
+     <div class="item-card mt-5 col-12 col-md-5">
       <h3>生産者：<%= item.farmer.name %></h3><br>
       <h3>商品名：<%= item.name %></h3><br>
       <h3>価格：<%= number_to_currency(item.price, unit: "円(税込)")%>/個 </h3><br>
@@ -21,7 +21,9 @@
       <% else %>
        <p>画像は未登録です</p>
       <% end %>
-       <%= link_to "詳細を見る", public_item_path(item), class: "ml-5 btn btn-outline-secondary", style: "width: 120px;" %>
+       <div class="d-flex justify-content-start mt-5">
+        <%= link_to "詳細を見る", public_item_path(item), class: "btn btn-outline-secondary w-50" %>
+       </div>
      </div>
     <% end %>
    <% else %>
