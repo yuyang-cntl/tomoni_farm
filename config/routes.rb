@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
     root to: 'homes#top'
     get 'homes/about', to: 'homes#about', as: 'homes_about'
+    post '/webhooks', to: 'public/webhooks#create'
     
     resources :events, only: [:index]
     get '/api/events', to: 'events#index', defaults: { format: 'json' } 
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
 
     resources :notifications, only: [:index, :show, :update]
     resources :checkouts, only: [:create]
+    resources :webhooks, only: [:create]
     resources :farmers, only: [:index, :show] do
      resource :follow, only: [:create, :destroy]
      resources :diaries, only: [:index, :show] do

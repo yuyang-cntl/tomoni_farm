@@ -4,12 +4,14 @@ class Order < ApplicationRecord
   belongs_to :item
   has_many :order_details, dependent: :destroy
 
+  validates :item_id, presence: true
   validates :postal_code, presence: true
   validates :address, presence: true
   validates :shipping_name, presence: true
   validates :amount, numericality: { greater_than: 0 }
   validates :grand_total, numericality: { greater_than_or_equal_to: 0 }
   validates :payment_method, presence: true
+  validates :shipping_cost, numericality: { greater_than_or_equal_to: 0 }
 
  enum payment_method: { credit_card: 0, bank_transfer: 1, convenience_store: 2 }
  enum status: {

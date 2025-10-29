@@ -8,6 +8,7 @@ class Item < ApplicationRecord
   validates :harvest_start, presence: true
   validates :harvest_end, presence: true
   validate :harvest_period_valid
+  validates :price, numericality: { greater_than: 0 }
 
   enum status: { on_sale: 0, off_sale: 1}
 

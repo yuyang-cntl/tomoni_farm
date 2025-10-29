@@ -69,11 +69,12 @@ end
 
  gem 'dotenv-rails'
  gem 'geocoder'
- group :production do
-   gem 'mysql2'
- end
+#  group :production do
+  #  gem 'mysql2'
+#  end
   
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
 gem 'listen', '~> 3.3'
+gem 'stripe'
