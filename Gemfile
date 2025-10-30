@@ -67,7 +67,7 @@ group :development do
   gem 'rubocop-rspec', require: false 
 end
 
- gem 'dotenv-rails'
+ gem 'dotenv-rails', groups: [:development, :test, :production]
  gem 'geocoder'
  group :production do
    gem 'mysql2'
