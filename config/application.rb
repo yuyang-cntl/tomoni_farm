@@ -6,8 +6,8 @@ require "rails/all"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
-require 'dotenv-rails' if defined?(Dotenv)
-Dotenv::Railtie.load if defined?(Dotenv)
+require 'dotenv' if defined?(Dotenv)
+Dotenv.load('.env') if defined?(Dotenv)
 
 module TomoniFarm
   class Application < Rails::Application
