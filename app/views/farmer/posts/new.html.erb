@@ -27,27 +27,33 @@
    <%=f.label :images, "表紙" %>
   </div>
   <div class="field mt-5 mb-3 col-md-8">
-   <%= f.file_field :images, multiple:true, class: "form-control-file", style: "width: 450px;" %>
+   <%= f.file_field :images, multiple:true, class: "form-control-file w-100" %>
+  </div>
+  <div class="field mt-5 mb-3 col-md-2 offset-md-2">
+   <%= f.label :videos, "動画（任意）" %>
+  </div>
+  <div class="field mt-5 mb-3 col-md-8">
+   <%= f.file_field :videos, multiple: true, accept: "video/mp4,video/webm,video/quicktime", class: "form-control-file w-100" %>
   </div>
   <div class="field mb-3 col-md-2 offset-md-2">
    <%=f.label :title, "タイトル" %>
   </div>
   <div class="field mb-3 col-md-8">
-   <%= f.text_field :title, class: "form-control", style: "width: 450px;" %>
+   <%= f.text_field :title, class: "form-control w-100" %>
   </div>
   <div class="field mb-3 col-md-2 offset-md-2">
    <%= f.label :body, "本文" %>
   </div>
   <div class="field mb-3 col-md-8">
-   <%= f.text_area :body, maxlength: 500, class: "form-control", style: "width: 450px;" %>
+   <%= f.text_area :body, maxlength: 500, class: "form-control w-100" %>
   </div>
 
   <div class="actions d-flex justify-content-center col-md-8 offset-md-2">
-   <%= f.submit "投稿", class: "mt-5 btn btn-outline-secondary", style: "width: 90px;" %>
+   <%= f.submit "投稿", class: "mt-5 btn btn-outline-secondary w-50" %>
   </div>
  </div>
  <% end %>
   <div class="d-flex justify-content-center mt-3 col-md-8 offset-md-2">
-   <%= link_to "戻る", farmer_diary_posts_path(@diary), class: "btn btn-outline-secondary", style: "width: 90px;" %>
+   <%= link_to "戻る", farmer_diary_posts_path(@diary), class: "btn btn-outline-secondary w-50" %>
   </div>
 </div>

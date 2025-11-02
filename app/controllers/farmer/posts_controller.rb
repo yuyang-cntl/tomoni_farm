@@ -59,14 +59,17 @@ class Farmer::PostsController < ApplicationController
     diary = current_farmer.diaries.find(params[:diary_id])
     post = diary.posts.find(params[:id])
     post.destroy
-    redirect_to farmer_diary_posts_path(diary,post),notice:"投稿を削除しました"
+    redirect_to farmer_diary_posts_path(diary),notice:"投稿を削除しました"
   end
 
   private
 
   def post_params
     params.require(:post).permit(
-      :title, :body, images:[] )
+      :title, :body,
+      images:[],
+      videos:[]
+      )
   end
 
 end
