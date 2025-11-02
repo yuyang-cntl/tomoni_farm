@@ -16,7 +16,7 @@
 
 <div class="container-fluid">
  <div class="row">
-  <div class="col-md-8 offset-2 mt-5">
+  <div class="col-md-8 offset-md-2 mt-5">
    <h1 class="mt-5 mb-5">新規投稿</h1>
   </div>
  </div>
@@ -29,31 +29,31 @@
   <div class="field mt-5 mb-3 col-md-8">
    <%= f.file_field :images, multiple:true, class: "form-control-file w-100" %>
   </div>
-  <div class="field mt-5 mb-3 col-md-2 offset-md-2">
+  <div class="field mb-3 col-md-2 offset-md-2">
    <%= f.label :videos, "動画（任意）" %>
   </div>
-  <div class="field mt-5 mb-3 col-md-8">
-   <%= f.file_field :videos, multiple: true, accept: "video/mp4,video/webm,video/quicktime", class: "form-control-file w-100" %>
+  <div class="field mb-3 col-md-8">
+   <%= f.file_field :videos, multiple: true, accept: "video/mp4,video/webm,video/quicktime", class: "form-control-file w-50" %>
   </div>
   <div class="field mb-3 col-md-2 offset-md-2">
    <%=f.label :title, "タイトル" %>
   </div>
   <div class="field mb-3 col-md-8">
-   <%= f.text_field :title, class: "form-control w-100" %>
+   <%= f.text_field :title, class: "form-control w-50" %>
   </div>
   <div class="field mb-3 col-md-2 offset-md-2">
    <%= f.label :body, "本文" %>
   </div>
   <div class="field mb-3 col-md-8">
-   <%= f.text_area :body, maxlength: 500, class: "form-control w-100" %>
+   <%= f.text_area :body, maxlength: 500, class: "form-control w-50" %>
   </div>
 
-  <div class="actions d-flex justify-content-center col-md-8 offset-md-2">
-   <%= f.submit "投稿", class: "mt-5 btn btn-outline-secondary w-50" %>
+  <div class="actions d-flex justify-content-center col-md-8 mx-auto">
+   <%= f.submit "投稿", class: "mt-5 btn btn-outline-secondary w-25" %>
   </div>
  </div>
  <% end %>
-  <div class="d-flex justify-content-center mt-3 col-md-8 offset-md-2">
-   <%= link_to "戻る", farmer_diary_posts_path(@diary), class: "btn btn-outline-secondary w-50" %>
+  <div class="d-flex justify-content-center mt-3 col-md-8 mx-auto">
+   <%= link_to "戻る", farmer_diary_posts_path(@diary), class: "btn btn-outline-secondary w-25" %>
   </div>
 </div>
