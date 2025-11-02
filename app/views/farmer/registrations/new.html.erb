@@ -16,15 +16,13 @@
 
 <div class="container-fluid">
  <div class="row"> 
-  <div class="col-md-8 offset-md-2 mt-5">
+  <div class="col-md-8 mx-auto mt-5">
    <h1 class="mb-5">生産者登録</h1>
    <%= form_with model:@farmer, url:farmer_registration_path, scope: :farmer, local: true, html: { multipart: true } do |f| %>
     <div class="field mt-3 mb-3">
      <%= f.label :image, "プロフィール画像", class: "form-control-file" %>
      <%= f.file_field :profile_image %>
     </div>
-  </div>
-  <div class="row mt-3">
     <div class="field mb-3 col-md-2 offset-md-2">
      <%= f.label :name, "名前" %>
     </div>
@@ -48,6 +46,12 @@
     </div>
     <div class="field mb-3 col-md-8">
      <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 450px;" %>
+    </div>
+    <div class="field mb-3 col-md-2 offset-md-2">
+     <%= f.label :introduction, "紹介文" %>
+    </div>
+    <div>
+     <%= f.text_area :introduction, maxlength: 500, class: "form-control w-100" %>
     </div>
     <%= f.fields_for :location do |loc| %>
      <div class="input-group mb-3 col-md-2 offset-md-2">

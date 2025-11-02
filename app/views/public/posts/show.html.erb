@@ -6,19 +6,25 @@
 
 <div class="container-fluid">
  <div class="row align-items-start">
-  <div class="col-md-10 offset-2 mt-5">
+  <div class="col-md-10 mx-auto mt-5">
    <h1 class="mt-5 mb-5"><%= @post.title %></h1>
   </div>
  </div>
 
  <div class="row post-list">
-  <div class="post-card col-md-8 offset-md-2 mt-3">
+  <div class="post-card col-md-8 mx-auto mt-3">
    <% if @post.images.attached? %>
     <% @post.images.each do |image| %>
      <%= image_tag image.variant(resize_to_limit: [300,300]), class: "post-image" %>
     <% end %>
    <% else %>
     <p>画像は未登録です</p>
+   <% end %>
+   <% @post.videos.each do |video| %>
+    <video class="w-25 d-flex" controls>
+     <source src="<%= url_for(video) %>" type="<%= video.content_type %>">
+     お使いのブラウザは video タグをサポートしていません。
+    </video>
    <% end %>
    <h3>タイトル：<%= @post.title %></h3>
    <h3>本文：<%= @post.body %></h3>
@@ -34,14 +40,14 @@
      <% if comment.customer == current_customer %>
      <%= link_to "削除", public_farmer_diary_post_comment_path(@post.diary.farmer_id, @post.diary_id, @post.id, comment.id),
       method: :delete, data: {confirm: "本当に削除しますか？"},
-      class: "ml-3 btn btn-outline-secondary", style: "width: 60px;" %>
+      class: "ml-3 btn btn-outline-secondary w-10" %>
      <% end %>
     <% end %>
   </div>
   <div>
    <%= form_with model: @comment, url: public_farmer_diary_post_comments_path(@post.diary.farmer_id, @post.diary_id, @post.id) do |f| %>
-    <%= f.text_area :body, rows: '5', placeholder: "コメントをここに",style: "width: 250px;" %>
-    <%= f.submit "送信", class:"ml-3 mb-4 btn btn-outline-secondary", style: "width: 60px;"%>
+    <%= f.text_area :body, rows: '5', placeholder: "コメントをここに", class:"w-50" %>
+    <%= f.submit "送信", class:"ml-3 mb-4 btn btn-outline-secondary w-10" %>
    <% end %>
   </div>
    <p>
@@ -64,6 +70,6 @@
   </div>
  </div>
  <div class="d-flex justify-content-center mt-5">
-  <%= link_to '戻る', public_farmer_diary_path(@diary.farmer_id, @diary), class:"btn btn-outline-secondary", style: "width: 90px;" %>
+  <%= link_to '戻る', public_farmer_diary_path(@diary.farmer_id, @diary), class:"btn btn-outline-secondary w-25" %>
  </div>
 </div>

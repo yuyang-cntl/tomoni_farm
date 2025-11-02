@@ -37,7 +37,11 @@ class Farmer::ProfilesController < ApplicationController
 private
 
   def farmer_params
-   params.require(:farmer).permit(:name, :email, :password, :password_confirmation, :profile_image, :image)
+   params.require(:farmer).permit(
+    :name, :introduction, :email,
+    :password, :password_confirmation,
+    :profile_image, :image
+    )
   end
 
 end
