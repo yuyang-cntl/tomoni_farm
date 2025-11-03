@@ -21,6 +21,13 @@ ja:
           credit_card: クレジットカード
           bank_transfer: 銀行振込
           convenience_store: コンビニ
+        postal_code: "郵便番号"
+        address: "住所"
+        shipping_name: "宛先"
+      address:
+        postal_code: "郵便番号"
+        address: "住所"
+        shipping_name: "宛先"
       item:
         statuses:
           on_sale: "予約受付中"
@@ -51,6 +58,14 @@ ja:
               blank: "を入力してください"
             shipping_name:
               blank: "を入力してください"
+        address:
+          attributes:
+            postal_code:
+              blank: "を入力してください"
+            address:
+              blank: "を入力してください"
+            shipping_name:
+              blank: "を入力してください"
       invalid_date_range: "開始日は終了日より前にしてください"
       invalid_date_format: "日付の形式が正しくありません"
 
@@ -72,3 +87,7 @@ ja:
     order_received: "%{actor}から注文が入りました"
     order_deleted: "%{actor}が注文をキャンセルしました"
     update_status: "%{actor}が注文ステータスを更新しました"
+
+  time:
+    formats:
+      default: "%Y年%m月%d日 %H:%M"

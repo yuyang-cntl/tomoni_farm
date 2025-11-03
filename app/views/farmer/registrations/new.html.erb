@@ -16,71 +16,71 @@
 
 <div class="container-fluid">
  <div class="row"> 
-  <div class="col-md-8 mx-auto mt-5">
+  <div class="col-12 col-md-8 mx-auto mt-5">
    <h1 class="mb-5">生産者登録</h1>
    <%= form_with model:@farmer, url:farmer_registration_path, scope: :farmer, local: true, html: { multipart: true } do |f| %>
-    <div class="field mt-3 mb-3">
+    <div class="field mt-3 mb-3 col-12 col-md-4 offset-md-2">
      <%= f.label :image, "プロフィール画像", class: "form-control-file" %>
      <%= f.file_field :profile_image %>
     </div>
-    <div class="field mb-3 col-md-2 offset-md-2">
+    <div class="field mb-3 col-12 col-md-2 offset-md-2">
      <%= f.label :name, "名前" %>
     </div>
-    <div class="field mb-3 col-md-8">
-     <%= f.text_field :name, autofocus: true, autocomplete: "name", style: "width: 450px;" %>
+    <div class="field mb-3 col-12 col-md-8 mx-auto">
+     <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "w-100" %>
     </div>
-    <div class="field mb-3 col-md-2 offset-md-2">
+    <div class="field mb-3 col-12 col-md-3 offset-md-2">
      <%= f.label :email, "メールアドレス" %>
     </div>
-    <div class="field mb-3 col-md-8">
-     <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email", style: "width: 450px;" %>
+    <div class="field mb-3 col-12 col-md-8 mx-auto">
+     <%= f.email_field :email, autofocus: true, placeholder: "sample@example.com", autocomplete: "email", class: "w-100" %>
     </div>
-    <div class="field mb-3 col-md-2 offset-md-2">
+    <div class="field mb-3 col-12 col-md-3 offset-md-2">
      <%= f.label :password, "パスワード(6文字以上)"%>
     </div>
-    <div class="field mb-3 col-md-8">
-     <%= f.password_field :password, autocomplete: "current-password", style: "width: 450px;" %>
+    <div class="field mb-3 col-12 col-md-8 mx-auto">
+     <%= f.password_field :password, autocomplete: "current-password", class: "w-100" %>
     </div>
-    <div class="field mb-3 col-md-2 offset-md-2">
+    <div class="field mb-3 col-12 col-md-3 offset-md-2">
      <%= f.label :password_confirmation, "パスワード（確認）" %>
     </div>
-    <div class="field mb-3 col-md-8">
-     <%= f.password_field :password_confirmation, autocomplete: "new-password", style: "width: 450px;" %>
+    <div class="field mb-3 col-12 col-md-8 mx-auto">
+     <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "w-100" %>
     </div>
-    <div class="field mb-3 col-md-2 offset-md-2">
+    <div class="field mb-3 col-12 col-md-2 offset-md-2">
      <%= f.label :introduction, "紹介文" %>
     </div>
-    <div>
+    <div class="field mb-3 col-12 col-md-8 mx-auto">
      <%= f.text_area :introduction, maxlength: 500, class: "form-control w-100" %>
     </div>
     <%= f.fields_for :location do |loc| %>
-     <div class="input-group mb-3 col-md-2 offset-md-2">
+     <div class="input-group mb-3 col-12 col-md-2 offset-md-2">
       <%= loc.label :postal_code, "郵便番号" %>
      </div>
-     <div class="field mb-3 col-md-8">
-      <%= loc.text_field :postal_code, placeholder: "郵便番号", style: "width: 450px;" %>
+     <div class="field mb-3 col-12 col-md-8 mx-auto">
+      <%= loc.text_field :postal_code, placeholder: "郵便番号", class: "w-100" %>
      </div>
-     <div class="field mb-3 col-md-2 offset-md-2">
+     <div class="field mb-3 col-12 col-md-2 offset-md-2">
       <%= loc.label :prefecture, "都道府県" %>
      </div>
-     <div class="field mb-3 col-md-8">
-      <%= loc.text_field :prefecture, style: "width: 450px;" %>
+     <div class="field mb-3 col-12 col-md-8 mx-auto">
+      <%= loc.text_field :prefecture, class: "w-100" %>
      </div>
-     <div class="field mb-3 col-md-2 offset-md-2">
+     <div class="field mb-3 col-12 col-md-2 offset-md-2">
       <%= loc.label :city, "市区町村" %>
      </div>
-     <div class="field mb-3 col-md-8">
-      <%= loc.text_field :city, style: "width: 450px;" %>
+     <div class="field mb-3 col-12 col-md-8 mx-auto">
+      <%= loc.text_field :city, class: "w-100" %>
      </div>
-     <div class="field mb-3 col-md-2 offset-md-2">
+     <div class="field mb-3 col-12 col-md-2 offset-md-2">
       <%= loc.label :street, "番地・建物名" %>
      </div>
-     <div class="field mb-3 col-md-8">
-      <%= loc.text_field :street, style: "width: 450px;" %>
+     <div class="field mb-3 col-12 col-md-8 mx-auto">
+      <%= loc.text_field :street, class: "w-100" %>
      </div>
     <% end %>
     <div class="actions mt-5 d-flex justify-content-center col-md-8 offset-md-2">
-     <%= f.submit "登録", class: "btn btn-outline-secondary", style: "font-size: 18px; width: 120px;" %>
+     <%= f.submit "登録", class: "btn btn-outline-secondary w-25", style: "font-size: 18px;" %>
     </div>
    <% end %>
    <%= render "farmer/shared/links" %>
