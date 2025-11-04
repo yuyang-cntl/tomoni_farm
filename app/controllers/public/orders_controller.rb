@@ -16,10 +16,16 @@ class Public::OrdersController < ApplicationController
     @selected_payment_method = params[:order][:payment_method]
 
     if @address_type == "existing"
-      @address = Address.find(params[:order][:address_id])
-      @order.postal_code = @address.postal_code
-      @order.address = @address.address
-      @order.shipping_name = @address.shipping_name
+      address_id = params[:order][:address_id]
+      if address_id.present?
+        @address = Address.find(address_id)
+        @order.postal_code = @address.postal_code
+        @order.address = @address.address
+        @order.shipping_name = @address.shipping_name
+      else
+        flash.now[:alert] = "住所を選択してください"
+        render :new and return
+      end
     elsif @address_type == "new"
       saved_address = save_new_address(params[:order])
 

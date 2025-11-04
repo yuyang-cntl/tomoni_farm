@@ -14,14 +14,9 @@ class Public::CommentsController < ApplicationController
     if @comment.save
       redirect_to public_farmer_diary_post_path(@diary.farmer_id, @diary.id, @post.id), notice: "コメントを投稿しました"
     else
-      render 'posts/show', alert: "コメントの投稿に失敗しました"
+      flash.now[:alert] = "コメントの投稿に失敗しました"  
+      render 'public/posts/show'
     end
-  end
-
-  def index
-  end
-
-  def show
   end
 
   def destroy
