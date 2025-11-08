@@ -1,6 +1,6 @@
 <% if @comment.errors.any? %>
   <div class="alert alert-danger">
-    <ul>
+    <ul style="list-style-type: none; padding-left: 0;">
       <% @comment.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
@@ -11,6 +11,11 @@
  <div class="alert alert-success">
   <%= flash[:notice] %>
  </div>
+<% end %>
+<% if flash[:alert] %>
+  <div class="alert alert-danger">
+    <%= flash[:alert] %>
+  </div>
 <% end %>
 
 <div class="container-fluid">
