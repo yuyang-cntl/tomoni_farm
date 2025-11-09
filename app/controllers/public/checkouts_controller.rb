@@ -6,8 +6,14 @@ class Public::CheckoutsController < ApplicationController
     quantity = params[:amount].to_i
     stripe_customer = Stripe::Customer.create(email: current_customer.email)
 
+    unless params[:agree_policy] == "1"
+      flash[:alert] = "キャンセルポリシーに同意してください"
+      redirect_to new_public_order_path(item_id: item.id, amount: quantity) and return
+    end
+
     if quantity <= 0
-      redirect_to new_public_order_path, alert: "数量は1以上を指定してください" and return
+      flash[:alert] = "数量は1以上を指定してください"
+      redirect_to new_public_order_path(item_id: item.id, amount: quantity) and return
     end
 
     session = Stripe::Checkout::Session.create(
@@ -43,8 +49,10 @@ class Public::CheckoutsController < ApplicationController
             }
           }],
       success_url: "#{request.base_url}#{complete_public_orders_path}",
-      cancel_url: "#{request.base_url}#{new_public_order_path}"
+      cancel_url: "#{request.base_url}#{new_public_order_path}?item_id=#{item.id}&amount=#{quantity}"
     )
+    # セッション作成後に payment_intent_id を取得
+    payment_intent_id = session.payment_intent
     redirect_to session.url, allow_other_host: true
   end
 end

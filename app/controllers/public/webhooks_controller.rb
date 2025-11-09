@@ -66,7 +66,8 @@ class Public::WebhooksController < ApplicationController
                     shipping_cost: 500,
                     grand_total: session.amount_total,
                     payment_method: :credit_card,
-                    status: :confirmed
+                    status: :confirmed,
+                    payment_intent_id: session.payment_intent
                  )
   end
 

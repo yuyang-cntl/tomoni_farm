@@ -46,9 +46,15 @@ class Public::OrdersController < ApplicationController
 
   def create
     @order = current_customer.orders.build(order_params)
+    @order.agree_policy = params[:order][:agree_policy]
     @item = Item.find(@order.item_id)
     @amount = @order.amount
     address_type = params[:order][:address_type]
+
+    unless @order.valid?
+      flash[:alert] = "キャンセルポリシーを受諾してください"
+      redirect_to new_public_order_path(item_id: @order.item_id, amount: @order.amount) and return
+    end
 
     if address_type == "existing"
       address = Address.find(params[:order][:address_id])
@@ -123,7 +129,14 @@ class Public::OrdersController < ApplicationController
     order = current_customer.orders.find(params[:id])
     farmer = order.order_details.first&.item&.farmer
 
-    order.destroy
+    if order.payment_intent_id.present?
+      Stripe::Refund.create({
+        payment_intent: order.payment_intent_id,
+        reason: 'requested_by_customer'
+      })
+    end
+
+    order.update(status: :cancelled)
 
     NotificationService.notify(
       recipient: farmer,
@@ -131,7 +144,7 @@ class Public::OrdersController < ApplicationController
       notifiable: order,
       notification_key: :order_deleted
     )
-    redirect_to public_orders_path, notice:"注文を削除しました"
+    redirect_to public_orders_path, notice:"注文をキャンセルしました（返金処理済）"
   end
 
   private
