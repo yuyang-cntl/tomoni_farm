@@ -16,14 +16,14 @@ class Order < ApplicationRecord
   validates :agree_policy, acceptance: { accept: '1' }
   validates :payment_intent_id, presence: true, uniqueness: true, if: -> { credit_card_payment? && new_record? }
   
- enum payment_method: { credit_card: 0, bank_transfer: 1, convenience_store: 2 }
- enum status: {
-  pending: 0,
-  confirmed: 1,
-  shipped: 2,
-  delivered: 3,
-  cancelled: 4
- }
+  enum payment_method: { credit_card: 0, bank_transfer: 1, convenience_store: 2 }
+  enum status: {
+   pending: 0,
+   confirmed: 1,
+   shipped: 2,
+   delivered: 3,
+   cancelled: 4
+  }
 
   def credit_card_payment?
    payment_method == "credit_card"
