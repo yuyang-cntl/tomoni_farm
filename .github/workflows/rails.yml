@@ -21,6 +21,10 @@ jobs:
           git pull origin main
           export NVM_DIR="/home/ubuntu/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          nvm install 16
+          nvm use 16
+          nvm alias default 16
+          unset NODE_OPTIONS
           node -v
           yarn -v
           ~/.rbenv/shims/bundle install
