@@ -16,6 +16,7 @@
     "@rails/webpacker": "5.4.4",
     "bootstrap": "4.6.2",
     "chart.js": "^4.5.1",
+    "chartkick": "^5.0.1",
     "dotenv": "^17.2.3",
     "jquery": "^3.7.1",
     "popper.js": "^1.16.1",
