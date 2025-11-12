@@ -28,6 +28,8 @@ jobs:
           node -v
           yarn -v
           ~/.rbenv/shims/bundle install
+          yarn install
+          RAILS_ENV=production ./bin/webpack
           ~/.rbenv/shims/bundle exec rails assets:precompile RAILS_ENV=production
           ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production
           if [[ -e tmp/pids/puma.pid ]]; then
