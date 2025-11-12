@@ -14,7 +14,7 @@
    <%= column_chart @stacked_sales, stacked: true %>
   </div>
   <div class="statistic-card col-md-10 mx-auto mt-5">
-   <h3>投稿に対するいいね数</h3>
+   <h3>投稿へのいいね数</h3>
     <%= column_chart @stacked_likes.map { |h| h.slice(:date, :name, :data) } %>
     <table class="table mt-4">
      <thead>
