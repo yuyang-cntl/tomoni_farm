@@ -5,10 +5,38 @@
 <% end %>]
 
 <div class="container-fluid">
+ <div class="col-12 col-md-10 mx-auto mt-5">
+  <h1 class="mt-5 mb-5">ダッシュボード</h1>
+ </div>
  <div class="row mt-5">
   <div class="statistic-card col-md-10 mx-auto mt-5">
-   <h3>月別売上</h3>
-   <%= column_chart @monthly_sales %>
+   <h3>月次注文額（商品別）</h3>
+   <%= column_chart @stacked_sales, stacked: true %>
   </div>
+  <div class="statistic-card col-md-10 mx-auto mt-5">
+   <h3>投稿に対するいいね数</h3>
+    <%= column_chart @stacked_likes.map { |h| h.slice(:date, :name, :data) } %>
+    <table class="table mt-4">
+     <thead>
+      <tr>
+       <th>投稿日</th>
+       <th>投稿タイトル</th>
+       <th>リンク</th>
+      </tr>
+     </thead>
+     <tbody>
+      <% @stacked_likes.each do |post_data| %>
+      <tr>
+       <td><%= post_data[:date] %></td>
+       <td><%= post_data[:name] %></td>
+       <td><%= link_to "投稿詳細", post_data[:link] %></td>
+      </tr>
+      <% end %>
+     </tbody>
+    </table>
+  </div>
+ </div>
+ <div class="text-center mt-3">
+  <%= link_to "戻る", farmer_root_path, class: "btn btn-outline-secondary w-25" %>
  </div>
 </div>
