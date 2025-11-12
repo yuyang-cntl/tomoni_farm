@@ -1,0 +1,14 @@
+<% if flash[:notice] %>
+ <div class="alert alert-success">
+  <%= flash[:notice] %>
+ </div>
+<% end %>]
+
+<div class="container-fluid">
+ <div class="row mt-5">
+  <div class="statistic-card col-md-10 mx-auto mt-5">
+   <h3>月別売上</h3>
+   <%= column_chart @monthly_sales %>
+  </div>
+ </div>
+</div>

@@ -61,6 +61,7 @@ Rails.application.routes.draw do
     get 'broadcast_logs/index'
     get 'broadcast_logs/show'
     get 'notifications/index'
+    get 'statistics', to: 'statistics#index', as: 'statistics'
     
     resources :items
     resources :order_details, only: [:update]

@@ -1,0 +1,2 @@
+module Farmer::StatisticsHelper
+end
