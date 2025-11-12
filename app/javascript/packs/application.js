@@ -13,7 +13,9 @@ import "bootstrap"
 import "../stylesheets/application"
 import "controllers"
 import './calendar';
-import "chartkick/chart.js"
+import Chartkick from "chartkick"
+import Chart from "chart.js/auto"
+Chartkick.use(Chart)
 
 Rails.start()
 Turbolinks.start()
