@@ -78,3 +78,5 @@ gem "net-pop"
 gem "net-imap"
 gem 'listen', '~> 3.3'
 gem 'stripe'
+gem "chartkick"
+gem 'groupdate'

@@ -13,6 +13,7 @@ import "bootstrap"
 import "../stylesheets/application"
 import "controllers"
 import './calendar';
+import "chartkick/chart.js"
 
 Rails.start()
 Turbolinks.start()

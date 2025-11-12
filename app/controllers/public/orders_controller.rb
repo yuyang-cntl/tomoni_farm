@@ -144,7 +144,7 @@ class Public::OrdersController < ApplicationController
       notifiable: order,
       notification_key: :order_deleted
     )
-    redirect_to public_orders_path, notice:"注文をキャンセルしました（返金処理済）"
+    redirect_to public_orders_path, notice:"注文をキャンセルしました"
   end
 
   private
