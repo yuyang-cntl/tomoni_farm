@@ -6,7 +6,7 @@ class CustomerFeedbackClient
         #{comments.map(&:body).join("\n")}
       TEXT
 
-      client = OpenAI::Client.new
+      client = OpenAI::Client.new(access_token: ENV['OPENAI_API_KEY'])
 
       response = client.chat(
         parameters: {
