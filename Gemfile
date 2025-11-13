@@ -80,3 +80,4 @@ gem 'listen', '~> 3.3'
 gem 'stripe'
 gem "chartkick"
 gem 'groupdate'
+gem 'ruby-openai'

@@ -38,6 +38,8 @@ class Farmer::PostsController < ApplicationController
     if @customer.present?
     @post.comment = customer.post_comment(params[:id])
     end
+    @comments = @post.comments
+    @feedback = CustomerFeedbackClient.generate(post: @post, comments: @comments)
   end
 
   def edit
