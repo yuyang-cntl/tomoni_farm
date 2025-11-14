@@ -19,6 +19,7 @@ jobs:
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} "export OPENAI_API_KEY=${OPENAI_API_KEY} && bash -s" << 'EOF'
           cd tomoni_farm
+          echo "OPENAI_API_KEY=${OPENAI_API_KEY}" > .env
           git pull origin main
           export NVM_DIR="/home/ubuntu/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
