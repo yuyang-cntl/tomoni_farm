@@ -36,6 +36,7 @@ jobs:
             sudo kill $(cat tmp/pids/puma.pid)
             echo "kill puma process"
           fi
-          RAILS_ENV=production ~/.rbenv/shims/bundle exec puma -e production -C config/puma.rb
+          export RAILS_ENV=production
+          ~/.rbenv/shims/bundle exec puma -C config/puma.rb
         EOF
         rm private_key
