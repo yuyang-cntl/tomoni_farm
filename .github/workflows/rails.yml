@@ -42,3 +42,4 @@ jobs:
           ~/.rbenv/shims/bundle exec puma -C config/puma.rb
         EOF
         rm private_key
+        
