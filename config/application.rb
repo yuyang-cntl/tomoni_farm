@@ -7,7 +7,7 @@ require "rails/all"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 require 'dotenv' if defined?(Dotenv)
-Dotenv.load('.env') if defined?(Dotenv)
+Dotenv.load(".env.#{Rails.env}") if defined?(Dotenv)
 
 module TomoniFarm
   class Application < Rails::Application
