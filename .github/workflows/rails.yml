@@ -14,6 +14,7 @@ jobs:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
         USER_NAME: ${{ secrets.USER_NAME }}
         HOST_NAME: ${{ secrets.HOST_NAME }}
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
         echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
         ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} << 'EOF'
@@ -37,6 +38,6 @@ jobs:
             echo "kill puma process"
           fi
           export RAILS_ENV=production
-          ~/.rbenv/shims/bundle exec puma -C config/puma.rb
+          ~/.rbenv/shims/bundle exec puma -e production -C config/puma.rb
         EOF
         rm private_key
