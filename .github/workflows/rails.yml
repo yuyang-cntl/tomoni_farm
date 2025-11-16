@@ -68,6 +68,6 @@ jobs:
           fi
           export RAILS_ENV=production
           ~/.rbenv/shims/bundle exec puma -e production -C config/puma.rb
+          INNER
         EOF
         rm bastion_key target_key
-        
