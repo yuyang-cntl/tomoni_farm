@@ -6,6 +6,7 @@ require "rails/all"
 Bundler.require(*Rails.groups)
 require 'dotenv' if defined?(Dotenv)
 Dotenv.load(".env.#{Rails.env}") if defined?(Dotenv)
+Dotenv::Railtie.load if Rails.env.production?
 
 module TomoniFarm
   class Application < Rails::Application
