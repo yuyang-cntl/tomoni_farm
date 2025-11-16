@@ -51,7 +51,6 @@ jobs:
           echo "OPENAI_API_KEY=${OPENAI_API_KEY}" >> .env.production
           export NVM_DIR="/home/${TARGET_USER}/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-          nvm install 16
           nvm use 16
           nvm alias default 16
           unset NODE_OPTIONS
@@ -68,7 +67,6 @@ jobs:
           fi
           export RAILS_ENV=production
           ~/.rbenv/shims/bundle exec puma -e production -C config/puma.rb
-          INNER
+        INNER
         EOF
         rm bastion_key target_key
-        
