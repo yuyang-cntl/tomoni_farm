@@ -29,8 +29,12 @@ jobs:
         STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
+        echo "$PRIVATE_KEY" > bastion_key
+        echo "$TARGET_KEY" > target_key
+        chmod 600 bastion_key target_key
+        scp -i bastion_key -o StrictHostKeyChecking=no target_key ${USER_NAME}@${HOST_NAME}:~/target_key
         ssh -i bastion_key -o StrictHostKeyChecking=no ${USER_NAME}@${HOST_NAME} << EOF
-        echo "$TARGET_KEY" > target_key && chmod 600 target_key
+        chmod 600 ~/target_key
         ssh -i target_key ${TARGET_USER}@${TARGET_HOST} << 'INNER'
           cd tomoni_farm
           git pull origin main
@@ -65,4 +69,4 @@ jobs:
           export RAILS_ENV=production
           ~/.rbenv/shims/bundle exec puma -e production -C config/puma.rb
         EOF
-        rm private_key
+        rm bastion_key target_key
