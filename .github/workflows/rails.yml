@@ -12,8 +12,11 @@ jobs:
     - name: Deploy
       env:
         PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
+        TARGET_KEY: ${{ secrets.TARGET_KEY }}
         USER_NAME: ${{ secrets.USER_NAME }}
         HOST_NAME: ${{ secrets.HOST_NAME }}
+        TARGET_USER: ${{ secrets.TARGET_USER }}
+        TARGET_HOST: ${{ secrets.TARGET_HOST }}
         DB_USERNAME: ${{ secrets.DB_USERNAME }}
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
         DB_HOST: ${{ secrets.DB_HOST }}
@@ -26,8 +29,9 @@ jobs:
         STRIPE_WEBHOOK_SECRET: ${{ secrets.STRIPE_WEBHOOK_SECRET }}
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
-        echo "$PRIVATE_KEY" > private_key && chmod 600 private_key
-        ssh -o StrictHostKeyChecking=no -i private_key ${USER_NAME}@${HOST_NAME} << 'EOF'
+        ssh -i bastion_key -o StrictHostKeyChecking=no ${USER_NAME}@${HOST_NAME} << EOF
+        echo "$TARGET_KEY" > target_key && chmod 600 target_key
+        ssh -i target_key ${TARGET_USER}@${TARGET_HOST} << 'INNER'
           cd tomoni_farm
           git pull origin main
           echo "DB_USERNAME=${DB_USERNAME}" > .env.production
@@ -41,7 +45,7 @@ jobs:
           echo "STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}" >> .env.production
           echo "STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}" >> .env.production
           echo "OPENAI_API_KEY=${OPENAI_API_KEY}" >> .env.production
-          export NVM_DIR="/home/ubuntu/.nvm"
+          export NVM_DIR="/home/${TARGET_USER}/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm install 16
           nvm use 16
