@@ -71,3 +71,4 @@ jobs:
           INNER
         EOF
         rm bastion_key target_key
+        
