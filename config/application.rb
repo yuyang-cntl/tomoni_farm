@@ -1,13 +1,8 @@
 require_relative "boot"
 
 require "rails/all"
-require 'dotenv/load' if ENV['RAILS_ENV'] == 'production'
-# Require the gems listed in Gemfile, including any gems
-# you've limited to :test, :development, or :production.
+require 'dotenv/load' if Rails.env.production?
 Bundler.require(*Rails.groups)
-require 'dotenv/rails-now' if defined?(Dotenv)
-Dotenv.load(".env.#{Rails.env}") if defined?(Dotenv)
-Dotenv::Railtie.load if Rails.env.production?
 
 module TomoniFarm
   class Application < Rails::Application
