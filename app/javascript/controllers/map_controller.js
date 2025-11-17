@@ -27,7 +27,7 @@ export default class extends Controller {
       }));
       d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n));
     })({
-      key: GOOGLE_MAPS_API_KEY
+      key: process.env.GOOGLE_MAPS_API_KEY
     });
 
     await loader;
