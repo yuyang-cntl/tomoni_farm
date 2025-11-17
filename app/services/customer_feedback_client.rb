@@ -10,7 +10,7 @@ class CustomerFeedbackClient
 
       response = client.chat(
         parameters: {
-          model: "gpt-3.5-turbo",
+          model: "gpt-3.5-turbo-16k",
           temperature: 0.3,
           messages: [
             { role: "system", content: "あなたは投稿内容に対して顧客の反応を分析し、項目ごとに改行してフィードバックと改善点を返すAIです。"},
