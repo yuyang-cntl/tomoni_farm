@@ -12,7 +12,7 @@ environment.plugins.prepend(
     jQuery: 'jquery/src/jquery',
     Popper: 'popper.js'
   })
-)
+);
 environment.plugins.append(
   "DefinePlugin",
   new webpack.DefinePlugin({
