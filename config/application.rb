@@ -4,7 +4,7 @@ require "rails/all"
 
 Bundler.require(*Rails.groups)
 
-require "dotenv/rails-now" if Rails.env.production?
+require "dotenv/load" if Rails.env.production?
 
 
 module TomoniFarm
