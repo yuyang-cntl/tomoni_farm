@@ -20,5 +20,7 @@ environment.plugins.append(
     "process.env.OPENAI_API_KEY": JSON.stringify(process.env.OPENAI_API_KEY)
   })
 );
+console.log("✅ NODE_ENV during Webpack build:", process.env.NODE_ENV);
+console.log("✅ GOOGLE_MAPS_API_KEY during Webpack build:", process.env.GOOGLE_MAPS_API_KEY);
 
 module.exports = environment
