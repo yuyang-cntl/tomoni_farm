@@ -16,10 +16,8 @@ environment.plugins.prepend(
 environment.plugins.append(
   "DefinePlugin",
   new webpack.DefinePlugin({
-    "process.env": {
-      GOOGLE_MAPS_API_KEY: JSON.stringify(process.env.GOOGLE_MAPS_API_KEY),
-      OPENAI_API_KEY: JSON.stringify(process.env.OPENAI_API_KEY)
-    }
+    "process.env.GOOGLE_MAPS_API_KEY": JSON.stringify(process.env.GOOGLE_MAPS_API_KEY),
+    "process.env.OPENAI_API_KEY": JSON.stringify(process.env.OPENAI_API_KEY)
   })
 );
 
