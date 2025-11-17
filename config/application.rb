@@ -1,8 +1,8 @@
 require_relative "boot"
 
 require "rails/all"
-require 'dotenv/load' if Rails.env.production?
 Bundler.require(*Rails.groups)
+Dotenv::Railtie.load if Rails.env.production?
 
 module TomoniFarm
   class Application < Rails::Application
