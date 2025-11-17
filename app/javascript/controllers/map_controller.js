@@ -16,6 +16,7 @@ export default class extends Controller {
       b = b[c] || (b[c] = {});
       var d = b.maps || (b.maps = {}), r = new Set, e = new URLSearchParams, u = () => h || (h = new Promise(async (f, n) => {
         await (a = m.createElement("script"));
+        e.set("key", g.key);
         e.set("libraries", [...r] + "");
         for (k in g) e.set(k.replace(/[A-Z]/g, t => "_" + t[0].toLowerCase()), g[k]);
         e.set("callback", c + ".maps." + q);
@@ -27,7 +28,7 @@ export default class extends Controller {
       }));
       d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n));
     })({
-      key: process.env.GOOGLE_MAPS_API_KEY
+      key: window.GOOGLE_MAPS_API_KEY
     });
 
     await loader;
