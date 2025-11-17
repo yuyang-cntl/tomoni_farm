@@ -35,7 +35,7 @@ jobs:
         scp -i bastion_key -o StrictHostKeyChecking=no target_key ${USER_NAME}@${HOST_NAME}:~/target_key
         ssh -i bastion_key -o StrictHostKeyChecking=no ${USER_NAME}@${HOST_NAME} << EOF
         chmod 600 ~/target_key
-        ssh -i target_key ${TARGET_USER}@${TARGET_HOST} << 'INNER'
+        ssh -i target_key ${TARGET_USER}@${TARGET_HOST} << INNER
           cd tomoni_farm
           git pull origin main
           echo "DB_USERNAME=${DB_USERNAME}" > .env.production
@@ -71,6 +71,7 @@ jobs:
             echo "kill puma process"
           fi
           export RAILS_ENV=production
+          ~/.rbenv/shims/bundle exec rails restart
           ~/.rbenv/shims/bundle exec puma -e production -C config/puma.rb
         INNER
         EOF

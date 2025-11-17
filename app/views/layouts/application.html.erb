@@ -8,8 +8,8 @@
     <link rel="icon" type="image/png" href="/images/logo2.png">
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&family=Rounded+M+Plus+1c&display=swap" rel="stylesheet">
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script>window.GOOGLE_MAPS_API_KEY = "<%= ENV['GOOGLE_MAPS_API_KEY'] %>";</script>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="<%= "#{controller_name} #{action_name}" %> vh-100">
