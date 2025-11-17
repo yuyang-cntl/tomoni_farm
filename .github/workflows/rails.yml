@@ -58,6 +58,7 @@ jobs:
           yarn -v
           ~/.rbenv/shims/bundle install
           yarn install
+          export NODE_ENV=production
           RAILS_ENV=production ./bin/webpack
           ~/.rbenv/shims/bundle exec rails assets:precompile RAILS_ENV=production
           ~/.rbenv/shims/bundle exec rails db:migrate RAILS_ENV=production

@@ -1,4 +1,6 @@
-require("dotenv").config();
+const envPath = process.env.NODE_ENV === 'production' ? '.env.production' : '.env';
+require("dotenv").config({ path: envPath });
+
 
 const { environment } = require('@rails/webpacker')
 
@@ -12,3 +14,12 @@ environment.plugins.prepend(
     Popper: 'popper.js'
   })
 )
+environment.plugins.append(
+  "DefinePlugin",
+  new webpack.DefinePlugin({
+    "process.env": {
+      GOOGLE_MAPS_API_KEY: JSON.stringify(process.env.GOOGLE_MAPS_API_KEY),
+      OPENAI_API_KEY: JSON.stringify(process.env.OPENAI_API_KEY)
+    }
+  })
+);
