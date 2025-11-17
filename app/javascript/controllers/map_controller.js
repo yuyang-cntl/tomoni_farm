@@ -4,6 +4,9 @@ export default class extends Controller {
   async connect() {
     console.log("✅ map controller connected")
 
+    const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
+    console.log("✅ Injected API Key:", GOOGLE_MAPS_API_KEY);
+
     const lat = parseFloat(this.element.dataset.lat)
     const lng = parseFloat(this.element.dataset.lng)
 
@@ -24,7 +27,7 @@ export default class extends Controller {
       }));
       d[l] ? console.warn(p + " only loads once. Ignoring:", g) : d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n));
     })({
-      key: process.env.GOOGLE_MAPS_API_KEY
+      key: GOOGLE_MAPS_API_KEY
     });
 
     await loader;
