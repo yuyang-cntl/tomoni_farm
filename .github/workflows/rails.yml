@@ -56,7 +56,7 @@ jobs:
           unset NODE_OPTIONS
           node -v
           yarn -v
-          ~/.rbenv/shims/bundle install
+          ~/.rbenv/shims/bundle install --path vendor/bundle --without development test
           yarn install
           source .env.production
           export $(cat .env.production | xargs)
