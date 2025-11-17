@@ -49,6 +49,8 @@ jobs:
           echo "STRIPE_ENDPOINT_SECRET=${STRIPE_ENDPOINT_SECRET}" >> .env.production
           echo "STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}" >> .env.production
           echo "OPENAI_API_KEY=${OPENAI_API_KEY}" >> .env.production
+          echo "OPENAI_API_KEY=$OPENAI_API_KEY"
+          env | grep OPENAI
           export NVM_DIR="/home/${TARGET_USER}/.nvm"
           [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
           nvm use 16
