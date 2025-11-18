@@ -10,12 +10,12 @@
  </div>
  <div class="row mt-5">
   <div class="statistic-card col-md-10 mx-auto mt-5">
-   <h3>月次注文額（商品別）</h3>
-   <%= column_chart @stacked_sales, stacked: true %>
+   <h3>月次注文金額（商品別）</h3>
+   <%= column_chart @stacked_sales, stacked: true, library: { plotOptions: { column: { pointWidth: 10 } } } %>
   </div>
   <div class="statistic-card col-md-10 mx-auto mt-5">
    <h3>投稿へのいいね数</h3>
-    <%= column_chart @stacked_likes.map { |h| h.slice(:date, :name, :data) } %>
+    <%= column_chart @stacked_likes.map { |h| h.slice(:date, :name, :data)}, library: { plotOptions: { column: { pointWidth: 10 } } } %>
     <table class="table mt-4">
      <thead>
       <tr>
