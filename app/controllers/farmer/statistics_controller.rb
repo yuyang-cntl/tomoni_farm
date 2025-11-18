@@ -11,7 +11,7 @@ class Farmer::StatisticsController < ApplicationController
     @item_sales = Order.joins(:item).group("name").sum(:grand_total)
     @yearly_sales = Order.group_by_year(:created_at, format: "%Y年", time_zone: false).sum(:grand_total)
     # 投稿に対するいいね数
-    @stacked_likes = Post.includes(:likes, :diary).map do |post|
+    @stacked_likes = Post.joins(:diary).map do |post|
       like_count = post.likes.count
       post_date = post.created_at.strftime("%Y年%m月%d日")
       {
