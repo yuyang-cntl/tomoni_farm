@@ -11,7 +11,7 @@
 
 <div class="container-fluid">
  <div class="row">
-  <div class="col-md-8 offset-md-2 mt-5">
+  <div class="col-md-8 mx-auto mt-5">
    <h1 class="mt-5 mb-5">商品情報を編集</h1>
   </div>
  </div>
@@ -22,7 +22,7 @@
      <%=f.label :name, "商品" %>
     </div>
     <div class="field mb-3 col-md-8 mt-3">
-     <%= f.text_field :name, class: "form-control", style: "width: 450px;" %>
+     <%= f.text_field :name, class: "form-control w-100" %>
     </div>
     <div class="field mb-3 col-md-2 offset-md-2 mt-3">
      <%=f.label :images, "画像" %>
@@ -34,25 +34,25 @@
     <%= f.label :introduction, "説明" %>
     </div>
     <div class="field mb-3 col-md-8 mt-3">
-     <%= f.text_area :introduction, class: "form-control", style: "width: 450px;" %>
+     <%= f.text_area :introduction, class: "form-control w-100" %>
     </div>
     <div class="field mb-3 col-md-2 offset-md-2 mt-3">
      <%= f.label :price, "税込価格" %>
     </div>
     <div class="field mb-3 col-md-8 mt-3">
-     <%= f.number_field :price, min: 0, step: 1, class: "form-control", style: "width: 450px;" %>
+     <%= f.number_field :price, min: 0, step: 1, class: "form-control w-100" %>
     </div>
     <div class="field mb-3 col-md-2 offset-md-2 mt-3">
      <%= f.label :harvest_start, "収穫開始日" %>
     </div>
     <div class="field mb-3 col-md-8 mt-3">
-     <%= f.date_field :harvest_start, class: "form-control", style: "width: 450px;" %>
+     <%= f.date_field :harvest_start, class: "form-control w-100" %>
     </div>
     <div class="field mb-3 col-md-2 offset-md-2 mt-3">
      <%= f.label :harvest_end, "収穫終了日" %>
     </div>
     <div class="field mb-3 col-md-8 mt-3">
-     <%= f.date_field :harvest_end, class: "form-control", style: "width: 450px;" %>
+     <%= f.date_field :harvest_end, class: "form-control w-100" %>
     </div>
     <div class="field mb-3 col-md-8 offset-md-4 mt-3">
      <% Item.statuses.each_key do |key| %>
@@ -62,8 +62,8 @@
     </div>
   
      <div class="actions d-flex justify-content-center col-md-8 offset-md-2 mt-5">
-      <%= f.submit "更新", class: "btn btn-outline-secondary", style: "width: 90px;" %>
-      <%= link_to "戻る", farmer_item_path(@item), class: "ml-3 btn btn-outline-secondary", style: "width: 90px;" %>
+      <%= f.submit "更新", class: "btn btn-outline-secondary w-auto" %>
+      <%= link_to "戻る", farmer_item_path(@item), class: "ml-3 btn btn-outline-secondary w-auto" %>
      </div>
   </div>
   <% end %>

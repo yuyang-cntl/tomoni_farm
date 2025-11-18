@@ -18,7 +18,7 @@
  <div class="row align-items-start">
   <div class="col-12 col-md-10 offset-md-2 mt-5">
    <h1 class="mt-5 mb-5">日記一覧</h1>
-   <%= link_to '日記投稿', new_farmer_diary_path, class: "mb-5 btn btn-outline-secondary", style: "width: 150px;" %>
+   <%= link_to '日記投稿', new_farmer_diary_path, class: "mb-5 btn btn-outline-secondary w-auto" %>
   </div>
  </div>
  <div class="row diary-list">
@@ -32,12 +32,12 @@
     <% else %>
       <p>画像は未登録です</p>
     <% end %>
-   <%= link_to '日記詳細', farmer_diary_path(diary), class: "ml-5 btn btn-outline-secondary", style: "width: 150px;" %>
-   <%= link_to '投稿一覧', farmer_diary_posts_path(diary), class: "btn btn-outline-secondary", style: "width: 150px;" %>
+   <%= link_to '日記詳細', farmer_diary_path(diary), class: "btn btn-outline-secondary w-auto" %>
+   <%= link_to '投稿一覧', farmer_diary_posts_path(diary), class: "btn btn-outline-secondary w-auto" %>
   </div>
  <% end %>
  </div>
  <div class="d-flex justify-content-center mt-3 col-md-8 offset-md-2">
-  <%= link_to "戻る", farmer_root_path, class: "btn btn-outline-secondary", style: "width: 90px;" %>
+  <%= link_to "戻る", farmer_root_path, class: "btn btn-outline-secondary w-auto" %>
  </div>
 </div>

@@ -19,8 +19,9 @@
      <% else %>
       <p>画像は未登録です</p>
      <% end %>
-     <%#= link_to "詳細を見る", farmer_item_path(item), class: "offset-md-1 btn btn-outline-secondary", style: "width: 120px;" %>
+     <%= link_to "詳細を見る", farmer_item_path(item), class: "offset-md-1 btn btn-outline-secondary", style: "width: 120px;" %>
      <%# 他農家の商品にアクセスできない仕様のため一時的に非表示 %>
+     <%= link_to "削除", farmer_item_path(item), method: :delete, data: {confirm: "本当に削除しますか？"}, class: "mt-3 btn btn-outline-secondary w-25" %>
     </div>
    <% end %>
   <% else %>
