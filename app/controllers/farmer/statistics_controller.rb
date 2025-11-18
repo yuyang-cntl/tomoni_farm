@@ -21,6 +21,6 @@ class Farmer::StatisticsController < ApplicationController
         date: post_date,
         link: farmer_diary_post_path(post.diary, post)
       }
-    end
+    end.compact
   end
 end
