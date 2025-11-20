@@ -16,8 +16,8 @@
 
 <div class="container-fluid">
  <div class="row"> 
-  <div class="col-12 col-md-8 mx-auto mt-5">
-   <h1 class="mb-5">生産者登録</h1>
+  <div class="col-12 col-md-10 mx-auto mt-5">
+   <h1 class="mb-5 col-12 col-md-4 offset-md-2">生産者登録</h1>
    <%= form_with model:@farmer, url:farmer_registration_path, scope: :farmer, local: true, html: { multipart: true } do |f| %>
     <div class="field mt-3 mb-3 col-12 col-md-4 offset-md-2">
      <%= f.label :image, "プロフィール画像", class: "form-control-file" %>
