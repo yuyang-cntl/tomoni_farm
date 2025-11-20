@@ -10,11 +10,12 @@ jobs:
     env:
       RAILS_ENV: test
       BUNDLER_FORCE_RUBY_PLATFORM: true
+      BUNDLER_IGNORE_CONFIG: true
     steps:
       - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.1.2
+          ruby-version: 3.2.2
       - run: |
           gem install bundler
           bundle install
