@@ -11,6 +11,7 @@ jobs:
       RAILS_ENV: test
       BUNDLER_FORCE_RUBY_PLATFORM: true
       BUNDLER_IGNORE_CONFIG: true
+      BUNDLE_IGNORE_RUBY_VERSION: true
     steps:
       - uses: actions/checkout@v3
       - uses: ruby/setup-ruby@v1
