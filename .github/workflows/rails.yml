@@ -5,8 +5,25 @@ on:
     branches: [main]
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+      - run: |
+          gem install bundler
+          bundle install
+          bundle exec rails db:create
+          bundle exec rails db:schema:load
+          bundle exec rspec
+
   build:
     runs-on: ubuntu-latest
+    needs: test
     steps:
     - uses: actions/setup-node@v3
     - name: Deploy
