@@ -48,6 +48,7 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+- test: Rspec
 
 ## 追加予定の機能
 - ログ一覧、ユーザー数、投稿数
